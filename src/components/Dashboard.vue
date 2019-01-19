@@ -27,12 +27,13 @@
                                 </article>
                             </div>
                             <div class="tile is-parent">
-                                <article class="tile is-child notification is-info">
+                                <article class="tile is-child notification is-info grafico-003">
                                     <p class="title">Grafica 3 </p>
                                     <p class="subtitle">graficos</p>
-                                    <figure class="image is-4by3">
+                                    <canvas id="myChart" width="400" height="400"></canvas>
+                                    <!--<figure class="image is-4by3">
                                         <img src="https://bulma.io/images/placeholders/640x480.png">
-                                    </figure>
+                                    </figure>-->
                                 </article>
                             </div>
                         </div>
@@ -65,11 +66,63 @@
 </template>
 
 <script>
+    import Chart from 'chart.js';
+
     export default {
-        name: "Dashboard"
+        name: "Dashboard",
+        components:{
+
+        },
+        data:function() {
+            return {
+                newTodoText: '',
+                visitCount: 0,
+                hideCompletedTodos: false,
+                todos: [],
+                error: null
+            };
+        },
+        mounted(){
+            var ctx = document.getElementById("myChart");
+            /* eslint-disable */
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
     }
 </script>
 
-<style scoped>
-
-</style>
+<style lang="stylus" src="@/assets/styles/home.styl"></style>
