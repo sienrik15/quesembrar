@@ -1,20 +1,54 @@
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const express = require("express");
+const axios = require('axios')
 const cors = require('cors');
 const path = require('path');
 const history = require('connect-history-api-fallback');
 const CronJob = require('cron').CronJob;
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+//const request = require('request');
+const querystring = require('querystring');
+
+
 
 
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 db.settings({ timestampsInSnapshots: true });
 
+    axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
+        querystring.stringify({
+            mercado: '*',
+            'variables[]': 'volumen',
+            'procedencias[]': '110000',
+            fecha: '18/01/2019',
+            desde: '01/01/2019',//1997
+            hasta: '18/01/2019',
+            'anios[]': '2019',
+            'meses[]': '01',
+            'semanas[]': '3',
+            'productos[]': '0633',
+            periodicidad: 'intervalo'
+        })).then(function (response) {
+
+        //console.log(response.data);
+        const dom = new JSDOM(response.data);
+        console.log("=====================================");
+        console.log(dom.window.document.querySelector("h1").textContent); // "Hello world"
+        return ""
+        //console.log(response);
+    }).catch(function (error) {
+            console.log(error);
+    });
 
 
+/**
+ * CronJob @params  */
+/*
 const job = new CronJob('0 0 9 * * 1-6', function() {
-//const job = new CronJob('*/5 * * * * *', function() {
+//const job = new CronJob('*!/5 * * * * *', function() {
     const d = new Date();
     const aTuringRef = db.collection('users').doc('meseta');
     const setAlan = aTuringRef.set({
@@ -29,6 +63,7 @@ const job = new CronJob('0 0 9 * * 1-6', function() {
     // Puedes pasar null para que no haga nada
 }, true);
 job.start();
+*/
 
 
 // // Create and Deploy Your First Cloud Functions

@@ -2,11 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import DefaultContainer from './components/DefaultContainer'
 import Dashboard from './components/Dashboard'
+import HomeWorkLanding from './components/HomeWorkLanding'
 
 Vue.use(Router);
 
 export default new Router({
-    //mode:'history',
+    mode:'history',
     routes: [
         {
             path:"/",
@@ -24,13 +25,14 @@ export default new Router({
                     children:[
                         {
                             path:'/',//':id',
+                            redirect: '/mente-creativa',
                             name:'dashboard',
                             component: Dashboard,//Dashboard
                         },
                         {
-                            path:'/productos',//':id',
-                            name:'productos',
-                            component: Dashboard,//Dashboard
+                            path:'/mente-creativa',//':id',
+                            name:'menteCreativa',
+                            component: HomeWorkLanding,//Dashboard
                         }
                     ]
                 }

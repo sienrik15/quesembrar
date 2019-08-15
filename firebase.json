@@ -26,14 +26,14 @@
       }
     ],*/
     "rewrites": [
-     /* {
-        "source": "/app*//**",
-        "destination": "/index.html"
-      },*/
       {
-        "source": "**/!(*.css|*.js|*.map|*.jpg|*.gif|*.png|*.php)",
-        "function": "app"
+        "source": "**",
+        "destination": "/index.html"
       }
+      /*{
+        "source": "**//*!(*.css|*.js|*.map|*.jpg|*.gif|*.png|*.php)",
+        "function": "app"
+      }*/
     ]
   },
   "storage": {

@@ -5,7 +5,7 @@
       <img alt="Vue logo" src="./assets/logo.png">
       <HelloWorld msg="Welcome to Your Vue.js App"/>
     </div>-->
-    <footer class="footer">
+    <!--<footer class="footer">
       <div class="content has-text-centered">
         <p>
           <strong>Quesembrar.com</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
@@ -13,7 +13,7 @@
           is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
         </p>
       </div>
-    </footer>
+    </footer>-->
   </div>
 </template>
 
@@ -31,9 +31,9 @@ export default {
 <style lang="stylus">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  //-webkit-font-smoothing: antialiased;
+  //-moz-osx-font-smoothing: grayscale;
+  //text-align: center;
   color: #2c3e50;
 }
 .notification
