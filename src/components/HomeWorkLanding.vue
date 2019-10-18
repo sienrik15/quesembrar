@@ -20,7 +20,7 @@
 
         <div style="padding: 8px">
 
-            <div style="font-size: 20px;padding: 20px 8px; padding-bottom: 5px; padding-top: 10px"> <strong> Te enseñamos a resolver tus tareas</strong> </div>
+            <div style="font-size: 20px;padding: 20px 8px; padding-bottom: 5px; padding-top: 10px"> <strong> Te enseñamos como resolvemos tus tareas</strong> </div>
             <div class="columns is-mobile" style="margin: 0px">
                 <div class="column" style="text-align: center;">
                     <div style="font-size: 18px; text-align: center"> <span style="color: #20d0c2;">Química</span> </div>
@@ -90,7 +90,7 @@
                         </ul>
                     </div>
                     <div style="text-align: center;padding: 10px; padding-top: 15px">
-                        <a :href="msgWhatsapp1" class="button btn-plan is-warning is-rounded btn-price">Comprar</a>
+                        <a :href="msgWhatsapp1" class="button btn-plan is-warning is-rounded btn-price">Prueba gratis</a>
                     </div>
                 </div>
                 <div class="examples-card" style="background: #7ae97c;">
@@ -107,13 +107,13 @@
                         <ul>
                             <li><strong style="font-size: 20px; font-weight: 900"> <f-icon icon="check" style="color: #fff"/> 10 Tareas</strong></li>
                             <li><strong> <f-icon icon="check" style="color: #fff"/> Video explicativo</strong></li>
-                            <li><strong> <f-icon icon="check" style="color: #fff"/> Tareas de Fisica</strong></li>
-                            <li><strong> <f-icon icon="check" style="color: #fff"/> Tareas de Matematica</strong> </li>
-                            <li><strong> <f-icon icon="check" style="color: #fff"/> Tareas de Quimica</strong></li>
+                            <li><strong> <f-icon icon="check" style="color: #fff"/> Tareas de Física</strong></li>
+                            <li><strong> <f-icon icon="check" style="color: #fff"/> Tareas de Matemática</strong> </li>
+                            <li><strong> <f-icon icon="check" style="color: #fff"/> Tareas de Química</strong></li>
                         </ul>
                     </div>
                     <div style="text-align: center; padding: 10px; padding-top: 15px">
-                        <a :href="msgWhatsapp2" class="button btn-plan is-warning is-rounded btn-price">Comprar</a>
+                        <a :href="msgWhatsapp2" class="button btn-plan is-warning is-rounded btn-price">Prueba gratis</a>
                     </div>
                 </div>
             </div>
@@ -127,9 +127,9 @@
         name: "HomeWorkLanding",
         data(){
             return{
-                msgWhatsapp1 : 'https://api.whatsapp.com/send?phone=988531455&text=Hola menteCreativa, necesito ayuda para resolver mis tareas, quiero el plan de S/8.00',
-                msgWhatsapp2 : 'https://api.whatsapp.com/send?phone=988531455&text=Hola menteCreativa, necesito ayuda para resolver mis tareas, quiero el plan de S/18.00',
-                msgWhatsappinfo : 'https://api.whatsapp.com/send?phone=988531455',
+                msgWhatsapp1 : 'https://api.whatsapp.com/send?phone=51988531455&text=Hola menteCreativa, necesito ayuda para resolver mis tareas, quiero el plan de S/8.00',
+                msgWhatsapp2 : 'https://api.whatsapp.com/send?phone=51988531455&text=Hola menteCreativa, necesito ayuda para resolver mis tareas, quiero el plan de S/18.00',
+                msgWhatsappinfo : 'https://api.whatsapp.com/send?phone=51988531455&text=Hola menteCreativa, quisiera saber como me ayudarian con mis tareas',
             }
         }
     }

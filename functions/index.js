@@ -3,6 +3,7 @@ const functions = require('firebase-functions');
 const express = require("express");
 const axios = require('axios')
 const cors = require('cors');
+const html2json = require('html2json').html2json;
 const path = require('path');
 const history = require('connect-history-api-fallback');
 const CronJob = require('cron').CronJob;
@@ -11,74 +12,168 @@ const { JSDOM } = jsdom;
 //const request = require('request');
 const querystring = require('querystring');
 
+//Prod
+//admin.initializeApp(functions.config().firebase);
 
+//Local
+const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://agroanalytics-b2462.firebaseio.com"
+});
 
-
-admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 db.settings({ timestampsInSnapshots: true });
 
-    axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
+createProducto = async () => {
+    let productRef = db.collection('precios');
+    productRef.doc('sandia').set({
+        fecha:'',
+        peso:'1kg',
+        unidad:'S/',
+        precio_max:'',
+        precio_prom:'',
+        precio_min:''
+    });
+
+    let volumenRef = db.collection('volumen');
+    volumenRef.doc('sandia').set({
+        fecha:'',
+        unidad:'t',
+        ciudad:'',
+    });
+};
+
+createContry = async () => {
+    let citiesRef = db.collection('cities');
+
+    let setSf = citiesRef.doc('SF').set({
+        name: 'San Francisco', state: 'CA', country: 'USA',
+        capital: false, population: 860000,
+        regions: ['west_coast', 'norcal']
+    });
+    let setLa = citiesRef.doc('LA').set({
+        name: 'Los Angeles', state: 'CA', country: 'USA',
+        capital: false, population: 3900000,
+        regions: ['west_coast', 'socal']
+    });
+    let setDc = citiesRef.doc('DC').set({
+        name: 'Washington, D.C.', state: null, country: 'USA',
+        capital: true, population: 680000,
+        regions: ['east_coast']
+    });
+    let setTok = citiesRef.doc('TOK').set({
+        name: 'Tokyo', state: null, country: 'Japan',
+        capital: true, population: 9000000,
+        regions: ['kanto', 'honshu']
+    });
+    let setBj = citiesRef.doc('BJ').set({
+        name: 'Beijing', state: null, country: 'China',
+        capital: true, population: 21500000,
+        regions: ['jingjinji', 'hebei']
+    });
+};
+
+deletefilevalue = async ()=>{
+    // Get the `FieldValue` object
+    let FieldValue = require('firebase-admin').firestore.FieldValue;
+
+    // Create a document reference
+    let cityRef = db.collection('users').doc('alovelace');
+
+    // Remove the 'capital' field from the document
+    let removeCapital = cityRef.update({
+        last: FieldValue.delete()
+    });
+};
+
+deleteCollection = (db, collectionPath, batchSize) => {
+    let collectionRef = db.collection(collectionPath);
+    let query = collectionRef.orderBy('__name__').limit(batchSize);
+
+    return new Promise((resolve, reject) => {
+        deleteQueryBatch(db, query, batchSize, resolve, reject);
+    });
+};
+
+deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
+    query.get()
+        .then((snapshot) => {
+            // When there are no documents left, we are done
+            if (snapshot.size == 0) {
+                return 0;
+            }
+
+            // Delete documents in a batch
+            let batch = db.batch();
+            snapshot.docs.forEach((doc) => {
+                batch.delete(doc.ref);
+            });
+
+            return batch.commit().then(() => {
+                return snapshot.size;
+            });
+        }).then((numDeleted) => {
+        if (numDeleted === 0) {
+            resolve();
+            return;
+        }
+
+        // Recurse on the next process tick, to avoid
+        // exploding the stack.
+        process.nextTick(() => {
+            deleteQueryBatch(db, query, batchSize, resolve, reject);
+        });
+    })
+        .catch(reject);
+};
+
+
+getScrap = async () =>{
+     let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
         querystring.stringify({
             mercado: '*',
             'variables[]': 'volumen',
             'procedencias[]': '110000',
-            fecha: '18/01/2019',
+            fecha: '07/09/2019',
             desde: '01/01/2019',//1997
-            hasta: '18/01/2019',
+            hasta: '07/09/2019',
             'anios[]': '2019',
-            'meses[]': '01',
-            'semanas[]': '3',
+            'meses[]': '09',
+            'semanas[]': '36',
+            //'productos[]': '0633',
+            'productos[]': '063301',
+            periodicidad: 'intervalo'
+        }));
+
+     return response.data;
+};
+
+getPrecios = async (tipe) => {
+    let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
+        querystring.stringify({
+            mercado: '*',
+            'variables[]': tipe,
+            fecha: '07/09/2019',
+            desde: '01/01/1997',//1997
+            hasta: '07/09/2019',
+            'anios[]': '2019',
+            'meses[]': '09',
+            'semanas[]': '36',
+            //'productos[]': '0633',
             'productos[]': '0633',
             periodicidad: 'intervalo'
-        })).then(function (response) {
+        }));
 
-        //console.log(response.data);
-        const dom = new JSDOM(response.data);
-        console.log("=====================================");
-        console.log(dom.window.document.querySelector("h1").textContent); // "Hello world"
-        return ""
-        //console.log(response);
-    }).catch(function (error) {
-            console.log(error);
-    });
+    return response.data;
+};
 
-
-/**
- * CronJob @params  */
-/*
-const job = new CronJob('0 0 9 * * 1-6', function() {
-//const job = new CronJob('*!/5 * * * * *', function() {
-    const d = new Date();
-    const aTuringRef = db.collection('users').doc('meseta');
-    const setAlan = aTuringRef.set({
-        'first': 'Sam',
-        'middle': 'Mathison',
-        'last': 'Turing',
-        'born': d
-    });
-
-}, function() {
-    // Código a ejecutar cuando la tarea termina.
-    // Puedes pasar null para que no haga nada
-}, true);
-job.start();
-*/
-
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
 const app = express();
-const app2 = express();
-app.use(cors({origin: '*'}));
-//app.use(history());
-app2.use(cors({origin: '*'}));
+app.use(express.json());
 
-app2.get('/api-user', (req, res) => {
+app.use(cors({origin: '*'}));
+
+app.get('/api-user', (req, res) => {
     const hours = (new Date().getHours() % 12) + 1 // London is UTC + 1hr;
     res.status(200).send(`<!doctype html>
     <head>
@@ -90,13 +185,33 @@ app2.get('/api-user', (req, res) => {
     </body> 
   </html>`);
 });
-app.use('/services', app2);
 
+app.get('/', async (req, res) => {
+    //deletefilevalue();
+    //let delet = await deleteCollection(db, 'cities', 100);
 
-app.get('**', (req, res) => {
-    //console.log(path.join(__dirname, '../dist/index.html'));
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
+    let response = await getPrecios(['precio_max','precio_prom','precio_min']);
+
+    res.send(response)
+    //createContry();
+
+    /*let citiesRef = await db.collection('cities');
+    //let queryRef = await citiesRef.where('state', '==', 'CA');
+    let queryRef = citiesRef.where('capital', '==', true);
+    let respons = await queryRef.get()
+        .then((snapshot) => {
+            let data = [];
+            snapshot.forEach((doc) => { data.push(doc.data()); });
+            return data;
+        })
+        .catch((err) => {
+            console.log('Error getting documents', err);
+        });
+    res.send(respons);*/
+
+    //res.send(html2json(response));
 });
+
 
 
 exports.app = functions.https.onRequest(app);

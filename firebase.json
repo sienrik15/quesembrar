@@ -29,11 +29,11 @@
       {
         "source": "**",
         "destination": "/index.html"
-      }
-      /*{
-        "source": "**//*!(*.css|*.js|*.map|*.jpg|*.gif|*.png|*.php)",
+      },
+      {
+        "source": "*!(*.css|*.js|*.map|*.jpg|*.gif|*.png|*.php)",
         "function": "app"
-      }*/
+      }
     ]
   },
   "storage": {
