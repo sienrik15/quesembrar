@@ -25,7 +25,7 @@ export default new Router({
                     children:[
                         {
                             path:'/',//':id',
-                            redirect: '/mente-creativa',
+                            //redirect: '/mente-creativa',
                             name:'dashboard',
                             component: Dashboard,//Dashboard
                         },
