@@ -1,3 +1,4 @@
+/* eslint-disable promise/always-return,consistent-return */
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const express = require("express");
@@ -227,18 +228,21 @@ app.get('/prod-all', async (req, res) => {
 });
 
 app.get('/read',async (req, res) => {
-    let citiesRef = await db.collection('lima_market');
+    let citiesRef = await db.collection('lima_market').doc('watermelon');
     //let queryRef = await citiesRef.where('state', '==', 'CA');
-    let queryRef = citiesRef.where('name', '==', 'sandía');
-    let respons = await queryRef.get()
-        .then((snapshot) => {
-            let data = [];
-            snapshot.forEach((doc) => { data.push(doc.data()); });
-            return data;
+    let respons = await citiesRef.get()
+        .then(doc => {
+            if (!doc.exists) {
+                console.log('No such document!');
+            } else {
+                console.log('Document data:', doc.data());
+                return doc.data()
+            }
         })
-        .catch((err) => {
-            console.log('Error getting documents', err);
+        .catch(err => {
+            console.log('Error getting document', err);
         });
+
     res.json(respons);
 
 
