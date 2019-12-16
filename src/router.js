@@ -11,13 +11,13 @@ export default new Router({
     routes: [
         {
             path:"/",
-            redirect: '/',
+            //redirect: '/',
             name:'resultadoTest',
             component: DefaultContainer,
             children: [
                 {
                     path: '/',
-                    redirect:'/',
+                    //redirect:'/',
                     name: 'resultado',
                     component: {
                         render (c) { return c('router-view') }

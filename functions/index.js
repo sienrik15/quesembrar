@@ -100,7 +100,7 @@ deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
     query.get()
         .then((snapshot) => {
             // When there are no documents left, we are done
-            if (snapshot.size == 0) {
+            if (snapshot.size === 0) {
                 return 0;
             }
 
@@ -124,8 +124,9 @@ deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
         process.nextTick(() => {
             deleteQueryBatch(db, query, batchSize, resolve, reject);
         });
-    })
-        .catch(reject);
+        return console.log('This is the notify feature');
+
+    }).catch(reject);
 };
 
 
@@ -154,12 +155,12 @@ getPrecios = async (tipe) => {
         querystring.stringify({
             mercado: '*',
             'variables[]': tipe,
-            fecha: '07/09/2019',
+            fecha: '29/11/2019',
             desde: '01/01/1997',//1997
-            hasta: '07/09/2019',
+            hasta: '29/11/2019',
             'anios[]': '2019',
-            'meses[]': '09',
-            'semanas[]': '36',
+            'meses[]': '11',
+            'semanas[]': '48',
             //'productos[]': '0633',
             'productos[]': '0633',
             periodicidad: 'intervalo'
@@ -168,10 +169,19 @@ getPrecios = async (tipe) => {
     return response.data;
 };
 
+const API_PREFIX = 'api';
 const app = express();
-app.use(express.json());
 
-app.use(cors({origin: '*'}));
+//app.use(express.json());
+
+//app.use(cors({origin: '*'}));
+
+app.use((req, res, next) => {
+    if (req.url.indexOf(`/${API_PREFIX}/`) === 0) {
+        req.url = req.url.substring(API_PREFIX.length + 1);
+    }
+    next();
+});
 
 app.get('/api-user', (req, res) => {
     const hours = (new Date().getHours() % 12) + 1 // London is UTC + 1hr;
@@ -187,6 +197,10 @@ app.get('/api-user', (req, res) => {
 });
 
 app.get('/', async (req, res) => {
+    res.send("Hola mundo")
+});
+
+app.get('/prod-all', async (req, res) => {
     //deletefilevalue();
     //let delet = await deleteCollection(db, 'cities', 100);
 
@@ -212,6 +226,22 @@ app.get('/', async (req, res) => {
     //res.send(html2json(response));
 });
 
+app.get('/read',async (req, res) => {
+    let citiesRef = await db.collection('lima_market');
+    //let queryRef = await citiesRef.where('state', '==', 'CA');
+    let queryRef = citiesRef.where('name', '==', 'sandía');
+    let respons = await queryRef.get()
+        .then((snapshot) => {
+            let data = [];
+            snapshot.forEach((doc) => { data.push(doc.data()); });
+            return data;
+        })
+        .catch((err) => {
+            console.log('Error getting documents', err);
+        });
+    res.json(respons);
 
 
-exports.app = functions.https.onRequest(app);
+});
+
+exports[API_PREFIX] = functions.https.onRequest(app);
