@@ -12,6 +12,8 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 //const request = require('request');
 const querystring = require('querystring');
+const HtmlTableToJson = require('html-table-to-json');
+
 
 //Prod
 //admin.initializeApp(functions.config().firebase);
@@ -156,10 +158,10 @@ getPrecios = async (tipe) => {
         querystring.stringify({
             mercado: '*',
             'variables[]': tipe,
-            fecha: '29/11/2019',
+            fecha: '24/01/2020',
             desde: '01/01/1997',//1997
-            hasta: '29/11/2019',
-            'anios[]': '2019',
+            hasta: '24/01/2020',
+            'anios[]': '2020',
             'meses[]': '11',
             'semanas[]': '48',
             //'productos[]': '0633',
@@ -205,9 +207,8 @@ app.get('/prod-all', async (req, res) => {
     //deletefilevalue();
     //let delet = await deleteCollection(db, 'cities', 100);
 
-    let response = await getPrecios(['precio_max','precio_prom','precio_min']);
-
-    res.send(response)
+    let response = await getPrecios(['precio_max']);//,'precio_prom','precio_min'
+    res.send(HtmlTableToJson.parse(response)._results)
     //createContry();
 
     /*let citiesRef = await db.collection('cities');
@@ -228,22 +229,29 @@ app.get('/prod-all', async (req, res) => {
 });
 
 app.get('/read',async (req, res) => {
-    let citiesRef = await db.collection('lima_market').doc('watermelon');
-    //let queryRef = await citiesRef.where('state', '==', 'CA');
-    let respons = await citiesRef.get()
-        .then(doc => {
-            if (!doc.exists) {
-                console.log('No such document!');
-            } else {
-                console.log('Document data:', doc.data());
-                return doc.data()
-            }
-        })
-        .catch(err => {
-            console.log('Error getting document', err);
+    //Obtener lista de coleccion en un documento
+    /*let sfRef = db.collection('lima_market').doc('watermelon');
+    sfRef.listCollections().then(value => {
+        value.forEach(collection => {
+            console.log('Found subcollection with id:', collection.id);
+        });
+    }).catch(err=> {
+        console.log('Error getting documents', err);
+    });*/
+
+    //Obtener lista de documentos en una coleccion
+    let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
+    let allCities = await citiesRef.select("name").get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+            });
+            return snapshot
+        }).catch(err => {
+            console.log('Error getting documents', err);
         });
 
-    res.json(respons);
+    res.json(allCities);
 
 
 });
