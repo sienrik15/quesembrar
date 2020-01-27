@@ -240,7 +240,7 @@ app.get('/read',async (req, res) => {
     });*/
 
     //Obtener lista de documentos en una coleccion
-    let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
+    /*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
     let allCities = await citiesRef.select("name").get()
         .then(snapshot => {
             snapshot.forEach(doc => {
@@ -249,7 +249,27 @@ app.get('/read',async (req, res) => {
             return snapshot
         }).catch(err => {
             console.log('Error getting documents', err);
+        }); */
+    let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
+    let allCities = await citiesRef.where('name', '==', "precio promedio").get()
+        .then(value => {
+            let res = [];
+            value.forEach(doc => {
+                res.push(doc.data());
+                console.log(doc.id, '=>', doc.data());
+            });
+            return  res
+        }).catch(err => {
+            console.log('Error getting documents', err);
         });
+
+    /*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices").doc("avg_price");
+    let allCities = await citiesRef.get()
+        .then(value => {
+            return  value.data()
+        }).catch(err => {
+            console.log('Error getting documents', err);
+        });*/
 
     res.json(allCities);
 
