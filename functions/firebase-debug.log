@@ -2124,3 +2124,257 @@
 [debug] [2020-01-27T23:05:38.375Z] [worker-api-fc910e79-e227-47df-b934-624a3cb9b809]: FINISHED
 [debug] [2020-01-27T23:05:38.375Z] [worker-~diagnostic~-dbc1983e-110b-4d04-9a39-4d60df8dcb81]: exited
 [debug] [2020-01-27T23:05:38.375Z] [worker-~diagnostic~-dbc1983e-110b-4d04-9a39-4d60df8dcb81]: FINISHED
+[debug] [2020-01-27T23:05:42.294Z] [runtime-status] [17220] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-01-27T23:05:42.297Z] [runtime-status] [17220] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-01-27T23:05:42.317Z] [runtime-status] [17220] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-01-27T23:05:42.329Z] [runtime-status] [17220] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-01-27T23:05:42.338Z] [runtime-status] [17220] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-01-27T23:05:53.585Z] [worker-~diagnostic~-a20070a1-b7ec-4f33-a63a-7c258c450ca0]: IDLE
+[debug] [2020-01-28T15:44:09.198Z] [worker-~diagnostic~-a20070a1-b7ec-4f33-a63a-7c258c450ca0]: exited
+[debug] [2020-01-28T15:44:09.209Z] [worker-~diagnostic~-a20070a1-b7ec-4f33-a63a-7c258c450ca0]: FINISHED
+[debug] [2020-01-28T15:44:09.238Z] [worker-api-a1bb4f5c-775c-40e5-bfe2-4b57f8476969]: exited
+[debug] [2020-01-28T15:44:09.238Z] [worker-api-a1bb4f5c-775c-40e5-bfe2-4b57f8476969]: FINISHED
+[debug] [2020-01-28T15:44:09.241Z] [work-queue] {"queueLength":0,"workRunningCount":4}
+[debug] [2020-01-28T15:44:09.276Z] [worker-api-e6cc67e8-b082-4097-a456-73d94f68965d]: exited
+[debug] [2020-01-28T15:44:09.276Z] [worker-api-e6cc67e8-b082-4097-a456-73d94f68965d]: FINISHED
+[debug] [2020-01-28T15:44:09.276Z] [work-queue] {"queueLength":0,"workRunningCount":3}
+[debug] [2020-01-28T15:44:09.320Z] [worker-api-368d365c-2c16-417c-83dc-72671234e156]: exited
+[debug] [2020-01-28T15:44:09.321Z] [worker-api-368d365c-2c16-417c-83dc-72671234e156]: FINISHED
+[debug] [2020-01-28T15:44:09.346Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-01-28T15:44:09.356Z] [worker-api-bab9d8c3-9d6c-43fd-b0ab-6099abb2018c]: exited
+[debug] [2020-01-28T15:44:09.356Z] [worker-api-bab9d8c3-9d6c-43fd-b0ab-6099abb2018c]: FINISHED
+[debug] [2020-01-28T15:44:09.356Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-01-28T15:44:09.400Z] [worker-api-168ef818-b72b-4010-8b04-a9bd76ee77b2]: exited
+[debug] [2020-01-28T15:44:09.400Z] [worker-api-168ef818-b72b-4010-8b04-a9bd76ee77b2]: FINISHED
+[debug] [2020-01-28T15:44:09.401Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-01-29T19:09:03.811Z] ----------------------------------------------------------------------
+[debug] [2020-01-29T19:09:03.813Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\SEMUNOZC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-01-29T19:09:03.813Z] CLI Version:   7.12.1
+[debug] [2020-01-29T19:09:03.813Z] Platform:      win32
+[debug] [2020-01-29T19:09:03.813Z] Node Version:  v10.16.3
+[debug] [2020-01-29T19:09:03.818Z] Time:          Wed Jan 29 2020 14:09:03 GMT-0500 (GMT-05:00)
+[debug] [2020-01-29T19:09:03.818Z] ----------------------------------------------------------------------
+[debug] [2020-01-29T19:09:03.818Z] 
+[debug] [2020-01-29T19:09:03.853Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-29T19:09:03.855Z] > authorizing via signed-in user
+[debug] [2020-01-29T19:09:03.855Z] [iam] checking project agroanalytics-b2462 for permissions ["firebase.projects.get"]
+[debug] [2020-01-29T19:09:03.858Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-01-29T19:09:03.858Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-01-29T19:09:04.148Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-29T19:09:04.177Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/agroanalytics-b2462:testIamPermissions  
+
+[debug] [2020-01-29T19:09:05.658Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-29T19:09:05.661Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462  
+ 
+[debug] [2020-01-29T19:09:06.557Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\Projects\quesembrar'...
+[info] 
+[debug] [2020-01-29T19:09:06.579Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462/webApps/-/config  
+ 
+[info] +  functions: Using node@10 from host.
+[info] +  functions: Emulator started at http://localhost:5001
+[debug] [2020-01-29T19:09:08.256Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "D:\Projects\quesembrar\functions" for Cloud Functions...
+[debug] [2020-01-29T19:09:09.576Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-01-29T19:09:09.576Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-01-29T19:09:09.577Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-01-29T19:09:09.577Z] [worker-~diagnostic~-d66dc57f-594e-4529-8e92-aba23193c921]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\11064
+[debug] [2020-01-29T19:09:09.578Z] [worker-~diagnostic~-d66dc57f-594e-4529-8e92-aba23193c921]: BUSY
+[info] i  hosting: Serving hosting files from: dist
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2020-01-29T19:09:10.536Z] [runtime-status] [11064] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-01-29T19:09:10.538Z] [runtime-status] [11064] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-01-29T19:09:10.554Z] [runtime-status] [11064] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-01-29T19:09:10.566Z] [runtime-status] [11064] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-01-29T19:09:10.569Z] [runtime-status] [11064] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] +  functions[api]: http function initialized (http://localhost:5001/agroanalytics-b2462/us-central1/api).
+[debug] [2020-01-29T19:09:26.933Z] [worker-~diagnostic~-d66dc57f-594e-4529-8e92-aba23193c921]: IDLE
+[debug] [2020-01-29T19:09:43.369Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-01-29T19:09:43.370Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-01-29T19:09:43.370Z] Accepted request GET /agroanalytics-b2462/us-central1/api --> api
+[debug] [2020-01-29T19:09:43.391Z] [worker-pool] addWorker(api)
+[debug] [2020-01-29T19:09:43.391Z] [worker-pool] Adding worker with key api, total=1
+[debug] [2020-01-29T19:09:43.391Z] [worker-pool] submitWork(triggerId=api)
+[debug] [2020-01-29T19:09:43.392Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\15364
+[debug] [2020-01-29T19:09:43.392Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: BUSY
+[debug] [2020-01-29T19:09:45.115Z] [runtime-status] [15364] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-01-29T19:09:45.117Z] [runtime-status] [15364] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-01-29T19:09:45.130Z] [runtime-status] [15364] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-01-29T19:09:45.136Z] [runtime-status] [15364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-01-29T19:09:45.142Z] [runtime-status] [15364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-01-29T19:09:47.657Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-01-29T19:09:47.657Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-01-29T19:09:47.657Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-01-29T19:09:47.674Z] [worker-pool] addWorker(api)
+[debug] [2020-01-29T19:09:47.674Z] [worker-pool] Adding worker with key api, total=2
+[debug] [2020-01-29T19:09:47.674Z] [worker-pool] submitWork(triggerId=api)
+[debug] [2020-01-29T19:09:47.675Z] [worker-api-db3a42d8-bb6b-4743-95c0-54109304c3d0]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\6084
+[debug] [2020-01-29T19:09:47.675Z] [worker-api-db3a42d8-bb6b-4743-95c0-54109304c3d0]: BUSY
+[debug] [2020-01-29T19:09:48.849Z] [runtime-status] [15364] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-01-29T19:09:48.850Z] [runtime-status] [15364] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-01-29T19:09:48.850Z] [runtime-status] [15364] Running api in mode HTTPS
+[debug] [2020-01-29T19:09:48.857Z] [runtime-status] [15364] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\15364
+[debug] [2020-01-29T19:09:48.864Z] [functions] Runtime ready! Sending request!
+[debug] [2020-01-29T19:09:48.882Z] [runtime-status] [15364] Ephemeral server handling GET request
+[debug] [2020-01-29T19:09:48.895Z] [runtime-status] [15364] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2020-01-29T19:09:48.900Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: IDLE
+[debug] [2020-01-29T19:09:48.901Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-01-29T19:09:48.993Z] [runtime-status] [6084] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-01-29T19:09:48.995Z] [runtime-status] [6084] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-01-29T19:09:49.006Z] [runtime-status] [6084] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-01-29T19:09:49.011Z] [runtime-status] [6084] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-01-29T19:09:49.015Z] [runtime-status] [6084] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-01-29T19:09:49.741Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-01-29T19:09:49.741Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-01-29T19:09:49.741Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-01-29T19:09:49.741Z] [worker-pool] submitWork(triggerId=api)
+[debug] [2020-01-29T19:09:49.742Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\15364
+[debug] [2020-01-29T19:09:49.742Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: BUSY
+[debug] [2020-01-29T19:09:49.742Z] [runtime-status] [15364] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-01-29T19:09:49.743Z] [runtime-status] [15364] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-01-29T19:09:49.743Z] [runtime-status] [15364] Running api in mode HTTPS
+[debug] [2020-01-29T19:09:49.743Z] [runtime-status] [15364] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\15364
+[debug] [2020-01-29T19:09:49.746Z] [functions] Runtime ready! Sending request!
+[debug] [2020-01-29T19:09:49.749Z] [runtime-status] [15364] Ephemeral server handling GET request
+[debug] [2020-01-29T19:09:53.268Z] [runtime-status] [15364] Ephemeral server survived.
+[debug] [2020-01-29T19:09:53.301Z] [runtime-status] [6084] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-01-29T19:09:53.306Z] [runtime-status] [6084] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-01-29T19:09:53.306Z] [runtime-status] [6084] Running api in mode HTTPS
+[debug] [2020-01-29T19:09:53.308Z] [runtime-status] [6084] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\6084
+[debug] [2020-01-29T19:09:53.317Z] [functions] Runtime ready! Sending request!
+[debug] [2020-01-29T19:09:53.333Z] [runtime-status] [6084] Ephemeral server handling GET request
+[debug] [2020-01-29T19:09:53.986Z] [runtime-status] [6084] Ephemeral server survived.
+[info] >  QuerySnapshot {
+[info] >    _query:
+[info] >     CollectionReference {
+[info] >       _firestore:
+[info] >        Firestore {
+[info] >          _settings: [Object],
+[info] >          _settingsFrozen: true,
+[info] >          _serializer: [Serializer],
+[info] >          _projectId: 'agroanalytics-b2462',
+[info] >          _lastSuccessfulRequest: 1580324994597,
+[info] >          _preferTransactions: false,
+[info] >          _clientPool: [ClientPool] },
+[info] >       _queryOptions:
+[info] >        QueryOptions {
+[info] >          parentPath: [ResourcePath],
+[info] >          collectionId: 'agricultural_crops',
+[info] >          allDescendants: false,
+[info] >          fieldFilters: [],
+[info] >          fieldOrders: [],
+[info] >          startAt: undefined,
+[info] >          endAt: undefined,
+[info] >          limit: undefined,
+[info] >          offset: undefined,
+[info] >          projection: undefined },
+[info] >       _serializer:
+[info] >        Serializer { createReference: [Function], timestampsInSnapshots: true } },
+[info] >    _readTime: Timestamp { _seconds: 1580325010, _nanoseconds: 526783000 },
+[info] >    _size: 2,
+[info] >    _materializedDocs: null,
+[info] >    _materializedChanges: null,
+[info] >    _docs: [Function],
+[info] >    _changes: [Function] }
+[info] i  functions: Finished "api" in ~2s
+[debug] [2020-01-29T19:09:54.627Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: IDLE
+[debug] [2020-01-29T19:09:54.627Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[info] >  QuerySnapshot {
+[info] >    _query:
+[info] >     CollectionReference {
+[info] >       _firestore:
+[info] >        Firestore {
+[info] >          _settings: [Object],
+[info] >          _settingsFrozen: true,
+[info] >          _serializer: [Serializer],
+[info] >          _projectId: 'agroanalytics-b2462',
+[info] >          _lastSuccessfulRequest: 1580324995048,
+[info] >          _preferTransactions: false,
+[info] >          _clientPool: [ClientPool] },
+[info] >       _queryOptions:
+[info] >        QueryOptions {
+[info] >          parentPath: [ResourcePath],
+[info] >          collectionId: 'agricultural_crops',
+[info] >          allDescendants: false,
+[info] >          fieldFilters: [],
+[info] >          fieldOrders: [],
+[info] >          startAt: undefined,
+[info] >          endAt: undefined,
+[info] >          limit: undefined,
+[info] >          offset: undefined,
+[info] >          projection: undefined },
+[info] >       _serializer:
+[info] >        Serializer { createReference: [Function], timestampsInSnapshots: true } },
+[info] >    _readTime: Timestamp { _seconds: 1580325010, _nanoseconds: 969413000 },
+[info] >    _size: 2,
+[info] >    _materializedDocs: null,
+[info] >    _materializedChanges: null,
+[info] >    _docs: [Function],
+[info] >    _changes: [Function] }
+[info] i  functions: Finished "api" in ~1s
+[debug] [2020-01-29T19:09:55.090Z] [worker-api-db3a42d8-bb6b-4743-95c0-54109304c3d0]: IDLE
+[debug] [2020-01-29T19:09:55.090Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-01-29T19:11:36.514Z] File D:\Projects\quesembrar\functions\index.js changed, reloading triggers
+[debug] [2020-01-29T19:11:37.516Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-01-29T19:11:37.516Z] [worker-~diagnostic~-d66dc57f-594e-4529-8e92-aba23193c921]: FINISHING
+[debug] [2020-01-29T19:11:37.517Z] [worker-pool] Shutting down IDLE worker (api)
+[debug] [2020-01-29T19:11:37.517Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: FINISHING
+[debug] [2020-01-29T19:11:37.518Z] [worker-pool] Shutting down IDLE worker (api)
+[debug] [2020-01-29T19:11:37.518Z] [worker-api-db3a42d8-bb6b-4743-95c0-54109304c3d0]: FINISHING
+[debug] [2020-01-29T19:11:37.535Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-01-29T19:11:37.535Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-01-29T19:11:37.535Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-01-29T19:11:37.535Z] [worker-~diagnostic~-fb877571-982f-494e-b76b-dc6a114e6886]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\8108
+[debug] [2020-01-29T19:11:37.535Z] [worker-~diagnostic~-fb877571-982f-494e-b76b-dc6a114e6886]: BUSY
+[debug] [2020-01-29T19:11:37.539Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: exited
+[debug] [2020-01-29T19:11:37.539Z] [worker-api-f2cfabaa-39cd-4eaa-af19-42ab0d7770ad]: FINISHED
+[debug] [2020-01-29T19:11:37.579Z] [worker-api-db3a42d8-bb6b-4743-95c0-54109304c3d0]: exited
+[debug] [2020-01-29T19:11:37.579Z] [worker-api-db3a42d8-bb6b-4743-95c0-54109304c3d0]: FINISHED
+[debug] [2020-01-29T19:11:37.580Z] [worker-~diagnostic~-d66dc57f-594e-4529-8e92-aba23193c921]: exited
+[debug] [2020-01-29T19:11:37.580Z] [worker-~diagnostic~-d66dc57f-594e-4529-8e92-aba23193c921]: FINISHED
+[debug] [2020-01-29T19:11:38.527Z] [runtime-status] [8108] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-01-29T19:11:38.529Z] [runtime-status] [8108] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-01-29T19:11:38.539Z] [runtime-status] [8108] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-01-29T19:11:38.545Z] [runtime-status] [8108] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-01-29T19:11:38.549Z] [runtime-status] [8108] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-01-29T19:11:41.810Z] [worker-~diagnostic~-fb877571-982f-494e-b76b-dc6a114e6886]: IDLE
+[debug] [2020-01-29T19:11:45.688Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-01-29T19:11:45.688Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-01-29T19:11:45.688Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-01-29T19:11:45.689Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-01-29T19:11:45.689Z] [worker-pool] Cleaned up workers for api: 2 --> 0
+[debug] [2020-01-29T19:11:45.710Z] [worker-pool] addWorker(api)
+[debug] [2020-01-29T19:11:45.710Z] [worker-pool] Adding worker with key api, total=1
+[debug] [2020-01-29T19:11:45.710Z] [worker-pool] submitWork(triggerId=api)
+[debug] [2020-01-29T19:11:45.710Z] [worker-api-70773524-a6a1-418e-9301-1427f969bc58]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\18892
+[debug] [2020-01-29T19:11:45.710Z] [worker-api-70773524-a6a1-418e-9301-1427f969bc58]: BUSY
+[debug] [2020-01-29T19:11:46.747Z] [runtime-status] [18892] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-01-29T19:11:46.750Z] [runtime-status] [18892] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-01-29T19:11:46.760Z] [runtime-status] [18892] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-01-29T19:11:46.766Z] [runtime-status] [18892] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-01-29T19:11:46.770Z] [runtime-status] [18892] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-01-29T19:11:50.593Z] [runtime-status] [18892] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-01-29T19:11:50.602Z] [runtime-status] [18892] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-01-29T19:11:50.602Z] [runtime-status] [18892] Running api in mode HTTPS
+[debug] [2020-01-29T19:11:50.604Z] [runtime-status] [18892] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\18892
+[debug] [2020-01-29T19:11:50.615Z] [functions] Runtime ready! Sending request!
+[debug] [2020-01-29T19:11:50.631Z] [runtime-status] [18892] Ephemeral server handling GET request
+[debug] [2020-01-29T19:11:51.371Z] [runtime-status] [18892] Ephemeral server survived.
+[info] >  5IiwLJTZ4fQQjE4jXVQ5 => { name_es: 'papa', id: '0643', name_us: ' potato' }
+[info] >  BzgL14JQFRorQxPooJRb => { name_us: ' watermelon', name_es: 'sandía', id: '0633' }
+[info] i  functions: Finished "api" in ~2s
+[debug] [2020-01-29T19:11:53.019Z] [worker-api-70773524-a6a1-418e-9301-1427f969bc58]: IDLE
+[debug] [2020-01-29T19:11:53.019Z] [work-queue] {"queueLength":0,"workRunningCount":0}
