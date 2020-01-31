@@ -159,7 +159,7 @@ getPrecios = async (tipe) => {
             mercado: '*',
             'variables[]': tipe,
             fecha: '24/01/2020',
-            desde: '01/01/1997',//1997
+            desde: '01/01/2020',//1997
             hasta: '24/01/2020',
             'anios[]': '2020',
             'meses[]': '11',
@@ -270,8 +270,8 @@ app.get('/read',async (req, res) => {
         }).catch(err => {
             console.log('Error getting documents', err);
         });*/
-
-    let citiesRef = db.collection('agricultural_crops');
+    insertData()
+    let citiesRef = db.collection('prices');
     let allCities = await citiesRef.get()
         .then(value => {
             let res = [];
@@ -288,5 +288,31 @@ app.get('/read',async (req, res) => {
 
 
 });
+
+function insertData(){
+
+    let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
+    let date = "";
+    let id = "";
+    let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
+    let price = 0.0;
+    let price_type_id = "AFuN7owOgTMIvwBzFNBG" //max
+
+    let pricesTb = db.collection('prices').doc();
+    let object = {
+        crops_id:crops_id,
+        date:date,
+        id:pricesTb.id,
+        market_id:market_id,
+        price:price,
+        price_type_id:price_type_id,
+    };
+
+    pricesTb.set(object).then(ref => {
+        console.log('Added document with ID: ', ref);
+    }).catch(err=>{
+        console.log(err)
+    });
+}
 
 exports[API_PREFIX] = functions.https.onRequest(app);
