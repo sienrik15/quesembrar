@@ -13,7 +13,8 @@ const { JSDOM } = jsdom;
 //const request = require('request');
 const querystring = require('querystring');
 const HtmlTableToJson = require('html-table-to-json');
-
+const _ = require('lodash');
+const moment = require('moment');
 
 //Prod
 //admin.initializeApp(functions.config().firebase);
@@ -158,9 +159,9 @@ getPrecios = async (tipe) => {
         querystring.stringify({
             mercado: '*',
             'variables[]': tipe,
-            fecha: '24/01/2020',
-            desde: '01/01/2020',//1997
-            hasta: '24/01/2020',
+            fecha: '02/02/2020',
+            desde: '01/01/1997',//1997
+            hasta: '02/02/2020',
             'anios[]': '2020',
             'meses[]': '11',
             'semanas[]': '48',
@@ -208,23 +209,33 @@ app.get('/prod-all', async (req, res) => {
     //let delet = await deleteCollection(db, 'cities', 100);
 
     let response = await getPrecios(['precio_max']);//,'precio_prom','precio_min'
-    res.send(HtmlTableToJson.parse(response)._results)
-    //createContry();
+    let toJSON = HtmlTableToJson.parse(response)._results[0];
 
-    /*let citiesRef = await db.collection('cities');
-    //let queryRef = await citiesRef.where('state', '==', 'CA');
-    let queryRef = citiesRef.where('capital', '==', true);
-    let respons = await queryRef.get()
-        .then((snapshot) => {
-            let data = [];
-            snapshot.forEach((doc) => { data.push(doc.data()); });
-            return data;
-        })
-        .catch((err) => {
-            console.log('Error getting documents', err);
-        });
-    res.send(respons);*/
 
+    toJSON.map((vale, key) =>{
+        if (key === 0) {
+            vale.description = vale.Fecha;
+            delete vale.Fecha;
+        } else {
+            vale.date = vale.Fecha;
+            vale.price = vale.Sandia;
+            delete vale.Fecha;
+            delete vale.Sandia;
+        }
+    });
+    moment.locale('es-do');
+    let date = moment(toJSON[1].date, "DD/MM/YYYY").toDate();
+    let timest = admin.firestore.Timestamp.fromDate(date);
+    console.log(toJSON[1].date);
+    console.log(date);
+    console.log(timest);
+    console.log(timest.toDate());
+
+    toJSON = _.chunk(toJSON, 400);
+    let sum = toJSON.length;
+    console.log(sum);
+    //let insertDt = await insertData(toJSON);
+    res.send(toJSON)
     //res.send(html2json(response));
 });
 
@@ -270,7 +281,6 @@ app.get('/read',async (req, res) => {
         }).catch(err => {
             console.log('Error getting documents', err);
         });*/
-    insertData()
     let citiesRef = db.collection('prices');
     let allCities = await citiesRef.get()
         .then(value => {
@@ -289,29 +299,43 @@ app.get('/read',async (req, res) => {
 
 });
 
-function insertData(){
+async function insertData (dataList) {
 
-    let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
-    let date = "";
-    let id = "";
-    let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
-    let price = 0.0;
-    let price_type_id = "AFuN7owOgTMIvwBzFNBG" //max
+    for (i=0;i<dataList.length;i++){
 
-    let pricesTb = db.collection('prices').doc();
-    let object = {
-        crops_id:crops_id,
-        date:date,
-        id:pricesTb.id,
-        market_id:market_id,
-        price:price,
-        price_type_id:price_type_id,
-    };
+    }
+    let batch = db.batch();
+    dataList.map((vl,ky) => {
+        if (ky!==0){
+            let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
+            let date = vl.date;
+            let id = "";
+            let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
+            let price = vl.price;
+            let price_type_id = "AFuN7owOgTMIvwBzFNBG" //max
+            let doc = db.collection('prices').doc();
+            let object = {
+                crops_id:crops_id,
+                date:date,
+                id:doc.id,
+                market_id:market_id,
+                price:price,
+                price_type_id:price_type_id,
+            };
 
-    pricesTb.set(object).then(ref => {
-        console.log('Added document with ID: ', ref);
-    }).catch(err=>{
-        console.log(err)
+            batch.set(doc, object);
+
+            /*await doc.set(object).then( ref => {
+                console.log('Added document with ID: ', ref);
+            }).catch(err=>{
+                console.log(err)
+            });*/
+        }
+    });
+
+    return await batch.commit().then( ()=> {
+        console.log("Se agrego multiples valores");
+        return dataList
     });
 }
 
