@@ -15,6 +15,7 @@ const querystring = require('querystring');
 const HtmlTableToJson = require('html-table-to-json');
 const _ = require('lodash');
 const moment = require('moment');
+moment.locale('es-do');
 
 //Prod
 //admin.initializeApp(functions.config().firebase);
@@ -223,19 +224,18 @@ app.get('/prod-all', async (req, res) => {
             delete vale.Sandia;
         }
     });
-    moment.locale('es-do');
-    let date = moment(toJSON[1].date, "DD/MM/YYYY").toDate();
+    /*let date = moment(toJSON[1].date, "DD/MM/YYYY").toDate();
     let timest = admin.firestore.Timestamp.fromDate(date);
     console.log(toJSON[1].date);
     console.log(date);
     console.log(timest);
-    console.log(timest.toDate());
+    console.log(timest.toDate());*/
 
     toJSON = _.chunk(toJSON, 400);
     let sum = toJSON.length;
     console.log(sum);
-    //let insertDt = await insertData(toJSON);
-    res.send(toJSON)
+    let insertDt = await insertData(toJSON);
+    res.send(insertDt)
     //res.send(html2json(response));
 });
 
@@ -301,42 +301,45 @@ app.get('/read',async (req, res) => {
 
 async function insertData (dataList) {
 
-    for (i=0;i<dataList.length;i++){
+    for ( let i=0;i < dataList.length;i++) {
 
+        let batch = db.batch();
+
+        dataList[i].map((vl, ky) => {
+            if (ky !== 0) {
+                let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
+                let mdate = moment(toJSON[1].date, "DD/MM/YYYY").toDate();
+                let date = admin.firestore.Timestamp.fromDate(mdate);
+                let id = "";
+                let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
+                let price = vl.price;
+                let price_type_id = "AFuN7owOgTMIvwBzFNBG" //max
+                let doc = db.collection('prices').doc();
+                let object = {
+                    crops_id: crops_id,
+                    date: date,
+                    id: doc.id,
+                    market_id: market_id,
+                    price: price,
+                    price_type_id: price_type_id,
+                };
+
+                batch.set(doc, object);
+
+                /*await doc.set(object).then( ref => {
+                    console.log('Added document with ID: ', ref);
+                }).catch(err=>{
+                    console.log(err)
+                });*/
+            }
+        });
+
+        await batch.commit().then(() => {
+            console.log("Se agrego multiples valores");
+        });
     }
-    let batch = db.batch();
-    dataList.map((vl,ky) => {
-        if (ky!==0){
-            let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
-            let date = vl.date;
-            let id = "";
-            let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
-            let price = vl.price;
-            let price_type_id = "AFuN7owOgTMIvwBzFNBG" //max
-            let doc = db.collection('prices').doc();
-            let object = {
-                crops_id:crops_id,
-                date:date,
-                id:doc.id,
-                market_id:market_id,
-                price:price,
-                price_type_id:price_type_id,
-            };
 
-            batch.set(doc, object);
-
-            /*await doc.set(object).then( ref => {
-                console.log('Added document with ID: ', ref);
-            }).catch(err=>{
-                console.log(err)
-            });*/
-        }
-    });
-
-    return await batch.commit().then( ()=> {
-        console.log("Se agrego multiples valores");
-        return dataList
-    });
+    return dataList
 }
 
 exports[API_PREFIX] = functions.https.onRequest(app);

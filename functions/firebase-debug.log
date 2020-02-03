@@ -1147,3 +1147,9 @@ SyntaxError: Unexpected token :
 [info] >  2020-02-01T05:00:00.000Z
 [info] >  21
 [info] i  functions: Finished "api" in ~4s
+[debug] [2020-02-02T23:28:41.525Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-02-02T23:28:43.266Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-02T23:28:43.268Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-02T23:28:43.285Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-02T23:28:43.293Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-02T23:28:43.298Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
