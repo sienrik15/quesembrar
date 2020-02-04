@@ -213,7 +213,7 @@ app.get('/prod-all', async (req, res) => {
     let toJSON = HtmlTableToJson.parse(response)._results[0];
 
 
-    toJSON.map((vale, key) =>{
+    toJSON.map((vale, key) => {
         if (key === 0) {
             vale.description = vale.Fecha;
             delete vale.Fecha;
@@ -229,7 +229,9 @@ app.get('/prod-all', async (req, res) => {
     console.log(toJSON[1].date);
     console.log(date);
     console.log(timest);
-    console.log(timest.toDate());*/
+    console.log(timest.toDate());
+     let flo = parseFloat(toJSON[1].price).toFixed(2);
+    console.log(flo);*/
 
     toJSON = _.chunk(toJSON, 400);
     let sum = toJSON.length;
@@ -281,19 +283,24 @@ app.get('/read',async (req, res) => {
         }).catch(err => {
             console.log('Error getting documents', err);
         });*/
-    let citiesRef = db.collection('prices');
+    let citiesRef = db.collection('prices').orderBy("date", "desc").limit(1);
     let allCities = await citiesRef.get()
         .then(value => {
             let res = [];
             value.forEach(doc => {
-                res.push(doc.data());
-                console.log(doc.id, '=>', doc.data());
+                let object = {};
+                object["date"] = doc.data().date.toDate();
+                object["id"] = doc.data().id;
+                console.log(object);
+                res.push(object);
+                //console.log(doc.id, '=>', doc.data());
             });
             return  res
         }).catch(err => {
             console.log('Error getting documents', err);
         });
 
+    console.log(allCities.length)
     res.json(allCities);
 
 
@@ -301,20 +308,26 @@ app.get('/read',async (req, res) => {
 
 async function insertData (dataList) {
 
-    for ( let i=0;i < dataList.length;i++) {
-
+    dataList.map( async (valList,key) => {
         let batch = db.batch();
 
-        dataList[i].map((vl, ky) => {
-            if (ky !== 0) {
-                let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
-                let mdate = moment(toJSON[1].date, "DD/MM/YYYY").toDate();
-                let date = admin.firestore.Timestamp.fromDate(mdate);
-                let id = "";
-                let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
-                let price = vl.price;
-                let price_type_id = "AFuN7owOgTMIvwBzFNBG" //max
+        await valList.map(async (vl, ky) => {
+            if (!vl.description) {
                 let doc = db.collection('prices').doc();
+                let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
+                let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
+                let price_type_id = "AFuN7owOgTMIvwBzFNBG"; //max
+                let date = "";
+                if (vl.date && vl.date !==""){
+                    let mdate = moment(vl.date, "DD/MM/YYYY").toDate();
+                    date = admin.firestore.Timestamp.fromDate(mdate);
+                }else { console.log("Sin fecha id: "+doc.id) }
+
+                let price = 0.00;
+                if (vl.price && vl.price !== ""){
+                    price = parseFloat(vl.price).toFixed(2);
+                }else { console.log("Sin Precio id: "+doc.id) }
+
                 let object = {
                     crops_id: crops_id,
                     date: date,
@@ -324,20 +337,24 @@ async function insertData (dataList) {
                     price_type_id: price_type_id,
                 };
 
-                batch.set(doc, object);
+                await batch.set(doc, object);
 
                 /*await doc.set(object).then( ref => {
                     console.log('Added document with ID: ', ref);
                 }).catch(err=>{
                     console.log(err)
                 });*/
+            }else {
+                console.log("Objeto no se agrego: "+ky+" => "+vl);
             }
         });
 
         await batch.commit().then(() => {
-            console.log("Se agrego multiples valores");
+            console.log(key+" Se agrego:  "+ valList.length+"  objetos");
+        }).catch(err=>{
+            console.log(err)
         });
-    }
+    });
 
     return dataList
 }
