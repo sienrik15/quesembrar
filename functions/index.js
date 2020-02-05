@@ -236,8 +236,8 @@ app.get('/prod-all', async (req, res) => {
     toJSON = _.chunk(toJSON, 400);
     let sum = toJSON.length;
     console.log(sum);
-    let insertDt = await insertData(toJSON);
-    res.send(insertDt)
+    //let insertDt = await insertData(toJSON);
+    res.send(toJSON)
     //res.send(html2json(response));
 });
 
@@ -300,9 +300,12 @@ app.get('/read',async (req, res) => {
             console.log('Error getting documents', err);
         });
 
-    console.log(allCities.length)
-    res.json(allCities);
+    let today = moment().format();
+    console.log(today);
+    console.log(moment(allCities[0].date).isBefore(today));
+    console.log(allCities.length);
 
+    res.json(allCities);
 
 });
 
