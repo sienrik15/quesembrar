@@ -155,19 +155,20 @@ getScrap = async () =>{
      return response.data;
 };
 
-getPrecios = async (tipe) => {
+getPricesSisap = async (param) => {
+    let today = moment().format("DD/MM/YYYY");
     let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
         querystring.stringify({
             mercado: '*',
-            'variables[]': tipe,
-            fecha: '02/02/2020',
-            desde: '01/01/1997',//1997
-            hasta: '02/02/2020',
-            'anios[]': '2020',
-            'meses[]': '11',
-            'semanas[]': '48',
+            'variables[]': param.type,
+            fecha: today,//'02/02/2020',
+            desde: param.start,//'01/01/1997',//1997
+            hasta: param.last,//'02/02/2020',
+            //'anios[]': '2020',
+            //'meses[]': '11',
+            //'semanas[]': '48',
             //'productos[]': '0633',
-            'productos[]': '0633',
+            'productos[]': param.product, //"0633"
             periodicidad: 'intervalo'
         }));
 
@@ -209,7 +210,13 @@ app.get('/prod-all', async (req, res) => {
     //deletefilevalue();
     //let delet = await deleteCollection(db, 'cities', 100);
 
-    let response = await getPrecios(['precio_max']);//,'precio_prom','precio_min'
+    let paramPrices = {
+        start:"01/01/1997",
+        last:"02/02/2020",
+        type:['precio_max'], //,'precio_prom','precio_min'
+        product:"0633",
+    };
+    let response = await getPricesSisap(paramPrices);
     let toJSON = HtmlTableToJson.parse(response)._results[0];
 
 
@@ -236,7 +243,7 @@ app.get('/prod-all', async (req, res) => {
     toJSON = _.chunk(toJSON, 400);
     let sum = toJSON.length;
     console.log(sum);
-    //let insertDt = await insertData(toJSON);
+    //let insertDt = await insertDataAllTime(toJSON);
     res.send(toJSON)
     //res.send(html2json(response));
 });
@@ -283,7 +290,7 @@ app.get('/read',async (req, res) => {
         }).catch(err => {
             console.log('Error getting documents', err);
         });*/
-    let citiesRef = db.collection('prices').orderBy("date", "desc").limit(1);
+    /*let citiesRef = db.collection('prices').orderBy("date", "desc").limit(1);
     let allCities = await citiesRef.get()
         .then(value => {
             let res = [];
@@ -304,62 +311,105 @@ app.get('/read',async (req, res) => {
     console.log(today);
     console.log(moment(allCities[0].date).isBefore(today));
     console.log(allCities.length);
+    res.json(allCities);*/
 
-    res.json(allCities);
+    res.json(await updatePricesProduct());
 
 });
 
-async function insertData (dataList) {
+async function insertDataAllTime (dataList) {
 
     dataList.map( async (valList,key) => {
-        let batch = db.batch();
-
-        await valList.map(async (vl, ky) => {
-            if (!vl.description) {
-                let doc = db.collection('prices').doc();
-                let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
-                let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
-                let price_type_id = "AFuN7owOgTMIvwBzFNBG"; //max
-                let date = "";
-                if (vl.date && vl.date !==""){
-                    let mdate = moment(vl.date, "DD/MM/YYYY").toDate();
-                    date = admin.firestore.Timestamp.fromDate(mdate);
-                }else { console.log("Sin fecha id: "+doc.id) }
-
-                let price = 0.00;
-                if (vl.price && vl.price !== ""){
-                    price = parseFloat(vl.price).toFixed(2);
-                }else { console.log("Sin Precio id: "+doc.id) }
-
-                let object = {
-                    crops_id: crops_id,
-                    date: date,
-                    id: doc.id,
-                    market_id: market_id,
-                    price: price,
-                    price_type_id: price_type_id,
-                };
-
-                await batch.set(doc, object);
-
-                /*await doc.set(object).then( ref => {
-                    console.log('Added document with ID: ', ref);
-                }).catch(err=>{
-                    console.log(err)
-                });*/
-            }else {
-                console.log("Objeto no se agrego: "+ky+" => "+vl);
-            }
-        });
-
-        await batch.commit().then(() => {
-            console.log(key+" Se agrego:  "+ valList.length+"  objetos");
-        }).catch(err=>{
-            console.log(err)
-        });
+        console.log(key);
+        await inserDataDays(valList);
     });
 
     return dataList
+}
+
+async function inserDataDays(valList){
+    let batch = db.batch();
+
+    await valList.map(async (vl, ky) => {
+        if (!vl.description) {
+            let doc = db.collection('prices').doc();
+            let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
+            let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
+            let price_type_id = "AFuN7owOgTMIvwBzFNBG"; //max
+            let date = "";
+            if (vl.date && vl.date !==""){
+                let mdate = moment(vl.date, "DD/MM/YYYY").toDate();
+                date = admin.firestore.Timestamp.fromDate(mdate);
+            }else { console.log("Sin fecha id: "+doc.id) }
+
+            let price = 0.00;
+            if (vl.price && vl.price !== ""){
+                price = parseFloat(vl.price).toFixed(2);
+            }else { console.log("Sin Precio id: "+doc.id) }
+
+            let object = {
+                crops_id: crops_id,
+                date: date,
+                id: doc.id,
+                market_id: market_id,
+                price: price,
+                price_type_id: price_type_id,
+            };
+
+            await batch.set(doc, object);
+        }else {
+            console.log("Objeto no se agrego: "+ky+" => "+vl);
+        }
+    });
+
+    await batch.commit().then(() => {
+        console.log("Se agrego:  "+ valList.length+"  objetos");
+    }).catch(err=>{
+        console.log(err)
+    });
+}
+
+async function updatePricesProduct(){
+
+    let productDB = await getLastProductDB();
+    let today = moment().format("DD/MM/YYYY");
+    let beforeLastDate = moment(productDB[0].date).add(1, 'day').format("DD/MM/YYYY");
+    let isUpdateData = moment(productDB[0].date).isBefore(moment().format());
+    console.log(today);
+    console.log(beforeLastDate);
+    console.log("Pendiente de carga: "+isUpdateData);
+    let paramPrices = {
+        start:beforeLastDate,//"01/01/1997"
+        last:today,//"02/02/2020",
+        type:['precio_max'], //,'precio_prom','precio_min'
+        product:"0633",
+    };
+    let sisapPrices = await getPricesSisap(paramPrices);
+    let toJSON = HtmlTableToJson.parse(sisapPrices)._results[0];
+    console.log(toJSON.length);
+    return toJSON;
+
+}
+
+async function getLastProductDB(){
+    let priceRef = await db.collection('prices').orderBy("date", "desc").limit(1);
+    let lastPrice = await priceRef.get()
+        .then(value => {
+            let res = [];
+            value.forEach(doc => {
+                let object = {};
+                object["date"] = doc.data().date.toDate();
+                object["id"] = doc.data().id;
+                console.log(object);
+                res.push(object);
+                //console.log(doc.id, '=>', doc.data());
+            });
+            return  res
+        }).catch(err => {
+            console.log('Error getting documents', err);
+        });
+    console.log(lastPrice.length);
+    return lastPrice;
 }
 
 exports[API_PREFIX] = functions.https.onRequest(app);
