@@ -243,8 +243,8 @@ app.get('/prod-all', async (req, res) => {
     toJSON = _.chunk(toJSON, 400);
     let sum = toJSON.length;
     console.log(sum);
-    //let insertDt = await insertDataAllTime(toJSON);
-    res.send(toJSON)
+    let insertDt = await insertDataAllTime(toJSON);
+    res.send(insertDt)
     //res.send(html2json(response));
 });
 
@@ -319,7 +319,7 @@ app.get('/read',async (req, res) => {
 
 async function insertDataAllTime (dataList) {
 
-    dataList.map( async (valList,key) => {
+    await dataList.map( async (valList,key) => {
         console.log(key);
         await inserDataDays(valList);
     });
@@ -327,9 +327,44 @@ async function insertDataAllTime (dataList) {
     return dataList
 }
 
+async function updatePricesProduct(){
+
+    /**@function getLastProductDB obtien el ultimo dato ingestado de la DB*/
+    let productDB = await getLastProductDB();
+
+    /**@param today y beforeLastDate son fechas para validar el dia actual con el ultima fecha de la DB **/
+    let today = moment().format("YYYY-MM-DD");  //DD/MM/YYYY
+    let beforeLastDate = moment(productDB[0].date).add(1, 'day').format("YYYY-MM-DD");
+
+    /**Verificar si hay datos para actualizar deacuerdo a la fecha**/
+    let isUpdateData = moment(beforeLastDate).isSameOrBefore(today);
+
+    console.log(moment(today).format("DD/MM/YYYY"));
+    console.log(moment(beforeLastDate).format("DD/MM/YYYY"));
+    console.log("Pendiente de carga: "+isUpdateData);
+    /**En caso la ultima fecha insertada no es menor o igual a la fecha actual, no se realiza la actualizacion de la DB**/
+    if (!isUpdateData){ return "No hay nuevos datos para actualizar, fecha de ultima carga: "+beforeLastDate}
+
+    /**Parametros para realizar query a la API de sisap**/
+    let paramPrices = {
+        start:moment(beforeLastDate).format("DD/MM/YYYY"),//"01/01/1997"
+        last:moment(today).format("DD/MM/YYYY"),//"02/02/2020",
+        type:['precio_max'], //,'precio_prom','precio_min'
+        product:"0633",
+    };
+    let sisapPrices = await getPricesSisap(paramPrices);
+    let pricesResult = HtmlTableToJson.parse(sisapPrices)._results[0];
+    let pricesResultClean = await clearData(pricesResult);
+    console.log(pricesResultClean.length);
+    let isCorrectInset = await inserDataDays(pricesResultClean);
+
+    return isCorrectInset ? pricesResultClean:"err insert";
+
+}
+
 async function inserDataDays(valList){
     let batch = db.batch();
-
+    let addCorrect = false;
     await valList.map(async (vl, ky) => {
         if (!vl.description) {
             let doc = db.collection('prices').doc();
@@ -358,37 +393,34 @@ async function inserDataDays(valList){
 
             await batch.set(doc, object);
         }else {
-            console.log("Objeto no se agrego: "+ky+" => "+vl);
+            console.log("Objeto descripcion no se agrego: "+ky+" => "+vl);
         }
     });
 
     await batch.commit().then(() => {
         console.log("Se agrego:  "+ valList.length+"  objetos");
+        addCorrect = true
     }).catch(err=>{
-        console.log(err)
+        console.log(err);
+        addCorrect = false
     });
+
+    return addCorrect
 }
 
-async function updatePricesProduct(){
-
-    let productDB = await getLastProductDB();
-    let today = moment().format("DD/MM/YYYY");
-    let beforeLastDate = moment(productDB[0].date).add(1, 'day').format("DD/MM/YYYY");
-    let isUpdateData = moment(productDB[0].date).isBefore(moment().format());
-    console.log(today);
-    console.log(beforeLastDate);
-    console.log("Pendiente de carga: "+isUpdateData);
-    let paramPrices = {
-        start:beforeLastDate,//"01/01/1997"
-        last:today,//"02/02/2020",
-        type:['precio_max'], //,'precio_prom','precio_min'
-        product:"0633",
-    };
-    let sisapPrices = await getPricesSisap(paramPrices);
-    let toJSON = HtmlTableToJson.parse(sisapPrices)._results[0];
-    console.log(toJSON.length);
-    return toJSON;
-
+async function clearData(listObjet){
+    return await listObjet.map((vl, key)=> {
+        if (key === 0) {
+            vl.description = vl.Fecha;
+            delete vl.Fecha;
+        } else {
+            vl.date = vl.Fecha;
+            vl.price = vl.Sandia;
+            delete vl.Fecha;
+            delete vl.Sandia;
+        }
+        return vl;
+    });
 }
 
 async function getLastProductDB(){
