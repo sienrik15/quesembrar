@@ -220,17 +220,8 @@ app.get('/prod-all', async (req, res) => {
     let toJSON = HtmlTableToJson.parse(response)._results[0];
 
 
-    toJSON.map((vale, key) => {
-        if (key === 0) {
-            vale.description = vale.Fecha;
-            delete vale.Fecha;
-        } else {
-            vale.date = vale.Fecha;
-            vale.price = vale.Sandia;
-            delete vale.Fecha;
-            delete vale.Sandia;
-        }
-    });
+    toJSON = await clearData(toJSON);
+
     /*let date = moment(toJSON[1].date, "DD/MM/YYYY").toDate();
     let timest = admin.firestore.Timestamp.fromDate(date);
     console.log(toJSON[1].date);
@@ -243,8 +234,8 @@ app.get('/prod-all', async (req, res) => {
     toJSON = _.chunk(toJSON, 400);
     let sum = toJSON.length;
     console.log(sum);
-    let insertDt = await insertDataAllTime(toJSON);
-    res.send(insertDt)
+    //let insertDt = await insertDataAllTime(toJSON);
+    res.send(toJSON)
     //res.send(html2json(response));
 });
 
