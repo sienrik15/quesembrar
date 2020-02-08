@@ -189,19 +189,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/api-user', (req, res) => {
-    const hours = (new Date().getHours() % 12) + 1 // London is UTC + 1hr;
-    res.status(200).send(`<!doctype html>
-    <head>
-      <title>Time</title>
-    </head>
-    <body>
-        <h1>Hola Mundo - primer cloud funtion</h1>
-      ${'BONG '.repeat(hours)}
-    </body> 
-  </html>`);
-});
-
 app.get('/', async (req, res) => {
     res.send("Hola mundo")
 });
@@ -234,7 +221,7 @@ app.get('/prod-all', async (req, res) => {
     toJSON = _.chunk(toJSON, 400);
     let sum = toJSON.length;
     console.log(sum);
-    //let insertDt = await insertDataAllTime(toJSON);
+    //let insertDt = await insertDataAllDate(toJSON);
     res.send(toJSON)
     //res.send(html2json(response));
 });
@@ -304,11 +291,12 @@ app.get('/read',async (req, res) => {
     console.log(allCities.length);
     res.json(allCities);*/
 
-    res.json(await updatePricesProduct());
+    //res.json(await updatePricesProduct());
+    res.json(await updateAllProductsDB());
 
 });
 
-async function insertDataAllTime (dataList) {
+async function insertDataAllDate (dataList) {
 
     await dataList.map( async (valList,key) => {
         console.log(key);
@@ -334,7 +322,7 @@ async function updatePricesProduct(){
     console.log(moment(beforeLastDate).format("DD/MM/YYYY"));
     console.log("Pendiente de carga: "+isUpdateData);
     /**En caso la ultima fecha insertada no es menor o igual a la fecha actual, no se realiza la actualizacion de la DB**/
-    if (!isUpdateData){ return "No hay nuevos datos para actualizar, fecha de ultima carga: "+beforeLastDate}
+    if (!isUpdateData){ return "No hay nuevos datos para actualizar, fecha de ultima carga: "+moment(productDB[0].date).format("YYYY-MM-DD")}
 
     /**Parametros para realizar query a la API de sisap**/
     let paramPrices = {
@@ -433,6 +421,42 @@ async function getLastProductDB(){
         });
     console.log(lastPrice.length);
     return lastPrice;
+}
+
+async function getPricesTypeDB(){
+    let pricesType = db.collection('prices_types');
+    return pricesType.select("id","name","id_ref").get().then(value => {
+        let res = [];
+        value.forEach(doc => {
+            res.push(doc.data());
+        });
+        return  res
+    }).catch(err => {
+        console.log('Error getting documents', err);
+    });
+}
+
+async function getAgriculturalCropsDB(){
+    let agriculturalCrops = db.collection('agricultural_crops');
+    return agriculturalCrops.get().then(value => {
+        let res = [];
+        value.forEach(doc => {
+            res.push(doc.data());
+        });
+        return  res
+    }).catch(err => {
+        console.log('Error getting documents', err);
+    });
+}
+
+async function updateAllProductsDB(){
+    let pricesTypeDB = await getPricesTypeDB();
+    let agriculturalCropsDB = await getAgriculturalCropsDB();
+
+    return {
+        pricesType:pricesTypeDB,
+        crops:agriculturalCropsDB
+    }
 }
 
 exports[API_PREFIX] = functions.https.onRequest(app);
