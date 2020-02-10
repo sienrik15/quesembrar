@@ -2,7 +2,7 @@
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const express = require("express");
-const axios = require('axios')
+const axios = require('axios');
 const cors = require('cors');
 const html2json = require('html2json').html2json;
 const path = require('path');
@@ -46,36 +46,6 @@ createProducto = async () => {
         fecha:'',
         unidad:'t',
         ciudad:'',
-    });
-};
-
-createContry = async () => {
-    let citiesRef = db.collection('cities');
-
-    let setSf = citiesRef.doc('SF').set({
-        name: 'San Francisco', state: 'CA', country: 'USA',
-        capital: false, population: 860000,
-        regions: ['west_coast', 'norcal']
-    });
-    let setLa = citiesRef.doc('LA').set({
-        name: 'Los Angeles', state: 'CA', country: 'USA',
-        capital: false, population: 3900000,
-        regions: ['west_coast', 'socal']
-    });
-    let setDc = citiesRef.doc('DC').set({
-        name: 'Washington, D.C.', state: null, country: 'USA',
-        capital: true, population: 680000,
-        regions: ['east_coast']
-    });
-    let setTok = citiesRef.doc('TOK').set({
-        name: 'Tokyo', state: null, country: 'Japan',
-        capital: true, population: 9000000,
-        regions: ['kanto', 'honshu']
-    });
-    let setBj = citiesRef.doc('BJ').set({
-        name: 'Beijing', state: null, country: 'China',
-        capital: true, population: 21500000,
-        regions: ['jingjinji', 'hebei']
     });
 };
 
@@ -227,15 +197,7 @@ app.get('/prod-all', async (req, res) => {
 });
 
 app.get('/read',async (req, res) => {
-    //Obtener lista de coleccion en un documento
-    /*let sfRef = db.collection('lima_market').doc('watermelon');
-    sfRef.listCollections().then(value => {
-        value.forEach(collection => {
-            console.log('Found subcollection with id:', collection.id);
-        });
-    }).catch(err=> {
-        console.log('Error getting documents', err);
-    });*/
+
 
     //Obtener lista de documentos en una coleccion
     /*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
