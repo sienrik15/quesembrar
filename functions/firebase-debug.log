@@ -1,0 +1,248 @@
+[debug] [2020-02-13T04:59:44.254Z] ----------------------------------------------------------------------
+[debug] [2020-02-13T04:59:44.256Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2020-02-13T04:59:44.256Z] CLI Version:   7.3.1
+[debug] [2020-02-13T04:59:44.256Z] Platform:      darwin
+[debug] [2020-02-13T04:59:44.256Z] Node Version:  v10.15.0
+[debug] [2020-02-13T04:59:44.257Z] Time:          Wed Feb 12 2020 23:59:44 GMT-0500 (Peru Standard Time)
+[debug] [2020-02-13T04:59:44.257Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2020-02-13T04:59:44.271Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-13T04:59:44.271Z] > authorizing via signed-in user
+[debug] [2020-02-13T04:59:44.271Z] [iam] checking project agroanalytics-b2462 for permissions ["firebase.projects.get"]
+[debug] [2020-02-13T04:59:44.273Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/agroanalytics-b2462:testIamPermissions  
+
+[debug] [2020-02-13T04:59:46.524Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-13T04:59:46.526Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462  
+ 
+[debug] [2020-02-13T04:59:48.025Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/macintoshhd/Documents/proyectos/agroanalytics'...
+[info] 
+[debug] [2020-02-13T04:59:48.030Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462/webApps/-/config  
+ 
+[info] ✔  functions: Using node@10 from host.
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2020-02-13T04:59:48.838Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "/Users/macintoshhd/Documents/proyectos/agroanalytics/functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: dist
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2020-02-13T04:59:49.178Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-13T04:59:49.178Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T04:59:49.181Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T04:59:49.182Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T04:59:49.182Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[info] ✔  functions[api]: http function initialized (http://localhost:5001/agroanalytics-b2462/us-central1/api).
+[debug] [2020-02-13T05:00:03.215Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-02-13T05:00:03.526Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-02-13T05:00:03.528Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:00:03.530Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:00:03.533Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:00:03.534Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:00:04.676Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-02-13T05:00:04.677Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-02-13T05:00:04.677Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-02-13T05:00:04.691Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59239.sock"}
+[debug] [2020-02-13T05:00:04.695Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59239.sock"}
+[debug] [2020-02-13T05:00:04.730Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-02-13T05:00:05.300Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_prom
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_min
+[info] >  { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' }
+[info] >  1
+[info] >  [ { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' } ]
+[info] >  actualizado    precio_max
+[info] i  functions: Finished "api" in ~20s
+[debug] [2020-02-13T05:02:58.340Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-02-13T05:02:59.652Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-13T05:02:59.652Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:02:59.656Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:02:59.657Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:02:59.658Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:03:08.051Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-02-13T05:03:08.375Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-02-13T05:03:08.377Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:03:08.380Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:03:08.381Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:03:08.382Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:03:09.553Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-02-13T05:03:09.553Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-02-13T05:03:09.553Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-02-13T05:03:09.560Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59242.sock"}
+[debug] [2020-02-13T05:03:09.562Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59242.sock"}
+[debug] [2020-02-13T05:03:09.575Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-02-13T05:03:10.046Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init
+[info] >  { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' }
+[info] >  1
+[info] >  [ { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' } ]
+[info] >  13/02/2020
+[info] >  08/02/2020
+[info] >  Pendiente de carga: true
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_prom
+[info] i  functions: Finished "api" in ~3s
+[debug] [2020-02-13T05:05:20.674Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-02-13T05:05:22.181Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-13T05:05:22.182Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:05:22.185Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:05:22.186Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:05:22.187Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:06:14.495Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-02-13T05:06:14.806Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-02-13T05:06:14.807Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:06:14.809Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:06:14.811Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:06:14.811Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:06:15.962Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-02-13T05:06:15.963Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-02-13T05:06:15.963Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-02-13T05:06:15.970Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59248.sock"}
+[debug] [2020-02-13T05:06:15.971Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59248.sock"}
+[debug] [2020-02-13T05:06:15.982Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-02-13T05:06:16.446Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_prom
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_min
+[info] >  { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' }
+[info] >  1
+[info] >  [ { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' } ]
+[info] >  13/02/2020
+[info] >  08/02/2020
+[info] >  Pendiente de carga: true
+[info] i  functions: Finished "api" in ~5s
+[debug] [2020-02-13T05:06:44.131Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-02-13T05:06:45.448Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-13T05:06:45.449Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:06:45.452Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:06:45.453Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:06:45.453Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:06:46.874Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-02-13T05:06:48.347Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-13T05:06:48.348Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:06:48.351Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:06:48.352Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:06:48.353Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:03.563Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-02-13T05:07:04.879Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-13T05:07:04.879Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:07:04.882Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:07:04.883Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:04.884Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:08.381Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-02-13T05:07:08.736Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-02-13T05:07:08.737Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:07:08.740Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:07:08.741Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:08.742Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:09.851Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-02-13T05:07:09.852Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-02-13T05:07:09.852Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-02-13T05:07:09.859Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59256.sock"}
+[debug] [2020-02-13T05:07:09.860Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59256.sock"}
+[debug] [2020-02-13T05:07:09.870Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-02-13T05:07:10.486Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init
+[info] >  { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' }
+[info] >  1
+[info] >  [ { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' } ]
+[info] >  13/02/2020
+[info] >  08/02/2020
+[info] >  Pendiente de carga: true
+[info] >  sisapPrices=========
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_prom
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_min
+[info] i  functions: Finished "api" in ~9s
+[debug] [2020-02-13T05:07:52.944Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-02-13T05:07:54.285Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-13T05:07:54.286Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:07:54.292Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:07:54.296Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:54.298Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:55.138Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-02-13T05:07:55.482Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-02-13T05:07:55.483Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:07:55.487Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:07:55.489Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:55.495Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:07:56.575Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-02-13T05:07:56.575Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-02-13T05:07:56.575Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-02-13T05:07:56.582Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59260.sock"}
+[debug] [2020-02-13T05:07:56.583Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59260.sock"}
+[debug] [2020-02-13T05:07:56.593Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-02-13T05:07:56.924Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init
+[info] >  { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' }
+[info] >  1
+[info] >  [ { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' } ]
+[info] >  13/02/2020
+[info] >  08/02/2020
+[info] >  Pendiente de carga: true
+[info] >  sisapPrices=========
+[info] >  { start: '08/02/2020',
+[info] >    last: '13/02/2020',
+[info] >    type: [ 'precio_max' ],
+[info] >    product: '0633' }
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_min
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_prom
+[info] i  functions: Finished "api" in ~3s
+[debug] [2020-02-13T05:11:21.402Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-02-13T05:11:22.745Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-02-13T05:11:22.745Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:11:22.748Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:11:22.749Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:11:22.750Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:11:26.169Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-02-13T05:11:26.476Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-02-13T05:11:26.478Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T05:11:26.484Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T05:11:26.484Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:11:26.485Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T05:11:27.643Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-02-13T05:11:27.644Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-02-13T05:11:27.644Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-02-13T05:11:27.652Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59269.sock"}
+[debug] [2020-02-13T05:11:27.655Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59269.sock"}
+[debug] [2020-02-13T05:11:27.667Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-02-13T05:11:28.025Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_prom
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_min
+[info] >  { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' }
+[info] >  1
+[info] >  [ { date: 2020-02-07T05:00:00.000Z, id: 'n8uktx4xtnnAP8sBvvuV' } ]
+[info] >  13/02/2020
+[info] >  08/02/2020
+[info] >  Pendiente de carga: true
+[info] >  6
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  6  objetos
+[info] >  actualizado precio_max

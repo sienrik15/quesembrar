@@ -4,6 +4,7 @@ const functions = require('firebase-functions');
 const express = require("express");
 const axios = require('axios');
 const cors = require('cors');
+const cron = require("node-cron");
 const html2json = require('html2json').html2json;
 const path = require('path');
 const history = require('connect-history-api-fallback');
@@ -163,6 +164,25 @@ app.get('/', async (req, res) => {
     res.send("Hola mundo")
 });
 
+app.get('/query', async (req, res) => {
+    let mParams = {
+        crops_id_ref: "",
+        crops_id:"BzgL14JQFRorQxPooJRb",
+        market_id:"3BeNPYEum6Wvw1z2dFHw", //codifgo defauld, implementar mas adelante
+        price_type_id_ref: "",
+        price_type_id: "AFuN7owOgTMIvwBzFNBG"
+    };
+    let sma = await [0,1,3].map(async (vl,k) => {
+        let productDB = await getLastProductDB(mParams);
+        if (k > 1)
+            res.send(productDB)
+    });
+
+});
+
+
+
+
 app.get('/prod-all', async (req, res) => {
     //deletefilevalue();
     //let delet = await deleteCollection(db, 'cities', 100);
@@ -254,7 +274,7 @@ app.get('/read',async (req, res) => {
     res.json(allCities);*/
 
     //res.json(await updatePricesProduct());
-    res.json(await updateAllProductsDB());
+   await updateAllProductsDB(res);
 
 });
 
@@ -268,50 +288,65 @@ async function insertDataAllDate (dataList) {
     return dataList
 }
 
-async function updatePricesProduct(){
+
+async function updatePricesProduct(crops,price){
+    let mParams = {
+        crops_id_ref: crops.id_ref,
+        crops_id:crops.id,
+        market_id:"3BeNPYEum6Wvw1z2dFHw", //codifgo defauld, implementar mas adelante
+        price_type_id_ref: price.id_ref,
+        price_type_id: price.id
+    };
 
     /**@function getLastProductDB obtien el ultimo dato ingestado de la DB*/
-    let productDB = await getLastProductDB();
+    let productDB = await getLastProductDB(mParams);
+    console.log(productDB)
 
-    /**@param today y beforeLastDate son fechas para validar el dia actual con el ultima fecha de la DB **/
-    let today = moment().format("YYYY-MM-DD");  //DD/MM/YYYY
-    let beforeLastDate = moment(productDB[0].date).add(1, 'day').format("YYYY-MM-DD");
+    if (productDB && productDB.length === 0) {
+        console.log("no hay data" + mParams.price_type_id_ref);
+        return "no hay data" + mParams
+    }else {
+        /**@param today y beforeLastDate son fechas para validar el dia actual con el ultima fecha de la DB **/
+        let today = moment().format("YYYY-MM-DD");  //DD/MM/YYYY
+        let beforeLastDate = moment(productDB[0].date).add(1, 'day').format("YYYY-MM-DD");
 
-    /**Verificar si hay datos para actualizar deacuerdo a la fecha**/
-    let isUpdateData = moment(beforeLastDate).isSameOrBefore(today);
+        /**Verificar si hay datos para actualizar deacuerdo a la fecha**/
+        let isUpdateData = moment(beforeLastDate).isSameOrBefore(today);
 
-    console.log(moment(today).format("DD/MM/YYYY"));
-    console.log(moment(beforeLastDate).format("DD/MM/YYYY"));
-    console.log("Pendiente de carga: "+isUpdateData);
-    /**En caso la ultima fecha insertada no es menor o igual a la fecha actual, no se realiza la actualizacion de la DB**/
-    if (!isUpdateData){ return "No hay nuevos datos para actualizar, fecha de ultima carga: "+moment(productDB[0].date).format("YYYY-MM-DD")}
+        console.log(moment(today).format("DD/MM/YYYY"));
+        console.log(moment(beforeLastDate).format("DD/MM/YYYY"));
+        console.log("Pendiente de carga: "+isUpdateData);
+        /**En caso la ultima fecha insertada no es menor o igual a la fecha actual, no se realiza la actualizacion de la DB**/
+        if (!isUpdateData){ return "No hay nuevos datos para actualizar, fecha de ultima carga: "+moment(productDB[0].date).format("YYYY-MM-DD")}
 
-    /**Parametros para realizar query a la API de sisap**/
-    let paramPrices = {
-        start:moment(beforeLastDate).format("DD/MM/YYYY"),//"01/01/1997"
-        last:moment(today).format("DD/MM/YYYY"),//"02/02/2020",
-        type:['precio_max'], //,'precio_prom','precio_min'
-        product:"0633",
-    };
-    let sisapPrices = await getPricesSisap(paramPrices);
-    let pricesResult = HtmlTableToJson.parse(sisapPrices)._results[0];
-    let pricesResultClean = await clearData(pricesResult);
-    console.log(pricesResultClean.length);
-    let isCorrectInset = await inserDataDays(pricesResultClean);
+        /**Parametros para realizar query a la API de sisap**/
+        let paramPrices = {
+            start:moment(beforeLastDate).format("DD/MM/YYYY"),//"01/01/1997"
+            last:moment(today).format("DD/MM/YYYY"),//"02/02/2020",
+            type:[mParams.price_type_id_ref], //,'precio_prom','precio_min'
+            product:mParams.crops_id_ref,
+        };
+        let sisapPrices = await getPricesSisap(paramPrices);
+        let pricesResult = await HtmlTableToJson.parse(sisapPrices)._results[0];
+        let pricesResultClean = await clearData(pricesResult);
 
-    return isCorrectInset ? pricesResultClean:"err insert";
+        console.log(pricesResultClean.length);
+        let isCorrectInset = await inserDataDays(pricesResultClean,mParams);
 
+        console.log("actualizado " + mParams.price_type_id_ref);
+        return isCorrectInset ? pricesResultClean:"err insert";
+    }
 }
 
-async function inserDataDays(valList){
+async function inserDataDays(valList,params){
     let batch = db.batch();
     let addCorrect = false;
     await valList.map(async (vl, ky) => {
         if (!vl.description) {
             let doc = db.collection('prices').doc();
-            let crops_id = "BzgL14JQFRorQxPooJRb";//sandia
-            let market_id = "3BeNPYEum6Wvw1z2dFHw"; //defauld
-            let price_type_id = "AFuN7owOgTMIvwBzFNBG"; //max
+            let crops_id = params.crops_id;//"BzgL14JQFRorQxPooJRb";//sandia
+            let market_id = params.market_id; //defauld
+            let price_type_id = params.price_type_id;//"AFuN7owOgTMIvwBzFNBG"; //max
             let date = "";
             if (vl.date && vl.date !==""){
                 let mdate = moment(vl.date, "DD/MM/YYYY").toDate();
@@ -364,12 +399,17 @@ async function clearData(listObjet){
     });
 }
 
-async function getLastProductDB(){
-    let priceRef = await db.collection('prices').orderBy("date", "desc").limit(1);
+async function getLastProductDB(params){
+
+    let priceRef = await db.collection('prices');
+    priceRef = await priceRef.where('market_id', '==', params.market_id);
+    priceRef = await priceRef.where('crops_id', '==', params.crops_id);
+    priceRef = await priceRef.where('price_type_id', '==', params.price_type_id);
+    priceRef = await priceRef.orderBy("date", "desc").limit(1);
     let lastPrice = await priceRef.get()
-        .then(value => {
+        .then(async value => {
             let res = [];
-            value.forEach(doc => {
+            await value.forEach(doc => {
                 let object = {};
                 object["date"] = doc.data().date.toDate();
                 object["id"] = doc.data().id;
@@ -387,7 +427,7 @@ async function getLastProductDB(){
 
 async function getPricesTypeDB(){
     let pricesType = db.collection('prices_types');
-    return pricesType.select("id","name","id_ref").get().then(value => {
+    return await pricesType.select("id","name","id_ref").get().then(value => {
         let res = [];
         value.forEach(doc => {
             res.push(doc.data());
@@ -400,7 +440,7 @@ async function getPricesTypeDB(){
 
 async function getAgriculturalCropsDB(){
     let agriculturalCrops = db.collection('agricultural_crops');
-    return agriculturalCrops.get().then(value => {
+    return await agriculturalCrops.get().then(value => {
         let res = [];
         value.forEach(doc => {
             res.push(doc.data());
@@ -411,14 +451,27 @@ async function getAgriculturalCropsDB(){
     });
 }
 
-async function updateAllProductsDB(){
+async function updateAllProductsDB(res){
     let pricesTypeDB = await getPricesTypeDB();
     let agriculturalCropsDB = await getAgriculturalCropsDB();
 
+    console.log("init");
+
+    let resp = await agriculturalCropsDB.map(async (vl,k1)=>{
+        let ddtpr = await pricesTypeDB.map(async (vlt,k2)=>{
+            let udtdta = await updatePricesProduct(vl,vlt);
+            let fins = agriculturalCropsDB.length*pricesTypeDB.length;
+            let final = (k1+1)*(k2+1);
+            if (fins===final && udtdta===true)
+                res.json(k2);
+        });
+    });
+
+    /*console.log("return");
     return {
         pricesType:pricesTypeDB,
         crops:agriculturalCropsDB
-    }
+    }*/
 }
 
 exports[API_PREFIX] = functions.https.onRequest(app);
