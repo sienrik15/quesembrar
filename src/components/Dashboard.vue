@@ -1,5 +1,11 @@
 <template>
-    <div class="container is-fullhd">
+
+    <!-- :color-back="colors.colorBack"
+                 :color-grid="colors.colorGrid"
+                 :color-text="colors.colorText" -->
+    <trading-vue :data="chart" :width="this.width" :height="this.height">
+    </trading-vue>
+    <!-- <div class="container is-fullhd">
         <div class="notification">
             <section class="section">
                     <div class="container">
@@ -31,9 +37,7 @@
                                     <p class="title">Grafica 3 </p>
                                     <p class="subtitle">graficos</p>
                                     <canvas id="myChart" width="400" height="400"></canvas>
-                                    <!--<figure class="image is-4by3">
-                                        <img src="https://bulma.io/images/placeholders/640x480.png">
-                                    </figure>-->
+
                                 </article>
                             </div>
                         </div>
@@ -42,7 +46,8 @@
                                 <p class="title">Grafica 4 </p>
                                 <p class="subtitle">graficso y datos</p>
                                 <div class="content">
-                                    <!-- Content -->
+
+
                                 </div>
                             </article>
                         </div>
@@ -53,7 +58,8 @@
                                 <p class="title">Tall tile</p>
                                 <p class="subtitle">With even more content</p>
                                 <div class="content">
-                                    <!-- Content -->
+
+
                                 </div>
                             </div>
                         </article>
@@ -61,17 +67,32 @@
                 </div>
                 </div>
             </section>
+            <section class="section">
+                <div class="container">
+
+                </div>
+            </section>
         </div>
-    </div>
+    </div> -->
+
 </template>
 
 <script>
     import Chart from 'chart.js';
+    import TradingVue from 'trading-vue-js'
+    import Data from '../data/data.json'
+
 
     export default {
         name: "Dashboard",
         components:{
-
+            TradingVue
+        },
+        methods: {
+            onResize(event) {
+                this.width = window.innerWidth;
+                this.height = window.innerHeight
+            }
         },
         data:function() {
             return {
@@ -79,10 +100,19 @@
                 visitCount: 0,
                 hideCompletedTodos: false,
                 todos: [],
-                error: null
+                error: null,
+                chart: Data,
+                width: window.innerWidth,
+                height: window.innerHeight,
+                colors: {
+                    colorBack: '#fff',
+                    colorGrid: '#eee',
+                    colorText: '#333',
+                }
             };
         },
         mounted(){
+            window.addEventListener('resize', this.onResize)
             var ctx = document.getElementById("myChart");
             /* eslint-disable */
             var myChart = new Chart(ctx, {
@@ -121,7 +151,10 @@
                     }
                 }
             });
-        }
+        },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.onResize)
+        },
     }
 </script>
 

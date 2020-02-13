@@ -4,7 +4,6 @@ const functions = require('firebase-functions');
 const express = require("express");
 const axios = require('axios');
 const cors = require('cors');
-const cron = require("node-cron");
 const html2json = require('html2json').html2json;
 const path = require('path');
 const history = require('connect-history-api-fallback');
@@ -211,56 +210,18 @@ async function updateAllPrices(param) {
 }
 
 app.get('/prod-all', async (req, res) => {
-    //deletefilevalue();
-    //let delet = await deleteCollection(db, 'cities', 100);
 
-
-
-    /*let date = moment(toJSON[1].date, "DD/MM/YYYY").toDate();
-    let timest = admin.firestore.Timestamp.fromDate(date);
-    console.log(toJSON[1].date);
-    console.log(date);
-    console.log(timest);
-    console.log(timest.toDate());
-     let flo = parseFloat(toJSON[1].price).toFixed(2);
-    console.log(flo);*/
-
-
-    res.send("toJSON")
-    //res.send(html2json(response));
-});
-
-app.get('/read',async (req, res) => {
-
-
-    //Obtener lista de documentos en una coleccion
-    /*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
-    let allCities = await citiesRef.select("name").get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                console.log(doc.id, '=>', doc.data());
-            });
-            return snapshot
-        }).catch(err => {
-            console.log('Error getting documents', err);
-        }); */
-
-    /*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices").doc("avg_price");
-    let allCities = await citiesRef.get()
-        .then(value => {
-            return  value.data()
-        }).catch(err => {
-            console.log('Error getting documents', err);
-        });*/
-    /*let citiesRef = db.collection('prices').orderBy("date", "desc").limit(1);
-    let allCities = await citiesRef.get()
-        .then(value => {
+    let priceRef = await db.collection('prices');
+    priceRef = await priceRef.where('crops_id', '==', "BzgL14JQFRorQxPooJRb");
+    priceRef = await priceRef.where('price_type_id', '==', "ShlOjc8bm8QP9q7rw4kp"); // precio_prom: dsE4vwVF1JyfWVOVLgYA precio_max: AFuN7owOgTMIvwBzFNBG , min: ShlOjc8bm8QP9q7rw4kp
+    let lastPrice = await priceRef.get()
+        .then(async value => {
             let res = [];
-            value.forEach(doc => {
+            await value.forEach(doc => {
                 let object = {};
                 object["date"] = doc.data().date.toDate();
                 object["id"] = doc.data().id;
-                console.log(object);
+                //console.log(object);
                 res.push(object);
                 //console.log(doc.id, '=>', doc.data());
             });
@@ -268,14 +229,12 @@ app.get('/read',async (req, res) => {
         }).catch(err => {
             console.log('Error getting documents', err);
         });
+    console.log(lastPrice.length);
+    res.send(lastPrice);
+});
 
-    let today = moment().format();
-    console.log(today);
-    console.log(moment(allCities[0].date).isBefore(today));
-    console.log(allCities.length);
-    res.json(allCities);*/
+app.get('/read',async (req, res) => {
 
-    //res.json(await updatePricesProduct());
    await updateAllProductsDB(res);
 
 });
@@ -458,16 +417,58 @@ async function updateAllProductsDB(res){
         let ddtpr = await pricesTypeDB.map(async (vlt,k2)=>{
             count = await updatePricesProduct(vl,vlt) + count;
             console.log("retornara -> "+count);
-            if (count===limitUpd)
-                res.json(count);
+            if (count===limitUpd) {
+                res.json({ update: true });
+            }
         });
     });
 
-    /*console.log("return");
-    return {
-        pricesType:pricesTypeDB,
-        crops:agriculturalCropsDB
-    }*/
 }
 
 exports[API_PREFIX] = functions.https.onRequest(app);
+
+
+
+//Obtener lista de documentos en una coleccion
+/*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
+let allCities = await citiesRef.select("name").get()
+    .then(snapshot => {
+        snapshot.forEach(doc => {
+            console.log(doc.id, '=>', doc.data());
+        });
+        return snapshot
+    }).catch(err => {
+        console.log('Error getting documents', err);
+    }); */
+
+/*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices").doc("avg_price");
+let allCities = await citiesRef.get()
+    .then(value => {
+        return  value.data()
+    }).catch(err => {
+        console.log('Error getting documents', err);
+    });*/
+/*let citiesRef = db.collection('prices').orderBy("date", "desc").limit(1);
+let allCities = await citiesRef.get()
+    .then(value => {
+        let res = [];
+        value.forEach(doc => {
+            let object = {};
+            object["date"] = doc.data().date.toDate();
+            object["id"] = doc.data().id;
+            console.log(object);
+            res.push(object);
+            //console.log(doc.id, '=>', doc.data());
+        });
+        return  res
+    }).catch(err => {
+        console.log('Error getting documents', err);
+    });
+
+let today = moment().format();
+console.log(today);
+console.log(moment(allCities[0].date).isBefore(today));
+console.log(allCities.length);
+res.json(allCities);*/
+
+//res.json(await updatePricesProduct());
