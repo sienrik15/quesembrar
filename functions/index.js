@@ -181,23 +181,40 @@ app.get('/query', async (req, res) => {
 });
 
 
+async function updateAllPrices(param) {
 
+    let paramPrices = {
+        start:"01/01/1997",
+        last:moment().format("DD/MM/YYYY"),
+        type:[param.price_type_id_ref], //,'precio_prom','precio_min'
+        product:param.crops_id_ref,
+    };
+    let response = await getPricesSisap(paramPrices);
+    let toJSON = await HtmlTableToJson.parse(response)._results[0];
+
+
+    toJSON = await clearData(toJSON);
+
+    toJSON = await _.chunk(toJSON, 400);
+    let sum = toJSON.length;
+    console.log(sum);
+
+    let isInsert = await toJSON.map( async (valList,key) => {
+        console.log(key);
+        return await inserDataDays(valList,param);
+    });
+
+    console.log("ingesta termiando======> " +isInsert);
+
+    return isInsert
+
+}
 
 app.get('/prod-all', async (req, res) => {
     //deletefilevalue();
     //let delet = await deleteCollection(db, 'cities', 100);
 
-    let paramPrices = {
-        start:"01/01/1997",
-        last:"02/02/2020",
-        type:['precio_max'], //,'precio_prom','precio_min'
-        product:"0633",
-    };
-    let response = await getPricesSisap(paramPrices);
-    let toJSON = HtmlTableToJson.parse(response)._results[0];
 
-
-    toJSON = await clearData(toJSON);
 
     /*let date = moment(toJSON[1].date, "DD/MM/YYYY").toDate();
     let timest = admin.firestore.Timestamp.fromDate(date);
@@ -208,11 +225,8 @@ app.get('/prod-all', async (req, res) => {
      let flo = parseFloat(toJSON[1].price).toFixed(2);
     console.log(flo);*/
 
-    toJSON = _.chunk(toJSON, 400);
-    let sum = toJSON.length;
-    console.log(sum);
-    //let insertDt = await insertDataAllDate(toJSON);
-    res.send(toJSON)
+
+    res.send("toJSON")
     //res.send(html2json(response));
 });
 
@@ -278,16 +292,6 @@ app.get('/read',async (req, res) => {
 
 });
 
-async function insertDataAllDate (dataList) {
-
-    await dataList.map( async (valList,key) => {
-        console.log(key);
-        await inserDataDays(valList);
-    });
-
-    return dataList
-}
-
 
 async function updatePricesProduct(crops,price){
     let mParams = {
@@ -300,11 +304,12 @@ async function updatePricesProduct(crops,price){
 
     /**@function getLastProductDB obtien el ultimo dato ingestado de la DB*/
     let productDB = await getLastProductDB(mParams);
-    console.log(productDB)
+    console.log(productDB);
 
     if (productDB && productDB.length === 0) {
-        console.log("no hay data" + mParams.price_type_id_ref);
-        return "no hay data" + mParams
+        let allPrices= await updateAllPrices(mParams);
+        console.log("Data actualizado completo" + mParams.price_type_id_ref +" : "+ allPrices);
+        return 1
     }else {
         /**@param today y beforeLastDate son fechas para validar el dia actual con el ultima fecha de la DB **/
         let today = moment().format("YYYY-MM-DD");  //DD/MM/YYYY
@@ -315,9 +320,12 @@ async function updatePricesProduct(crops,price){
 
         console.log(moment(today).format("DD/MM/YYYY"));
         console.log(moment(beforeLastDate).format("DD/MM/YYYY"));
-        console.log("Pendiente de carga: "+isUpdateData);
+        console.log("Pendiente de carga: "+isUpdateData +"==="+mParams.price_type_id_ref);
         /**En caso la ultima fecha insertada no es menor o igual a la fecha actual, no se realiza la actualizacion de la DB**/
-        if (!isUpdateData){ return "No hay nuevos datos para actualizar, fecha de ultima carga: "+moment(productDB[0].date).format("YYYY-MM-DD")}
+        if (!isUpdateData){
+            console.log("No hay nuevos datos para actualizar, fecha de ultima carga: "+moment(productDB[0].date).format("YYYY-MM-DD"))
+            return 1
+        }
 
         /**Parametros para realizar query a la API de sisap**/
         let paramPrices = {
@@ -334,7 +342,7 @@ async function updatePricesProduct(crops,price){
         let isCorrectInset = await inserDataDays(pricesResultClean,mParams);
 
         console.log("actualizado " + mParams.price_type_id_ref);
-        return isCorrectInset ? pricesResultClean:"err insert";
+        return isCorrectInset ? 1:"err insert";
     }
 }
 
@@ -456,14 +464,14 @@ async function updateAllProductsDB(res){
     let agriculturalCropsDB = await getAgriculturalCropsDB();
 
     console.log("init");
-
+    let count = 0;
+    let limitUpd = agriculturalCropsDB.length*pricesTypeDB.length;
     let resp = await agriculturalCropsDB.map(async (vl,k1)=>{
         let ddtpr = await pricesTypeDB.map(async (vlt,k2)=>{
-            let udtdta = await updatePricesProduct(vl,vlt);
-            let fins = agriculturalCropsDB.length*pricesTypeDB.length;
-            let final = (k1+1)*(k2+1);
-            if (fins===final && udtdta===true)
-                res.json(k2);
+            count = await updatePricesProduct(vl,vlt) + count;
+            console.log("retornara -> "+count);
+            if (count===limitUpd)
+                res.json(count);
         });
     });
 

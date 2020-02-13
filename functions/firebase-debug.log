@@ -246,3 +246,34 @@
 [info] >  Objeto descripcion no se agrego: 0 => [object Object]
 [info] >  Se agrego:  6  objetos
 [info] >  actualizado precio_max
+[debug] [2020-02-13T11:45:20.018Z] Accepted request GET /agroanalytics-b2462/us-central1/api/read --> api
+[debug] [2020-02-13T11:45:20.370Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-02-13T11:45:20.373Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-02-13T11:45:20.384Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-13T11:45:20.389Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T11:45:20.390Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-13T11:45:22.302Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-02-13T11:45:22.303Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-02-13T11:45:22.303Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-02-13T11:45:22.310Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59612.sock"}
+[debug] [2020-02-13T11:45:22.314Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_59612.sock"}
+[debug] [2020-02-13T11:45:22.329Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-02-13T11:45:22.864Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_min
+[info] >  { date: 2020-02-12T05:00:00.000Z, id: 'XM7NKTx1d1qa4x7vtP44' }
+[info] >  1
+[info] >  [ { date: 2020-02-12T05:00:00.000Z, id: 'XM7NKTx1d1qa4x7vtP44' } ]
+[info] >  13/02/2020
+[info] >  13/02/2020
+[info] >  Pendiente de carga: true
+[info] >  0
+[info] >  []
+[info] >  no hay dataprecio_prom
+[info] >  2
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  2  objetos
+[info] >  actualizado precio_max
