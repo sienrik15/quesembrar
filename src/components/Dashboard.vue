@@ -3,9 +3,10 @@
     <!-- :color-back="colors.colorBack"
                  :color-grid="colors.colorGrid"
                  :color-text="colors.colorText" -->
-    <trading-vue :data="chart" :width="this.width" :height="this.height">
-    </trading-vue>
-    <!-- <div class="container is-fullhd">
+    <!--<trading-vue :data="chart" :width="this.width" :height="this.height">
+    </trading-vue>-->
+
+     <div class="container is-fullhd">
         <div class="notification">
             <section class="section">
                     <div class="container">
@@ -14,8 +15,36 @@
                         </div>
                         <h1 class="subtitle">
                             Analisis y Monitoreo de precios en cultivos para planificar que sembrar
+                            {{this.options}}
                         </h1>
                     </div>
+                    <div>
+                        <div class="buttons">
+                            <button class="button is-primary is-light">Primary</button>
+                            <button class="button is-link is-light">Link</button>
+                        </div>
+
+                        <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @search="onSearch">
+                            <template slot="no-options">
+                                type to search GitHub repositories..
+                            </template>
+                            <template slot="option" slot-scope="option">
+                                <div class="d-center">
+                                    <img :src='option.image_url'/>
+                                    {{ option.name_es }}
+                                </div>
+                            </template>
+                            <template slot="selected-option" slot-scope="option">
+                                <div class="selected d-center">
+                                    <img :src='option.image_url'/>
+                                    {{ option.name_es }}
+                                </div>
+                            </template>
+                        </v-select>
+
+                    </div>
+
+
             </section>
             <section class="section">
                 <div class="container">
@@ -73,7 +102,8 @@
                 </div>
             </section>
         </div>
-    </div> -->
+    </div>
+
 
 </template>
 
@@ -81,7 +111,7 @@
     import Chart from 'chart.js';
     import TradingVue from 'trading-vue-js'
     import Data from '../data/data.json'
-
+    import _ from 'lodash'
 
     export default {
         name: "Dashboard",
@@ -92,7 +122,26 @@
             onResize(event) {
                 this.width = window.innerWidth;
                 this.height = window.innerHeight
-            }
+            },
+            onSearch(search, loading) {
+                loading(true);
+                this.search(loading, search, this);
+            },
+            search: _.debounce((loading, search, vm) => {
+                console.log("hola+======")
+                let db = vm.$firebase.firestore();
+                db.collection('agricultural_crops').get().then(snap => {
+                    const pdCollection = [];
+                    snap.forEach(doc => {
+                        pdCollection.push(doc.data());
+                    });
+                    vm.options = pdCollection;
+                    console.log(vm.options);
+                    loading(false);
+                }).catch(err=>{
+                    console.log(err)
+                });
+            }, 350)
         },
         data:function() {
             return {
@@ -108,8 +157,10 @@
                     colorBack: '#fff',
                     colorGrid: '#eee',
                     colorText: '#333',
-                }
-            };
+                },
+                options:[]
+
+        };
         },
         mounted(){
             window.addEventListener('resize', this.onResize)
@@ -158,4 +209,52 @@
     }
 </script>
 
-<style lang="stylus" src="@/assets/styles/home.styl"></style>
+<style lang="stylus">
+
+
+    .v-select-custom
+        img
+            height: auto;
+            max-width: 2.5rem;
+            margin-right: 1rem;
+        .d-center
+            display: flex;
+            align-items: center;
+
+
+        .selected
+            img
+                width: auto;
+                max-height: 23px;
+                margin-right: 0.5rem;
+
+
+        .v-select
+            .dropdown
+                li
+                    border-bottom: 1px solid rgba(112, 128, 144, 0.1);
+
+
+        .v-select
+            .dropdown
+                li:last-child
+                    border-bottom: none;
+
+
+        .v-select
+            .dropdown
+                li
+                    a
+                        padding: 10px 20px;
+                        width: 100%;
+                        font-size: 1.25em;
+                        color: #3c3c3c;
+
+
+        .v-select
+            .dropdown-menu
+                .active > a
+                    color: #fff
+
+
+</style>
