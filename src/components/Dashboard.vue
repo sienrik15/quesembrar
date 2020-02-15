@@ -15,7 +15,6 @@
                         </div>
                         <h1 class="subtitle">
                             Analisis y Monitoreo de precios en cultivos para planificar que sembrar
-                            {{this.options}}
                         </h1>
                     </div>
                     <div>
