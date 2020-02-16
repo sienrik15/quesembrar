@@ -127,9 +127,11 @@
                 this.search(loading, search, this);
             },
             search: _.debounce((loading, search, vm) => {
-                console.log("hola+======")
+                console.log(search)
                 let db = vm.$firebase.firestore();
-                db.collection('agricultural_crops').get().then(snap => {
+                db.collection('agricultural_crops')
+                    .where('name_es', '>=', search).where('name_es', '<=', search).get().then(snap => {
+
                     const pdCollection = [];
                     snap.forEach(doc => {
                         pdCollection.push(doc.data());
@@ -137,6 +139,7 @@
                     vm.options = pdCollection;
                     console.log(vm.options);
                     loading(false);
+
                 }).catch(err=>{
                     console.log(err)
                 });

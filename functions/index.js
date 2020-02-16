@@ -6,6 +6,7 @@ const axios = require('axios');
 const cors = require('cors');
 const html2json = require('html2json').html2json;
 const path = require('path');
+const delay = require('delay');
 const history = require('connect-history-api-fallback');
 const CronJob = require('cron').CronJob;
 const jsdom = require("jsdom");
@@ -105,6 +106,79 @@ deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
 };
 
 
+// Post Producto por mercado : http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado  mercado: * (empty) ajax: true
+// Post subproducto de producto : http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/variedades/filtrarPorGenero expandir: 0231~checkBox (empty) ajax: true
+
+
+getProductCrops = async (res)=>{
+    let resProMercado = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado',
+        querystring.stringify({
+            mercado: '*'
+        }));
+
+    let toJSON = await html2json(resProMercado.data);
+
+    let productList = [];
+    await toJSON.child[0].child.map(vl=>{
+        let modelProduct = {};
+        modelProduct.id = vl.child[0].child[0].attr.value;
+        modelProduct.name = vl.child[2].text === 'Pi�a'?'piña':vl.child[2].text.toLowerCase();
+        productList.push(modelProduct)
+    });
+
+    let subProductsList = [];
+
+    let promises = productList.map( (vl,i)=>
+        new Promise(async resolve =>
+
+            await setTimeout(async () => {
+
+                let resListProduc =  await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/variedades/filtrarPorGenero',
+                    querystring.stringify({
+                        expandir: vl.id
+                    })).catch(err=>{
+                    console.log(vl.id);
+                    console.log(err.message);
+                });
+
+                let subProductJson = await html2json(resListProduc.data);
+
+                if (subProductJson.child.length === 1){
+                    vl.id = subProductJson.child[0].child[0].child[0].attr.value;
+                    let txt = subProductJson.child[0].child[0].child[1].text.replace(/�/g,'ñ');
+                    vl.name = txt.replace(/ññ/g,'ñ').toLowerCase();
+                    subProductsList.push(vl);
+                    console.log(vl.id+"=====>"+i);
+                    console.log(subProductsList.length);
+                }else {
+
+                    subProductJson.child.map((vlp,inx) =>{
+                        let productObject = {};
+                        productObject.id = vlp.child[0].child[0].attr.value;
+                        let txt = vlp.child[0].child[1].text.replace(/�/g,'ñ');
+                        productObject.name = txt.replace(/ññ/g,'ñ').toLowerCase();
+                        subProductsList.push(productObject);
+                        let index = i + inx;
+                        console.log(vl.id+"=====>"+index);
+                        console.log(subProductsList.length);
+                    })
+                }
+
+                resolve()
+            }, 500 * productList.length - 500 * i)
+
+        ));
+
+    await Promise.all(promises).then(()=> console.log("respons"));
+
+
+    let isInsertProducts = await inserDataProduct(subProductsList);
+
+    res.send(isInsertProducts ? subProductsList:'Err al insertar en firestore');
+
+};
+
+
 getScrap = async () =>{
      let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
         querystring.stringify({
@@ -160,7 +234,8 @@ app.use((req, res, next) => {
 });
 
 app.get('/', async (req, res) => {
-    res.send("Hola mundo")
+    res.send("Hola quesembrar")
+    //await getProductCrops(res)
 });
 
 app.get('/query', async (req, res) => {
@@ -313,6 +388,10 @@ async function inserDataDays(valList,params){
                 price = parseFloat(vl.price).toFixed(2);
             }else { console.log("Sin Precio id: "+doc.id) }
 
+
+            let auditoryDay = moment().toDate();
+            let date_auditory = admin.firestore.Timestamp.fromDate(auditoryDay);
+
             let object = {
                 crops_id: crops_id,
                 date: date,
@@ -320,6 +399,7 @@ async function inserDataDays(valList,params){
                 market_id: market_id,
                 price: price,
                 price_type_id: price_type_id,
+                created_at:date_auditory
             };
 
             await batch.set(doc, object);
@@ -330,6 +410,39 @@ async function inserDataDays(valList,params){
 
     await batch.commit().then(() => {
         console.log("Se agrego:  "+ valList.length+"  objetos");
+        addCorrect = true
+    }).catch(err=>{
+        console.log(err);
+        addCorrect = false
+    });
+
+    return addCorrect
+}
+
+async function inserDataProduct(listProduct){
+    let batch = db.batch();
+    let addCorrect = false;
+    await listProduct.map(async (vl) => {
+        let doc = db.collection('agricultural_crops').doc(); //BzgL14JQFRorQxPooJRb sandia actual
+
+        let auditoryDay = moment().toDate();
+        let date_auditory = admin.firestore.Timestamp.fromDate(auditoryDay);
+
+        let object = {
+            id: doc.id,
+            id_ref: vl.id,
+            image_url:'',
+            name_es:vl.name,
+            name:'',
+            created_at:date_auditory
+        };
+
+        await batch.set(doc, object);
+
+    });
+
+    await batch.commit().then(() => {
+        console.log("Se agrego:  "+ listProduct.length+"  objetos");
         addCorrect = true
     }).catch(err=>{
         console.log(err);
