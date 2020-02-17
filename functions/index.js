@@ -255,7 +255,7 @@ app.get('/query', async (req, res) => {
 });
 
 
-async function updateAllPrices(param) {
+async function qupdateAllPrices(param) {
 
     let paramPrices = {
         start:"01/01/1997",
@@ -543,6 +543,7 @@ exports[API_PREFIX] = functions.https.onRequest(app);
 
 
 //Obtener lista de documentos en una coleccion
+//xuD7NnKHpz2T0l0XjKTD sandia id
 /*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
 let allCities = await citiesRef.select("name").get()
     .then(snapshot => {

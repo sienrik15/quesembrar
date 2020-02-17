@@ -25,7 +25,7 @@
 
                         <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @search="onSearch">
                             <template slot="no-options">
-                                type to search GitHub repositories..
+                                Escribe el nombre cultivo o producto
                             </template>
                             <template slot="option" slot-scope="option">
                                 <div class="d-center">
@@ -127,11 +127,10 @@
                 this.search(loading, search, this);
             },
             search: _.debounce((loading, search, vm) => {
-                console.log(search)
+                if (search.length <= 0){ return loading(false); }
                 let db = vm.$firebase.firestore();
-                db.collection('agricultural_crops')
-                    .where('name_es', '>=', search).where('name_es', '<=', search).get().then(snap => {
-
+                db.collection('agricultural_crops').orderBy('name_es')
+                    .startAt(search).endAt(search+'\uf8ff').get().then(snap => {
                     const pdCollection = [];
                     snap.forEach(doc => {
                         pdCollection.push(doc.data());
@@ -143,6 +142,7 @@
                 }).catch(err=>{
                     console.log(err)
                 });
+
             }, 350)
         },
         data:function() {
