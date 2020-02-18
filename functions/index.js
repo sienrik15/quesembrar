@@ -222,9 +222,6 @@ getPricesSisap = async (param) => {
 const API_PREFIX = 'api';
 const app = express();
 
-//app.use(express.json());
-
-//app.use(cors({origin: '*'}));
 
 app.use((req, res, next) => {
     if (req.url.indexOf(`/${API_PREFIX}/`) === 0) {
@@ -585,4 +582,3 @@ console.log(moment(allCities[0].date).isBefore(today));
 console.log(allCities.length);
 res.json(allCities);*/
 
-//res.json(await updatePricesProduct());
