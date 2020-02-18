@@ -559,26 +559,4 @@ let allCities = await citiesRef.get()
     }).catch(err => {
         console.log('Error getting documents', err);
     });*/
-/*let citiesRef = db.collection('prices').orderBy("date", "desc").limit(1);
-let allCities = await citiesRef.get()
-    .then(value => {
-        let res = [];
-        value.forEach(doc => {
-            let object = {};
-            object["date"] = doc.data().date.toDate();
-            object["id"] = doc.data().id;
-            console.log(object);
-            res.push(object);
-            //console.log(doc.id, '=>', doc.data());
-        });
-        return  res
-    }).catch(err => {
-        console.log('Error getting documents', err);
-    });
-
-let today = moment().format();
-console.log(today);
-console.log(moment(allCities[0].date).isBefore(today));
-console.log(allCities.length);
-res.json(allCities);*/
 
