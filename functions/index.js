@@ -537,26 +537,3 @@ async function updateAllProductsDB(res){
 
 exports[API_PREFIX] = functions.https.onRequest(app);
 
-
-
-//Obtener lista de documentos en una coleccion
-//xuD7NnKHpz2T0l0XjKTD sandia id
-/*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices");
-let allCities = await citiesRef.select("name").get()
-    .then(snapshot => {
-        snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data());
-        });
-        return snapshot
-    }).catch(err => {
-        console.log('Error getting documents', err);
-    }); */
-
-/*let citiesRef = db.collection('lima_market').doc('watermelon').collection("prices").doc("avg_price");
-let allCities = await citiesRef.get()
-    .then(value => {
-        return  value.data()
-    }).catch(err => {
-        console.log('Error getting documents', err);
-    });*/
-
