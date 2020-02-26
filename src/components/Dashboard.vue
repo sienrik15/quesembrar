@@ -133,6 +133,7 @@
                     .startAt(search).endAt(search+'\uf8ff').get().then(snap => {
                     const pdCollection = [];
                     snap.forEach(doc => {
+                        console.log(doc.data());
                         pdCollection.push(doc.data());
                     });
                     vm.options = pdCollection;
