@@ -233,20 +233,22 @@ app.use((req, res, next) => {
 
 app.get('/', async (req, res) => {
     console.log("Hola quesembrar");
-    //await deleteCollection(db, 'prices', 450);
-    //await updateAllProductsDB(res)
-    let  priceRef = db.collection('prices');
-    //priceRef = await priceRef.where('price', '==', 0);
+    //let deletCallection = await deleteCollection(db, 'prices', 450);
+    //res.send(deletCallection)
+    await updateAllProductsDB(res)
+    /*let  priceRef = db.collection('prices');
+    priceRef = await priceRef.where('crops_id', '==', "3OghZQLZalGI9ksOjLWM");
+    priceRef = await priceRef.where("price_type_id","==","dsE4vwVF1JyfWVOVLgYA");
     let response = await priceRef.get().then(async value => {
-            /*let res = [];
+            let resData = [];
             await value.forEach(doc => {
-                res.push(doc.data());
-            });*/
+                resData.push(doc.data());
+            });
             console.log(value.size);
-            res.send(value.size+"");
+            res.send(resData);
 
         return value.size;
-    })
+    })*/
     //await getProductCrops(res)
 });
 
@@ -564,6 +566,10 @@ async function updateAllProductsDB(res){
     let promiseAgricultura = await agriculturalCropsDB.map((crops,k1)=>
             new Promise(async resolve =>
             await setTimeout(async () => {
+
+                if (k1>=2){
+                    resolve()
+                }
 
                 let promisePrices = pricesTypeDB.map( (vlTprice,k2) =>
                     new Promise(async resolve =>
