@@ -231,14 +231,20 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/delet-collection', async (req, res) => {
+    console.log("Hola quesembrar");
+    let deletCallection = await deleteCollection(db, 'prices', 450);
+    res.send(deletCallection)
+});
+
 app.get('/', async (req, res) => {
     console.log("Hola quesembrar");
-    //let deletCallection = await deleteCollection(db, 'prices', 450);
-    //res.send(deletCallection)
-    await updateAllProductsDB(res)
+    res.send("Hola quesembrar");
+    /*let deletCallection = await deleteCollection(db, 'prices', 450);
+    res.send(deletCallection)*/
     /*let  priceRef = db.collection('prices');
-    priceRef = await priceRef.where('crops_id', '==', "3OghZQLZalGI9ksOjLWM");
-    priceRef = await priceRef.where("price_type_id","==","dsE4vwVF1JyfWVOVLgYA");
+    priceRef = await priceRef.where('price', '>', "0");
+    //priceRef = await priceRef.where("price_type_id","==","dsE4vwVF1JyfWVOVLgYA");
     let response = await priceRef.get().then(async value => {
             let resData = [];
             await value.forEach(doc => {
@@ -333,9 +339,9 @@ app.get('/prod-all', async (req, res) => {
     res.send(lastPrice);
 });
 
-app.get('/read',async (req, res) => {
+app.get('/update-all',async (req, res) => {
 
-  await updateAllProductsDB(res);
+    await updateAllProductsDB(res)
 
 });
 
@@ -420,9 +426,7 @@ async function inserDataDays(valList,params){
             let price = 0.00;
             if (vl.price && vl.price !== ""){
                 price = parseFloat(vl.price).toFixed(2);
-                console.log(price)
             }
-
 
             let auditoryDay = moment().toDate();
             let date_auditory = admin.firestore.Timestamp.fromDate(auditoryDay);
@@ -488,15 +492,18 @@ async function inserDataProduct(listProduct){
 }
 
 async function clearData(listObjet){
+    /**Identificar el nombre del Key del producto, ya que se le asigna el precio*/
+    let keys = Object.keys(listObjet[1]);
+    let productName = keys[1];
     return await listObjet.map((vl, key)=> {
         if (key === 0) {
             vl.description = vl.Fecha;
             delete vl.Fecha;
         } else {
             vl.date = vl.Fecha;
-            vl.price = vl.Sandia;
+            vl.price = vl[productName];
             delete vl.Fecha;
-            delete vl.Sandia;
+            delete vl[productName];
         }
         return vl;
     });
@@ -567,8 +574,9 @@ async function updateAllProductsDB(res){
             new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1>=2){
-                    resolve()
+                if (k1 >= 2){
+                    resolve();
+                    return 0
                 }
 
                 let promisePrices = pricesTypeDB.map( (vlTprice,k2) =>
