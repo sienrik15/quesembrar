@@ -239,22 +239,27 @@ app.get('/delet-collection', async (req, res) => {
 
 app.get('/', async (req, res) => {
     console.log("Hola quesembrar");
-    res.send("Hola quesembrar");
-    /*let deletCallection = await deleteCollection(db, 'prices', 450);
-    res.send(deletCallection)*/
-    /*let  priceRef = db.collection('prices');
-    priceRef = await priceRef.where('price', '>', "0");
-    //priceRef = await priceRef.where("price_type_id","==","dsE4vwVF1JyfWVOVLgYA");
+    //res.send("Hola quesembrar");
+    let  priceRef = db.collection('prices');
+    //priceRef = await priceRef.where('price', '>', "0");
+    //priceRef = await priceRef.where("crops_id","==","08XDzSuu8cxyiZgauQcl");
+    priceRef = await priceRef.orderBy("date", "desc").limit(10);
     let response = await priceRef.get().then(async value => {
             let resData = [];
             await value.forEach(doc => {
-                resData.push(doc.data());
+                let object = {};
+                object["date"] = doc.data().date.toDate();
+                object["id"] = doc.data().id;
+                object["price_type_id"] = doc.data().price_type_id;
+                object["crops_id"] = doc.data().crops_id;
+                console.log(object);
+                resData.push(object);
             });
             console.log(value.size);
             res.send(resData);
 
         return value.size;
-    })*/
+    });
     //await getProductCrops(res)
 });
 
@@ -296,7 +301,7 @@ async function updateAllPrices(param) {
 
     toJSON = await clearData(toJSON);
 
-    toJSON = await _.chunk(toJSON, 450);
+    toJSON = await _.chunk(toJSON, 400);
     let frInsertCount = toJSON.length;
 
     /**Inserta grupo a grupo de 450 item */
@@ -306,7 +311,7 @@ async function updateAllPrices(param) {
                 console.log(k3);
                 await inserDataDays(valList,param);
                 resolve()
-            }, 250 * toJSON.length - 250 * k3)
+            }, 350 * toJSON.length - 350 * k3)
         ));
 
     await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount));
@@ -400,11 +405,27 @@ async function updatePricesProduct(crops,price){
 
         let pricesResultClean = await clearData(pricesResult);
 
-        console.log(pricesResultClean.length);
-        let isCorrectInset = await inserDataDays(pricesResultClean,mParams);
+        pricesResultClean = await _.chunk(pricesResultClean, 400);
+        let frInsertCount = pricesResultClean.length;
+
+        /**Inserta grupo a grupo de 450 item */
+        let promiseJsonInsert = pricesResultClean.map( (valList,k3) =>
+            new Promise(async resolve =>
+                await setTimeout(async () => {
+                    console.log(k3);
+                    await inserDataDays(valList,mParams);
+                    resolve()
+                }, 350 * pricesResultClean.length - 350 * k3)
+            ));
+
+        await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount));
+
+        //console.log(pricesResultClean.length);
+        //let isCorrectInset = await inserDataDays(pricesResultClean,mParams);
+
 
         console.log("actualizado " + mParams.price_type_id_ref);
-        return isCorrectInset;
+        return frInsertCount;//isCorrectInset;
     }
 }
 
@@ -574,7 +595,7 @@ async function updateAllProductsDB(res){
             new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 2){
+                if (k1 >= 4){
                     resolve();
                     return 0
                 }
