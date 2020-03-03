@@ -6,7 +6,6 @@ const axios = require('axios');
 const cors = require('cors');
 const html2json = require('html2json').html2json;
 const path = require('path');
-const delay = require('delay');
 const history = require('connect-history-api-fallback');
 const CronJob = require('cron').CronJob;
 const jsdom = require("jsdom");
@@ -67,29 +66,29 @@ deleteCollection = (db, collectionPath, batchSize) => {
     let collectionRef = db.collection(collectionPath);
     let query = collectionRef.orderBy('__name__').limit(batchSize);
 
-    return new Promise((resolve, reject) => {
+    return new Promise( (resolve, reject) => {
         deleteQueryBatch(db, query, batchSize, resolve, reject);
     });
 };
 
 deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
-    query.get()
-        .then((snapshot) => {
-            // When there are no documents left, we are done
-            if (snapshot.size === 0) {
-                return 0;
-            }
 
-            // Delete documents in a batch
-            let batch = db.batch();
-            snapshot.docs.forEach((doc) => {
-                batch.delete(doc.ref);
-            });
+    query.get().then((snapshot) => {
+        // When there are no documents left, we are done
+        if (snapshot.size === 0) {
+            return 0;
+        }
 
-            return batch.commit().then(() => {
-                return snapshot.size;
-            });
-        }).then((numDeleted) => {
+        // Delete documents in a batch
+        let batch = db.batch();
+        snapshot.docs.forEach((doc) => {
+            batch.delete(doc.ref);
+        });
+
+        return batch.commit().then(() => {
+            return snapshot.size;
+        });
+    }).then((numDeleted) => {
         if (numDeleted === 0) {
             resolve();
             return;
@@ -100,6 +99,7 @@ deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
         process.nextTick(() => {
             deleteQueryBatch(db, query, batchSize, resolve, reject);
         });
+
         return console.log('This is the notify feature');
 
     }).catch(reject);
@@ -180,7 +180,7 @@ getProductCrops = async (res)=>{
 
 
 getScrap = async () =>{
-     let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
+    let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
         querystring.stringify({
             mercado: '*',
             'variables[]': 'volumen',
@@ -196,7 +196,7 @@ getScrap = async () =>{
             periodicidad: 'intervalo'
         }));
 
-     return response.data;
+    return response.data;
 };
 
 getPricesSisap = async (param) => {
@@ -231,7 +231,21 @@ app.use((req, res, next) => {
 });
 
 app.get('/', async (req, res) => {
-    res.send("Hola quesembrar")
+    console.log("Hola quesembrar");
+    //await deleteCollection(db, 'prices', 450);
+    //await updateAllProductsDB(res)
+    let  priceRef = db.collection('prices');
+    //priceRef = await priceRef.where('price', '==', 0);
+    let response = await priceRef.get().then(async value => {
+        /*let res = [];
+        await value.forEach(doc => {
+            res.push(doc.data());
+        });*/
+        console.log(value.size);
+        res.send(value.size+"");
+
+        return value.size;
+    })
     //await getProductCrops(res)
 });
 
@@ -252,7 +266,7 @@ app.get('/query', async (req, res) => {
 });
 
 
-async function qupdateAllPrices(param) {
+async function updateAllPrices(param) {
 
     let paramPrices = {
         start:"01/01/1997",
@@ -261,23 +275,34 @@ async function qupdateAllPrices(param) {
         product:param.crops_id_ref,
     };
     let response = await getPricesSisap(paramPrices);
+
     let toJSON = await HtmlTableToJson.parse(response)._results[0];
 
 
+    if (toJSON && toJSON.length > 0){
+        console.log("Sisap precios ===> "+ toJSON.length)
+    }else {
+        return 0
+    }
+
     toJSON = await clearData(toJSON);
 
-    toJSON = await _.chunk(toJSON, 400);
-    let sum = toJSON.length;
-    console.log(sum);
+    toJSON = await _.chunk(toJSON, 450);
+    let frInsertCount = toJSON.length;
 
-    let isInsert = await toJSON.map( async (valList,key) => {
-        console.log(key);
-        return await inserDataDays(valList,param);
-    });
+    /**Inserta grupo a grupo de 450 item */
+    let promiseJsonInsert = toJSON.map( (valList,k3) =>
+        new Promise(async resolve =>
+            await setTimeout(async () => {
+                console.log(k3);
+                await inserDataDays(valList,param);
+                resolve()
+            }, 250 * toJSON.length - 250 * k3)
+        ));
 
-    console.log("ingesta termiando======> " +isInsert);
+    await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount));
 
-    return isInsert
+    return frInsertCount
 
 }
 
@@ -307,7 +332,7 @@ app.get('/prod-all', async (req, res) => {
 
 app.get('/read',async (req, res) => {
 
-   await updateAllProductsDB(res);
+    await updateAllProductsDB(res);
 
 });
 
@@ -326,10 +351,12 @@ async function updatePricesProduct(crops,price){
     console.log(productDB);
 
     if (productDB && productDB.length === 0) {
+        console.log("Inicia ingesta de total " +  mParams.crops_id_ref );
         let allPrices= await updateAllPrices(mParams);
-        console.log("Data actualizado completo" + mParams.price_type_id_ref +" : "+ allPrices);
-        return 1
+        console.log("Finaliza ingesta de" + mParams.crops_id_ref +" : "+ allPrices);
+        return allPrices
     }else {
+        console.log("Inicia ingesta a completar" +  mParams.crops_id_ref );
         /**@param today y beforeLastDate son fechas para validar el dia actual con el ultima fecha de la DB **/
         let today = moment().format("YYYY-MM-DD");  //DD/MM/YYYY
         let beforeLastDate = moment(productDB[0].date).add(1, 'day').format("YYYY-MM-DD");
@@ -355,13 +382,20 @@ async function updatePricesProduct(crops,price){
         };
         let sisapPrices = await getPricesSisap(paramPrices);
         let pricesResult = await HtmlTableToJson.parse(sisapPrices)._results[0];
+
+        if (pricesResult && pricesResult.length > 0){
+            console.log("Sisap precios ===> "+ pricesResult.length)
+        }else {
+            return 0
+        }
+
         let pricesResultClean = await clearData(pricesResult);
 
         console.log(pricesResultClean.length);
         let isCorrectInset = await inserDataDays(pricesResultClean,mParams);
 
         console.log("actualizado " + mParams.price_type_id_ref);
-        return isCorrectInset ? 1:"err insert";
+        return isCorrectInset;
     }
 }
 
@@ -383,7 +417,8 @@ async function inserDataDays(valList,params){
             let price = 0.00;
             if (vl.price && vl.price !== ""){
                 price = parseFloat(vl.price).toFixed(2);
-            }else { console.log("Sin Precio id: "+doc.id) }
+                console.log(price)
+            }
 
 
             let auditoryDay = moment().toDate();
@@ -413,7 +448,7 @@ async function inserDataDays(valList,params){
         addCorrect = false
     });
 
-    return addCorrect
+    return addCorrect ? valList.length:"error al insertar firebase"
 }
 
 async function inserDataProduct(listProduct){
@@ -520,19 +555,37 @@ async function updateAllProductsDB(res){
     let pricesTypeDB = await getPricesTypeDB();
     let agriculturalCropsDB = await getAgriculturalCropsDB();
 
-    console.log("init");
-    let count = 0;
     let limitUpd = agriculturalCropsDB.length*pricesTypeDB.length;
-    let resp = await agriculturalCropsDB.map(async (vl,k1)=>{
-        let ddtpr = await pricesTypeDB.map(async (vlt,k2)=>{
-            count = await updatePricesProduct(vl,vlt) + count;
-            console.log("retornara -> "+count);
-            if (count===limitUpd) {
-                res.json({ update: true });
-            }
-        });
-    });
+    console.log("init Total "+limitUpd);
+    console.log("init producto x3"+agriculturalCropsDB.length);
 
+
+    let promiseAgricultura = await agriculturalCropsDB.map((crops,k1)=>
+        new Promise(async resolve =>
+            await setTimeout(async () => {
+
+                let promisePrices = pricesTypeDB.map( (vlTprice,k2) =>
+                    new Promise(async resolve =>
+                        await setTimeout(async () => {
+
+                            let updatePrices = await updatePricesProduct(crops,vlTprice);
+
+                            console.log("Actualizado====> "+updatePrices);
+                            resolve()
+                        }, 250 * pricesTypeDB.length - 250 * k2)
+                    ));
+
+                let rgister = k1+1;
+                await Promise.all(promisePrices).then(()=> console.log("Se ingesto-"+rgister+"-Grupo"));
+
+                resolve()
+            }, 250 * pricesTypeDB.length - 250 * k1)
+        )
+    );
+
+    await Promise.all(promiseAgricultura).then(()=> console.log("Se ingesto #"+limitUpd+" registros"));
+
+    res.send({data_ingestada:limitUpd});
 }
 
 exports[API_PREFIX] = functions.https.onRequest(app);

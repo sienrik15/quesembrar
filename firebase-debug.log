@@ -1,57 +1,41 @@
-[debug] [2020-02-20T19:56:20.620Z] ----------------------------------------------------------------------
-[debug] [2020-02-20T19:56:20.623Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\SEMUNOZC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2020-02-20T19:56:20.623Z] CLI Version:   7.12.1
-[debug] [2020-02-20T19:56:20.623Z] Platform:      win32
-[debug] [2020-02-20T19:56:20.623Z] Node Version:  v10.16.3
-[debug] [2020-02-20T19:56:20.633Z] Time:          Thu Feb 20 2020 14:56:20 GMT-0500 (GMT-05:00)
-[debug] [2020-02-20T19:56:20.633Z] ----------------------------------------------------------------------
-[debug] [2020-02-20T19:56:20.633Z] 
-[debug] [2020-02-20T19:56:20.670Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2020-02-20T19:56:20.673Z] > authorizing via signed-in user
-[debug] [2020-02-20T19:56:20.673Z] [iam] checking project agroanalytics-b2462 for permissions ["firebase.projects.get"]
-[debug] [2020-02-20T19:56:20.677Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2020-02-20T19:56:20.678Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2020-02-20T19:56:21.289Z] <<< HTTP RESPONSE 200
-[debug] [2020-02-20T19:56:21.314Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/agroanalytics-b2462:testIamPermissions  
+[debug] [2020-02-25T22:09:27.580Z] ----------------------------------------------------------------------
+[debug] [2020-02-25T22:09:27.586Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\SEMUNOZC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-02-25T22:09:27.586Z] CLI Version:   7.12.1
+[debug] [2020-02-25T22:09:27.586Z] Platform:      win32
+[debug] [2020-02-25T22:09:27.586Z] Node Version:  v10.16.3
+[debug] [2020-02-25T22:09:27.595Z] Time:          Tue Feb 25 2020 17:09:27 GMT-0500 (GMT-05:00)
+[debug] [2020-02-25T22:09:27.595Z] ----------------------------------------------------------------------
+[debug] [2020-02-25T22:09:27.595Z] 
+[debug] [2020-02-25T22:09:27.631Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-25T22:09:27.635Z] > authorizing via signed-in user
+[debug] [2020-02-25T22:09:27.635Z] [iam] checking project agroanalytics-b2462 for permissions ["firebase.projects.get"]
+[debug] [2020-02-25T22:09:27.642Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/agroanalytics-b2462:testIamPermissions  
 
-[debug] [2020-02-20T19:56:23.029Z] <<< HTTP RESPONSE 200
-[debug] [2020-02-20T19:56:23.032Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462  
+[debug] [2020-02-25T22:09:29.141Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-25T22:09:29.145Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462  
  
-[debug] [2020-02-20T19:56:23.688Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-25T22:09:30.926Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'D:\Projects\quesembrar'...
 [info] 
-[debug] [2020-02-20T19:56:23.694Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462/webApps/-/config  
+[debug] [2020-02-25T22:09:30.963Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462/webApps/-/config  
  
-[debug] [2020-02-20T19:56:24.226Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: dist
-[info] +  hosting: Local server: http://localhost:5000
 [info] +  functions: Using node@10 from host.
 [info] +  functions: Emulator started at http://localhost:5001
+[debug] [2020-02-25T22:09:33.639Z] <<< HTTP RESPONSE 200
 [info] i  functions: Watching "D:\Projects\quesembrar\functions" for Cloud Functions...
-[debug] [2020-02-20T19:56:25.236Z] [worker-pool] addWorker(~diagnostic~)
-[debug] [2020-02-20T19:56:25.237Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
-[debug] [2020-02-20T19:56:25.237Z] [worker-pool] submitWork(triggerId=)
-[debug] [2020-02-20T19:56:25.237Z] [worker-~diagnostic~-c3ad08d9-5b5f-4726-b0bf-d66a65ba7439]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\22876
-[debug] [2020-02-20T19:56:25.238Z] [worker-~diagnostic~-c3ad08d9-5b5f-4726-b0bf-d66a65ba7439]: BUSY
-[debug] [2020-02-20T19:56:26.423Z] [runtime-status] [22876] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
-[debug] [2020-02-20T19:56:26.426Z] [runtime-status] [22876] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
-[debug] [2020-02-20T19:56:26.444Z] [runtime-status] [22876] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
-[debug] [2020-02-20T19:56:26.456Z] [runtime-status] [22876] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-02-25T22:09:33.803Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-25T22:09:33.803Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-25T22:09:33.803Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-25T22:09:33.805Z] [worker-~diagnostic~-7608fbff-719e-4595-9070-b8bcf789548d]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\12568
+[debug] [2020-02-25T22:09:33.838Z] [worker-~diagnostic~-7608fbff-719e-4595-9070-b8bcf789548d]: BUSY
+[info] i  hosting: Serving hosting files from: dist
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2020-02-25T22:09:36.478Z] [runtime-status] [12568] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-02-25T22:09:36.500Z] [runtime-status] [12568] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-25T22:09:36.533Z] [runtime-status] [12568] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-02-25T22:09:36.584Z] [runtime-status] [12568] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
 [warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
-[debug] [2020-02-20T19:56:26.460Z] [runtime-status] [22876] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
-[warn] !  Error: Cannot find module 'delay'
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:636:15)
-    at Function.Module._load (internal/modules/cjs/loader.js:562:25)
-    at Module.require (internal/modules/cjs/loader.js:692:17)
-    at require (internal/modules/cjs/helpers.js:25:18)
-    at Object.<anonymous> (D:\Projects\quesembrar\functions\index.js:9:15)
-    at Module._compile (internal/modules/cjs/loader.js:778:30)
-    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
-    at Module.load (internal/modules/cjs/loader.js:653:32)
-    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
-    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
-[warn] !  We were unable to load your functions code. (see above)
-[debug] [2020-02-20T19:56:28.436Z] [worker-~diagnostic~-c3ad08d9-5b5f-4726-b0bf-d66a65ba7439]: exited
-[debug] [2020-02-20T19:56:28.437Z] [worker-~diagnostic~-c3ad08d9-5b5f-4726-b0bf-d66a65ba7439]: FINISHED
+[debug] [2020-02-25T22:09:36.605Z] [runtime-status] [12568] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] +  functions[api]: http function initialized (http://localhost:5001/agroanalytics-b2462/us-central1/api).
+[debug] [2020-02-25T22:10:00.484Z] [worker-~diagnostic~-7608fbff-719e-4595-9070-b8bcf789548d]: IDLE
