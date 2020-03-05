@@ -8,7 +8,7 @@
 
      <div class="container is-fullhd">
         <div class="notification">
-            <section class="section">
+            <section class="section box-search">
                     <div class="container">
                         <div class="title">
                            Que puedo sembrar
@@ -45,7 +45,7 @@
 
 
             </section>
-            <section class="section">
+            <!--<section class="section">
                 <div class="container">
                     <div class="tile is-ancestor">
                     <div class="tile is-vertical is-8">
@@ -94,10 +94,10 @@
                     </div>
                 </div>
                 </div>
-            </section>
+            </section>  -->
             <section class="section">
                 <div class="container">
-
+                    <canvas id="myChart"></canvas>
                 </div>
             </section>
         </div>
@@ -166,42 +166,66 @@
         };
         },
         mounted(){
-            window.addEventListener('resize', this.onResize)
-            var ctx = document.getElementById("myChart");
+            window.addEventListener('resize', this.onResize);
+            //let ctx = document.getElementById("myChart");
+            let ctx = document.getElementById('myChart').getContext('2d');
             /* eslint-disable */
-            var myChart = new Chart(ctx, {
-                type: 'bar',
+            let myChart = new Chart(ctx, {
+                type: 'line',
                 data: {
-                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    labels: ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8','day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8','day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8','day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8'],
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+                            label: 'Filled',
+                            backgroundColor: ['rgba(27,255,146,0.5)'],
+                            borderColor: ["#b7b54b"],
+                            data: [
+                                120, 12, 56, 98, 130, 80, 55
+                            ],
+                            fill: true,
+                        }, {
+                        label: 'Unfilled',
+                        fill: false,
+                        backgroundColor: "#12cf5f",
+                        borderColor: "#24ca57",//window.chartColors.blue,
+                        data: [20, 40, 20, 70, 23, 34, 90],
+                    }, {
+                        label: 'Dashed',
+                        fill: false,
+                        backgroundColor: ['rgba(71, 183,132,.5)'],
+                        borderColor: ["#47b784"],
+                        borderDash: [5, 5],
+                        data: [20, 15, 24, 60, 45, 60, 100],
                     }]
                 },
                 options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Chart.js Line Chart'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
                     scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
+                        x: {
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Month'
                             }
-                        }]
+                        },
+                        y: {
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Value'
+                            }
+                        }
                     }
                 }
             });
@@ -209,11 +233,15 @@
         beforeDestroy() {
             window.removeEventListener('resize', this.onResize)
         },
+
     }
 </script>
 
 <style lang="stylus">
 
+    .box-search
+        padding-bottom: 10px !important
+        padding-top: 30px !important
 
     .v-select-custom
         img

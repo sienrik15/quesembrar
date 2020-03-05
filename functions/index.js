@@ -6,7 +6,6 @@ const axios = require('axios');
 const cors = require('cors');
 const html2json = require('html2json').html2json;
 const path = require('path');
-const delay = require('delay');
 const history = require('connect-history-api-fallback');
 const CronJob = require('cron').CronJob;
 const jsdom = require("jsdom");
@@ -76,25 +75,25 @@ deleteCollection = (db, collectionPath, batchSize) => {
 deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
 
     query.get().then((snapshot) => {
-            // When there are no documents left, we are done
-            if (snapshot.size === 0) {
-                return 0;
-            }
+        // When there are no documents left, we are done
+        if (snapshot.size === 0) {
+            return 0;
+        }
 
-            // Delete documents in a batch
-            let batch = db.batch();
-            snapshot.docs.forEach((doc) => {
-                batch.delete(doc.ref);
-            });
+        // Delete documents in a batch
+        let batch = db.batch();
+        snapshot.docs.forEach((doc) => {
+            batch.delete(doc.ref);
+        });
 
-            return batch.commit().then(() => {
-                return snapshot.size;
-            });
-        }).then((numDeleted) => {
-            if (numDeleted === 0) {
-                resolve();
-                return;
-            }
+        return batch.commit().then(() => {
+            return snapshot.size;
+        });
+    }).then((numDeleted) => {
+        if (numDeleted === 0) {
+            resolve();
+            return;
+        }
 
         // Recurse on the next process tick, to avoid
         // exploding the stack.
@@ -182,7 +181,7 @@ getProductCrops = async (res)=>{
 
 
 getScrap = async () =>{
-     let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
+    let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
         querystring.stringify({
             mercado: '*',
             'variables[]': 'volumen',
@@ -198,7 +197,7 @@ getScrap = async () =>{
             periodicidad: 'intervalo'
         }));
 
-     return response.data;
+    return response.data;
 };
 
 getPricesSisap = async (param) => {
@@ -246,18 +245,18 @@ app.get('/', async (req, res) => {
     //priceRef = await priceRef.where("crops_id","==","08XDzSuu8cxyiZgauQcl");
     priceRef = await priceRef.orderBy("date", "desc").limit(10);
     let response = await priceRef.get().then(async value => {
-            let resData = [];
-            await value.forEach(doc => {
-                let object = {};
-                object["date"] = doc.data().date.toDate();
-                object["id"] = doc.data().id;
-                object["price_type_id"] = doc.data().price_type_id;
-                object["crops_id"] = doc.data().crops_id;
-                console.log(object);
-                resData.push(object);
-            });
-            console.log(value.size);
-            res.send(resData);
+        let resData = [];
+        await value.forEach(doc => {
+            let object = {};
+            object["date"] = doc.data().date.toDate();
+            object["id"] = doc.data().id;
+            object["price_type_id"] = doc.data().price_type_id;
+            object["crops_id"] = doc.data().crops_id;
+            console.log(object);
+            resData.push(object);
+        });
+        console.log(value.size);
+        res.send(resData);
 
         return value.size;
     });
@@ -593,7 +592,7 @@ async function updateAllProductsDB(res){
 
 
     let promiseAgricultura = await agriculturalCropsDB.map((crops,k1)=>
-            new Promise(async resolve =>
+        new Promise(async resolve =>
             await setTimeout(async () => {
 
                 if (k1 >= 6){
