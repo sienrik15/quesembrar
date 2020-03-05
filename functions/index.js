@@ -6,6 +6,7 @@ const axios = require('axios');
 const cors = require('cors');
 const html2json = require('html2json').html2json;
 const path = require('path');
+const delay = require('delay');
 const history = require('connect-history-api-fallback');
 const CronJob = require('cron').CronJob;
 const jsdom = require("jsdom");
@@ -230,22 +231,35 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/delet-collection', async (req, res) => {
+    console.log("Hola quesembrar");
+    let deletCallection = await deleteCollection(db, 'prices', 450);
+    res.send(deletCallection)
+});
+
 app.get('/', async (req, res) => {
     console.log("Hola quesembrar");
-    //await deleteCollection(db, 'prices', 450);
-    //await updateAllProductsDB(res)
+    //res.send("Hola quesembrar");
     let  priceRef = db.collection('prices');
-    //priceRef = await priceRef.where('price', '==', 0);
+    //priceRef = await priceRef.where('price', '>', "0");
+    //priceRef = await priceRef.where("crops_id","==","08XDzSuu8cxyiZgauQcl");
+    priceRef = await priceRef.orderBy("date", "desc").limit(10);
     let response = await priceRef.get().then(async value => {
-        /*let res = [];
+        let resData = [];
         await value.forEach(doc => {
-            res.push(doc.data());
-        });*/
+            let object = {};
+            object["date"] = doc.data().date.toDate();
+            object["id"] = doc.data().id;
+            object["price_type_id"] = doc.data().price_type_id;
+            object["crops_id"] = doc.data().crops_id;
+            console.log(object);
+            resData.push(object);
+        });
         console.log(value.size);
-        res.send(value.size+"");
+        res.send(resData);
 
         return value.size;
-    })
+    });
     //await getProductCrops(res)
 });
 
@@ -287,7 +301,7 @@ async function updateAllPrices(param) {
 
     toJSON = await clearData(toJSON);
 
-    toJSON = await _.chunk(toJSON, 450);
+    toJSON = await _.chunk(toJSON, 400);
     let frInsertCount = toJSON.length;
 
     /**Inserta grupo a grupo de 450 item */
@@ -297,7 +311,7 @@ async function updateAllPrices(param) {
                 console.log(k3);
                 await inserDataDays(valList,param);
                 resolve()
-            }, 250 * toJSON.length - 250 * k3)
+            }, 350 * toJSON.length - 350 * k3)
         ));
 
     await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount));
@@ -330,9 +344,9 @@ app.get('/prod-all', async (req, res) => {
     res.send(lastPrice);
 });
 
-app.get('/read',async (req, res) => {
+app.get('/update-all',async (req, res) => {
 
-    await updateAllProductsDB(res);
+    await updateAllProductsDB(res)
 
 });
 
@@ -391,11 +405,27 @@ async function updatePricesProduct(crops,price){
 
         let pricesResultClean = await clearData(pricesResult);
 
-        console.log(pricesResultClean.length);
-        let isCorrectInset = await inserDataDays(pricesResultClean,mParams);
+        pricesResultClean = await _.chunk(pricesResultClean, 400);
+        let frInsertCount = pricesResultClean.length;
+
+        /**Inserta grupo a grupo de 450 item */
+        let promiseJsonInsert = pricesResultClean.map( (valList,k3) =>
+            new Promise(async resolve =>
+                await setTimeout(async () => {
+                    console.log(k3);
+                    await inserDataDays(valList,mParams);
+                    resolve()
+                }, 350 * pricesResultClean.length - 350 * k3)
+            ));
+
+        await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount));
+
+        //console.log(pricesResultClean.length);
+        //let isCorrectInset = await inserDataDays(pricesResultClean,mParams);
+
 
         console.log("actualizado " + mParams.price_type_id_ref);
-        return isCorrectInset;
+        return frInsertCount;//isCorrectInset;
     }
 }
 
@@ -417,9 +447,7 @@ async function inserDataDays(valList,params){
             let price = 0.00;
             if (vl.price && vl.price !== ""){
                 price = parseFloat(vl.price).toFixed(2);
-                console.log(price)
             }
-
 
             let auditoryDay = moment().toDate();
             let date_auditory = admin.firestore.Timestamp.fromDate(auditoryDay);
@@ -485,15 +513,18 @@ async function inserDataProduct(listProduct){
 }
 
 async function clearData(listObjet){
+    /**Identificar el nombre del Key del producto, ya que se le asigna el precio*/
+    let keys = Object.keys(listObjet[1]);
+    let productName = keys[1];
     return await listObjet.map((vl, key)=> {
         if (key === 0) {
             vl.description = vl.Fecha;
             delete vl.Fecha;
         } else {
             vl.date = vl.Fecha;
-            vl.price = vl.Sandia;
+            vl.price = vl[productName];
             delete vl.Fecha;
-            delete vl.Sandia;
+            delete vl[productName];
         }
         return vl;
     });
@@ -563,6 +594,11 @@ async function updateAllProductsDB(res){
     let promiseAgricultura = await agriculturalCropsDB.map((crops,k1)=>
         new Promise(async resolve =>
             await setTimeout(async () => {
+
+                if (k1 >= 4){
+                    resolve();
+                    return 0
+                }
 
                 let promisePrices = pricesTypeDB.map( (vlTprice,k2) =>
                     new Promise(async resolve =>
