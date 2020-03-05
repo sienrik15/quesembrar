@@ -23,7 +23,7 @@
                             <button class="button is-link is-light">Link</button>
                         </div>
 
-                        <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @search="onSearch">
+                        <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @input="onOptionSelected" v-model="valueOption" @search="onSearch">
                             <template slot="no-options">
                                 Escribe el nombre cultivo o producto
                             </template>
@@ -42,7 +42,6 @@
                         </v-select>
 
                     </div>
-
 
             </section>
             <!--<section class="section">
@@ -131,22 +130,43 @@
                 let db = vm.$firebase.firestore();
                 db.collection('agricultural_crops').orderBy('name_es')
                     .startAt(search).endAt(search+'\uf8ff').get().then(snap => {
-                    const pdCollection = [];
-                    snap.forEach(doc => {
-                        console.log(doc.data());
-                        pdCollection.push(doc.data());
-                    });
-                    vm.options = pdCollection;
-                    console.log(vm.options);
-                    loading(false);
-
+                        const colectionOptions = [];
+                        snap.forEach(doc => {
+                            colectionOptions.push(doc.data());
+                        });
+                        vm.options = colectionOptions;
+                        loading(false);
                 }).catch(err=>{
                     console.log(err)
                 });
 
-            }, 350)
+            }, 350),
+            onOptionSelected(){
+                console.log(this.valueOption);
+                if (!this.valueOption) return
+                let price_type_id = "dsE4vwVF1JyfWVOVLgYA";
+                let market_id = "3BeNPYEum6Wvw1z2dFHw";
+                let crops_id = this.valueOption.id;
+                let db = this.$firebase.firestore();
+                let pricesDB = db.collection('prices');
+                pricesDB = pricesDB.where("price_type_id","==",price_type_id);
+                pricesDB = pricesDB.where("market_id","==",market_id);
+                pricesDB = pricesDB.where("crops_id","==",crops_id);
+                pricesDB = pricesDB.orderBy('date').limit(100);
+                pricesDB.get().then(snap => {
+                    console.log(snap);
+                    const pricesData = [];
+                    snap.forEach(doc => {
+                        pricesData.push(doc.data());
+                    });
+                    console.log(pricesData)
+                }).catch(err=>{
+                    console.log(err)
+                });
+
+            }
         },
-        data:function() {
+        data:()=> {
             return {
                 newTodoText: '',
                 visitCount: 0,
@@ -161,8 +181,8 @@
                     colorGrid: '#eee',
                     colorText: '#333',
                 },
-                options:[]
-
+                options:[],
+                valueOption:""
         };
         },
         mounted(){
