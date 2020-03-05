@@ -18,6 +18,7 @@ const _ = require('lodash');
 const moment = require('moment');
 moment.locale('es-do');
 
+
 //Prod
 //admin.initializeApp(functions.config().firebase);
 
@@ -415,7 +416,7 @@ async function updatePricesProduct(crops,price){
                     console.log(k3);
                     await inserDataDays(valList,mParams);
                     resolve()
-                }, 350 * pricesResultClean.length - 350 * k3)
+                }, 500 * pricesResultClean.length - 500 * k3)
             ));
 
         await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount));
@@ -595,7 +596,7 @@ async function updateAllProductsDB(res){
             new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 4){
+                if (k1 >= 6){
                     resolve();
                     return 0
                 }
@@ -608,14 +609,14 @@ async function updateAllProductsDB(res){
 
                             console.log("Actualizado====> "+updatePrices);
                             resolve()
-                        }, 250 * pricesTypeDB.length - 250 * k2)
+                        }, 500 * pricesTypeDB.length - 500 * k2)
                     ));
 
                 let rgister = k1+1;
                 await Promise.all(promisePrices).then(()=> console.log("Se ingesto-"+rgister+"-Grupo"));
 
                 resolve()
-            }, 250 * pricesTypeDB.length - 250 * k1)
+            }, 500 * pricesTypeDB.length - 500 * k1)
         )
     );
 
