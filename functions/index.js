@@ -6,7 +6,6 @@ const axios = require('axios');
 const cors = require('cors');
 const html2json = require('html2json').html2json;
 const path = require('path');
-const delay = require('delay');
 const history = require('connect-history-api-fallback');
 const CronJob = require('cron').CronJob;
 const jsdom = require("jsdom");
