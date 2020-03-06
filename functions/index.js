@@ -588,14 +588,14 @@ async function updateAllProductsDB(res){
 
     let limitUpd = agriculturalCropsDB.length*pricesTypeDB.length;
     console.log("init Total "+limitUpd);
-    console.log("init producto x3"+agriculturalCropsDB.length);
+    console.log("init producto x3 "+agriculturalCropsDB.length);
 
 
     let promiseAgricultura = await agriculturalCropsDB.map((crops,k1)=>
         new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 7){
+                if (k1 >= 12){
                     resolve();
                     return 0
                 }

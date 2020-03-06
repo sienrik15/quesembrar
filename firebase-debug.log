@@ -1,0 +1,950 @@
+[debug] [2020-03-06T15:26:37.279Z] ----------------------------------------------------------------------
+[debug] [2020-03-06T15:26:37.283Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\SEMUNOZC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-03-06T15:26:37.283Z] CLI Version:   7.12.1
+[debug] [2020-03-06T15:26:37.283Z] Platform:      win32
+[debug] [2020-03-06T15:26:37.283Z] Node Version:  v10.16.3
+[debug] [2020-03-06T15:26:37.288Z] Time:          Fri Mar 06 2020 10:26:37 GMT-0500 (GMT-05:00)
+[debug] [2020-03-06T15:26:37.288Z] ----------------------------------------------------------------------
+[debug] [2020-03-06T15:26:37.288Z] 
+[debug] [2020-03-06T15:26:37.308Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-06T15:26:37.311Z] > authorizing via signed-in user
+[debug] [2020-03-06T15:26:37.311Z] [iam] checking project agroanalytics-b2462 for permissions ["firebase.projects.get"]
+[debug] [2020-03-06T15:26:37.314Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/agroanalytics-b2462:testIamPermissions  
+
+[debug] [2020-03-06T15:26:41.616Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-06T15:26:41.618Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462  
+ 
+[debug] [2020-03-06T15:26:45.958Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\Projects\quesembrar'...
+[info] 
+[debug] [2020-03-06T15:26:45.964Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462/webApps/-/config  
+ 
+[info] +  functions: Using node@10 from host.
+[debug] [2020-03-06T15:26:47.373Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: dist
+[info] +  hosting: Local server: http://localhost:5000
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "D:\Projects\quesembrar\functions" for Cloud Functions...
+[debug] [2020-03-06T15:26:47.562Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-03-06T15:26:47.562Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-03-06T15:26:47.562Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-03-06T15:26:47.562Z] [worker-~diagnostic~-f363011a-2197-46f5-a765-96236669ca6c]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\2780
+[debug] [2020-03-06T15:26:47.563Z] [worker-~diagnostic~-f363011a-2197-46f5-a765-96236669ca6c]: BUSY
+[debug] [2020-03-06T15:26:48.787Z] [runtime-status] [2780] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-03-06T15:26:48.788Z] [runtime-status] [2780] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-06T15:26:48.799Z] [runtime-status] [2780] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-06T15:26:48.806Z] [runtime-status] [2780] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-03-06T15:26:48.810Z] [runtime-status] [2780] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] +  functions[api]: http function initialized (http://localhost:5001/agroanalytics-b2462/us-central1/api).
+[debug] [2020-03-06T15:26:51.892Z] [worker-~diagnostic~-f363011a-2197-46f5-a765-96236669ca6c]: IDLE
+[debug] [2020-03-06T15:27:27.228Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-03-06T15:27:27.228Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-03-06T15:27:27.229Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-06T15:27:27.245Z] [worker-pool] addWorker(api)
+[debug] [2020-03-06T15:27:27.245Z] [worker-pool] Adding worker with key api, total=1
+[debug] [2020-03-06T15:27:27.246Z] [worker-pool] submitWork(triggerId=api)
+[debug] [2020-03-06T15:27:27.246Z] [worker-api-c6b66672-94cc-4a83-beaa-d96e71a6aedf]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\28800
+[debug] [2020-03-06T15:27:27.246Z] [worker-api-c6b66672-94cc-4a83-beaa-d96e71a6aedf]: BUSY
+[debug] [2020-03-06T15:27:28.268Z] [runtime-status] [28800] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-03-06T15:27:28.271Z] [runtime-status] [28800] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-06T15:27:28.283Z] [runtime-status] [28800] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-06T15:27:28.297Z] [runtime-status] [28800] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-03-06T15:27:28.304Z] [runtime-status] [28800] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-06T15:27:33.664Z] [runtime-status] [28800] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-06T15:27:33.664Z] [runtime-status] [28800] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-06T15:27:33.665Z] [runtime-status] [28800] Running api in mode HTTPS
+[debug] [2020-03-06T15:27:33.669Z] [runtime-status] [28800] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\28800
+[debug] [2020-03-06T15:27:33.676Z] [functions] Runtime ready! Sending request!
+[debug] [2020-03-06T15:27:33.687Z] [runtime-status] [28800] Ephemeral server handling GET request
+[debug] [2020-03-06T15:27:34.330Z] [runtime-status] [28800] Ephemeral server survived.
+[info] >  init Total 996
+[info] >  init producto x3332
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: '3AJGwf0YHRLMxdWJBmHK' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: '3AJGwf0YHRLMxdWJBmHK' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 063835
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'w26rBPbVsbjS7gi0PUJa' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'w26rBPbVsbjS7gi0PUJa' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: '1XAAydwWTKKNXwAnNGls' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: '1XAAydwWTKKNXwAnNGls' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'A27Zog86Ebw3ALKBwwFF' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'A27Zog86Ebw3ALKBwwFF' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: '51LP2JdvRPTubeg0QrDR' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: '51LP2JdvRPTubeg0QrDR' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 063835
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'UZyKcIVSRFqKLILLeXBi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'UZyKcIVSRFqKLILLeXBi' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'hIFcFlUkEkc8b9yOSVPr' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'hIFcFlUkEkc8b9yOSVPr' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'mU1p9XiFCchKXEdYwzdi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'mU1p9XiFCchKXEdYwzdi' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'lZVKZckuKfZ0y0uX3bdi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'lZVKZckuKfZ0y0uX3bdi' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'Gj8Iv3hsGqUrdEOuf3hF' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'Gj8Iv3hsGqUrdEOuf3hF' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'U8g6LH246RzvkJ8p5Ssh' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'U8g6LH246RzvkJ8p5Ssh' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'uxXkygslhQlZ1ibPSGMT' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'uxXkygslhQlZ1ibPSGMT' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'knyCJqpUfJuui7rvfAtS' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'knyCJqpUfJuui7rvfAtS' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 063835
+[info] >  Sisap precios ===> 2
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'LSSjFnpArgWB0JXXCRBn' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'LSSjFnpArgWB0JXXCRBn' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Actualizado====> 0
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_max
+[info] >  Sisap precios ===> 408
+[info] >  Sisap precios ===> 2
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'YKAYm4fR1L2eFysAAfiS' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'YKAYm4fR1L2eFysAAfiS' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  1
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Actualizado====> 0
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  8  objetos
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-1-Grupo
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-3-Grupo
+[info] >  Actualizado====> 0
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-2-Grupo
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 408
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  400  objetos
+[info] >  ingesta subGrupo terminado======> 2
+[info] >  Finaliza ingesta de063835 : 2
+[info] >  Actualizado====> 2
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-5-Grupo
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-6-Grupo
+[info] >  Se agrego:  8  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  ingesta subGrupo terminado======> 2
+[info] >  Finaliza ingesta de063835 : 2
+[info] >  Actualizado====> 2
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 408
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-7-Grupo
+[info] >  1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  8  objetos
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-4-Grupo
+[info] >  Se agrego:  400  objetos
+[info] >  ingesta subGrupo terminado======> 2
+[info] >  Finaliza ingesta de063835 : 2
+[info] >  Actualizado====> 2
+[info] >  Se ingesto-8-Grupo
+[info] >  Se ingesto #996 registros
+[info] i  functions: Finished "api" in ~16s
+[debug] [2020-03-06T15:27:50.559Z] [worker-api-c6b66672-94cc-4a83-beaa-d96e71a6aedf]: IDLE
+[debug] [2020-03-06T15:27:50.559Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-03-06T15:28:17.177Z] File D:\Projects\quesembrar\functions\index.js changed, reloading triggers
+[debug] [2020-03-06T15:28:18.179Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-03-06T15:28:18.179Z] [worker-~diagnostic~-f363011a-2197-46f5-a765-96236669ca6c]: FINISHING
+[debug] [2020-03-06T15:28:18.198Z] [worker-pool] Shutting down IDLE worker (api)
+[debug] [2020-03-06T15:28:18.201Z] [worker-api-c6b66672-94cc-4a83-beaa-d96e71a6aedf]: FINISHING
+[debug] [2020-03-06T15:28:18.221Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-03-06T15:28:18.221Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-03-06T15:28:18.221Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-03-06T15:28:18.221Z] [worker-~diagnostic~-7619f549-4090-46b2-8b65-2ac53d0d3ad3]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\2688
+[debug] [2020-03-06T15:28:18.221Z] [worker-~diagnostic~-7619f549-4090-46b2-8b65-2ac53d0d3ad3]: BUSY
+[debug] [2020-03-06T15:28:18.234Z] [worker-~diagnostic~-f363011a-2197-46f5-a765-96236669ca6c]: exited
+[debug] [2020-03-06T15:28:18.234Z] [worker-~diagnostic~-f363011a-2197-46f5-a765-96236669ca6c]: FINISHED
+[debug] [2020-03-06T15:28:18.234Z] [worker-api-c6b66672-94cc-4a83-beaa-d96e71a6aedf]: exited
+[debug] [2020-03-06T15:28:18.235Z] [worker-api-c6b66672-94cc-4a83-beaa-d96e71a6aedf]: FINISHED
+[debug] [2020-03-06T15:28:20.076Z] [runtime-status] [2688] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-03-06T15:28:20.079Z] [runtime-status] [2688] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-06T15:28:20.093Z] [runtime-status] [2688] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-06T15:28:20.101Z] [runtime-status] [2688] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-03-06T15:28:20.105Z] [runtime-status] [2688] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-06T15:28:21.971Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-03-06T15:28:21.971Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-03-06T15:28:21.972Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-06T15:28:21.972Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-03-06T15:28:21.972Z] [worker-pool] Cleaned up workers for api: 1 --> 0
+[debug] [2020-03-06T15:28:21.984Z] [worker-pool] addWorker(api)
+[debug] [2020-03-06T15:28:21.984Z] [worker-pool] Adding worker with key api, total=1
+[debug] [2020-03-06T15:28:21.984Z] [worker-pool] submitWork(triggerId=api)
+[debug] [2020-03-06T15:28:21.984Z] [worker-api-2fee98a4-3966-4735-bb2f-c4ab0f57bcd5]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\2540
+[debug] [2020-03-06T15:28:21.984Z] [worker-api-2fee98a4-3966-4735-bb2f-c4ab0f57bcd5]: BUSY
+[debug] [2020-03-06T15:28:23.491Z] [runtime-status] [2540] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-03-06T15:28:23.495Z] [runtime-status] [2540] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-06T15:28:23.508Z] [runtime-status] [2540] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-06T15:28:23.517Z] [runtime-status] [2540] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-03-06T15:28:23.521Z] [runtime-status] [2540] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-06T15:28:24.453Z] [worker-~diagnostic~-7619f549-4090-46b2-8b65-2ac53d0d3ad3]: IDLE
+[debug] [2020-03-06T15:28:27.741Z] [runtime-status] [2540] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-06T15:28:27.742Z] [runtime-status] [2540] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-06T15:28:27.742Z] [runtime-status] [2540] Running api in mode HTTPS
+[debug] [2020-03-06T15:28:27.746Z] [runtime-status] [2540] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\2540
+[debug] [2020-03-06T15:28:27.751Z] [functions] Runtime ready! Sending request!
+[debug] [2020-03-06T15:28:27.761Z] [runtime-status] [2540] Ephemeral server handling GET request
+[debug] [2020-03-06T15:28:28.572Z] [runtime-status] [2540] Ephemeral server survived.
+[info] >  init Total 996
+[info] >  init producto x3332
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'SuKy9dPK6Ts0QrAKGphN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'SuKy9dPK6Ts0QrAKGphN' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'SNa3UaTdJm4Ev3qZaFit' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'SNa3UaTdJm4Ev3qZaFit' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 040506
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'PeeyqViSuoTN3gOXkjDN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'PeeyqViSuoTN3gOXkjDN' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'A27Zog86Ebw3ALKBwwFF' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'A27Zog86Ebw3ALKBwwFF' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'Z5hCOn8RJVrpQiQ4YVtB' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'Z5hCOn8RJVrpQiQ4YVtB' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Sisap precios ===> 236
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'LGnombIYDK3UIuPEiBrg' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'LGnombIYDK3UIuPEiBrg' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 040506
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'j30luJ73M7M3eru3Zxfs' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'j30luJ73M7M3eru3Zxfs' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'mU1p9XiFCchKXEdYwzdi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'mU1p9XiFCchKXEdYwzdi' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'ar9XhxSZ16HFzDovB4tZ' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'ar9XhxSZ16HFzDovB4tZ' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'IyfYuYcznPA9cgsslXcc' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'IyfYuYcznPA9cgsslXcc' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'hZIIuu3E2tDBYgLYZIsk' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'hZIIuu3E2tDBYgLYZIsk' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-4-Grupo
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'lZVKZckuKfZ0y0uX3bdi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'lZVKZckuKfZ0y0uX3bdi' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'OUZ4ccZYqT0oDG5ISwEN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'OUZ4ccZYqT0oDG5ISwEN' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-5-Grupo
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'A1PQrYWsAMQYWA79ePeY' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'A1PQrYWsAMQYWA79ePeY' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-6-Grupo
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 040506
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'L81ARthSRMXI0tr1dmNI' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'L81ARthSRMXI0tr1dmNI' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-8-Grupo
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'U8g6LH246RzvkJ8p5Ssh' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'U8g6LH246RzvkJ8p5Ssh' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'LSSjFnpArgWB0JXXCRBn' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'LSSjFnpArgWB0JXXCRBn' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Sisap precios ===> 236
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-3-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'YKAYm4fR1L2eFysAAfiS' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'YKAYm4fR1L2eFysAAfiS' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Se agrego:  236  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  Finaliza ingesta de040506 : 1
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-2-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-1-Grupo
+[info] >  Se agrego:  236  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  Finaliza ingesta de040506 : 1
+[info] >  Actualizado====> 1
+[info] >  Sisap precios ===> 236
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-7-Grupo
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  236  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  Finaliza ingesta de040506 : 1
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-9-Grupo
+[info] >  Se ingesto #996 registros
+[info] i  functions: Finished "api" in ~9s
+[debug] [2020-03-06T15:28:36.943Z] [worker-api-2fee98a4-3966-4735-bb2f-c4ab0f57bcd5]: IDLE
+[debug] [2020-03-06T15:28:36.943Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-03-06T15:29:20.484Z] File D:\Projects\quesembrar\functions\index.js changed, reloading triggers
+[debug] [2020-03-06T15:29:21.486Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-03-06T15:29:21.497Z] [worker-~diagnostic~-7619f549-4090-46b2-8b65-2ac53d0d3ad3]: FINISHING
+[debug] [2020-03-06T15:29:21.497Z] [worker-pool] Shutting down IDLE worker (api)
+[debug] [2020-03-06T15:29:21.497Z] [worker-api-2fee98a4-3966-4735-bb2f-c4ab0f57bcd5]: FINISHING
+[debug] [2020-03-06T15:29:21.518Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-03-06T15:29:21.518Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-03-06T15:29:21.518Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-03-06T15:29:21.518Z] [worker-~diagnostic~-dddeeb2d-6cf3-4d7d-87f6-5227ea01f95e]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\22180
+[debug] [2020-03-06T15:29:21.518Z] [worker-~diagnostic~-dddeeb2d-6cf3-4d7d-87f6-5227ea01f95e]: BUSY
+[debug] [2020-03-06T15:29:21.535Z] [worker-api-2fee98a4-3966-4735-bb2f-c4ab0f57bcd5]: exited
+[debug] [2020-03-06T15:29:21.535Z] [worker-api-2fee98a4-3966-4735-bb2f-c4ab0f57bcd5]: FINISHED
+[debug] [2020-03-06T15:29:21.569Z] [worker-~diagnostic~-7619f549-4090-46b2-8b65-2ac53d0d3ad3]: exited
+[debug] [2020-03-06T15:29:21.569Z] [worker-~diagnostic~-7619f549-4090-46b2-8b65-2ac53d0d3ad3]: FINISHED
+[debug] [2020-03-06T15:29:22.963Z] [runtime-status] [22180] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-03-06T15:29:22.965Z] [runtime-status] [22180] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-06T15:29:22.977Z] [runtime-status] [22180] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-06T15:29:22.984Z] [runtime-status] [22180] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-03-06T15:29:22.991Z] [runtime-status] [22180] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-06T15:29:25.590Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-03-06T15:29:25.590Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-03-06T15:29:25.590Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-06T15:29:25.590Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-03-06T15:29:25.591Z] [worker-pool] Cleaned up workers for api: 1 --> 0
+[debug] [2020-03-06T15:29:25.600Z] [worker-pool] addWorker(api)
+[debug] [2020-03-06T15:29:25.600Z] [worker-pool] Adding worker with key api, total=1
+[debug] [2020-03-06T15:29:25.600Z] [worker-pool] submitWork(triggerId=api)
+[debug] [2020-03-06T15:29:25.601Z] [worker-api-83d93b6d-4570-42cf-bd38-3c7392eb5c1b]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\31280
+[debug] [2020-03-06T15:29:25.601Z] [worker-api-83d93b6d-4570-42cf-bd38-3c7392eb5c1b]: BUSY
+[debug] [2020-03-06T15:29:26.473Z] [worker-~diagnostic~-dddeeb2d-6cf3-4d7d-87f6-5227ea01f95e]: IDLE
+[debug] [2020-03-06T15:29:26.699Z] [runtime-status] [31280] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-03-06T15:29:26.701Z] [runtime-status] [31280] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-06T15:29:26.712Z] [runtime-status] [31280] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-06T15:29:26.718Z] [runtime-status] [31280] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-03-06T15:29:26.721Z] [runtime-status] [31280] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-06T15:29:30.929Z] [runtime-status] [31280] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-06T15:29:30.930Z] [runtime-status] [31280] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-06T15:29:30.930Z] [runtime-status] [31280] Running api in mode HTTPS
+[debug] [2020-03-06T15:29:30.934Z] [runtime-status] [31280] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\31280
+[debug] [2020-03-06T15:29:30.939Z] [functions] Runtime ready! Sending request!
+[debug] [2020-03-06T15:29:30.951Z] [runtime-status] [31280] Ephemeral server handling GET request
+[debug] [2020-03-06T15:29:31.593Z] [runtime-status] [31280] Ephemeral server survived.
+[info] >  init Total 996
+[info] >  init producto x3332
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'SuKy9dPK6Ts0QrAKGphN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'SuKy9dPK6Ts0QrAKGphN' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'SNa3UaTdJm4Ev3qZaFit' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'SNa3UaTdJm4Ev3qZaFit' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'PeeyqViSuoTN3gOXkjDN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'PeeyqViSuoTN3gOXkjDN' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'A27Zog86Ebw3ALKBwwFF' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'A27Zog86Ebw3ALKBwwFF' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'qGZ6XZFsHhS3IkaDLGB3' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'qGZ6XZFsHhS3IkaDLGB3' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  06/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'Z5hCOn8RJVrpQiQ4YVtB' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'Z5hCOn8RJVrpQiQ4YVtB' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'LGnombIYDK3UIuPEiBrg' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'LGnombIYDK3UIuPEiBrg' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'IyfYuYcznPA9cgsslXcc' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'IyfYuYcznPA9cgsslXcc' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'j30luJ73M7M3eru3Zxfs' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'j30luJ73M7M3eru3Zxfs' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'ar9XhxSZ16HFzDovB4tZ' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'ar9XhxSZ16HFzDovB4tZ' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'Vi32MMIyzViWyn1NdK0q' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'Vi32MMIyzViWyn1NdK0q' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  06/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'mU1p9XiFCchKXEdYwzdi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'mU1p9XiFCchKXEdYwzdi' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'hZIIuu3E2tDBYgLYZIsk' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'hZIIuu3E2tDBYgLYZIsk' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-4-Grupo
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'lZVKZckuKfZ0y0uX3bdi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'lZVKZckuKfZ0y0uX3bdi' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'U8g6LH246RzvkJ8p5Ssh' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'U8g6LH246RzvkJ8p5Ssh' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'L81ARthSRMXI0tr1dmNI' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'L81ARthSRMXI0tr1dmNI' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-8-Grupo
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'bO3ELhMyAOEL3lEGfASB' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'bO3ELhMyAOEL3lEGfASB' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  06/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'A1PQrYWsAMQYWA79ePeY' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'A1PQrYWsAMQYWA79ePeY' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-6-Grupo
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'OUZ4ccZYqT0oDG5ISwEN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'OUZ4ccZYqT0oDG5ISwEN' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  06/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-06
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-5-Grupo
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  06/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_max
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-10-Grupo
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'LSSjFnpArgWB0JXXCRBn' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'LSSjFnpArgWB0JXXCRBn' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-3-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'YKAYm4fR1L2eFysAAfiS' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'YKAYm4fR1L2eFysAAfiS' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  06/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-2-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-1-Grupo
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-9-Grupo
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-7-Grupo
+[info] >  Se ingesto #996 registros
+[info] i  functions: Finished "api" in ~8s
+[debug] [2020-03-06T15:29:39.033Z] [worker-api-83d93b6d-4570-42cf-bd38-3c7392eb5c1b]: IDLE
+[debug] [2020-03-06T15:29:39.034Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-03-06T15:31:07.475Z] File D:\Projects\quesembrar\functions\index.js changed, reloading triggers
+[debug] [2020-03-06T15:31:08.475Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-03-06T15:31:08.475Z] [worker-~diagnostic~-dddeeb2d-6cf3-4d7d-87f6-5227ea01f95e]: FINISHING
+[debug] [2020-03-06T15:31:08.475Z] [worker-pool] Shutting down IDLE worker (api)
+[debug] [2020-03-06T15:31:08.475Z] [worker-api-83d93b6d-4570-42cf-bd38-3c7392eb5c1b]: FINISHING
+[debug] [2020-03-06T15:31:08.490Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-03-06T15:31:08.491Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-03-06T15:31:08.491Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-03-06T15:31:08.491Z] [worker-~diagnostic~-090945cd-bfa6-4e77-9dd6-0e2264d48ead]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\30908
+[debug] [2020-03-06T15:31:08.491Z] [worker-~diagnostic~-090945cd-bfa6-4e77-9dd6-0e2264d48ead]: BUSY
+[debug] [2020-03-06T15:31:08.540Z] [worker-api-83d93b6d-4570-42cf-bd38-3c7392eb5c1b]: exited
+[debug] [2020-03-06T15:31:08.540Z] [worker-api-83d93b6d-4570-42cf-bd38-3c7392eb5c1b]: FINISHED
+[debug] [2020-03-06T15:31:08.540Z] [worker-~diagnostic~-dddeeb2d-6cf3-4d7d-87f6-5227ea01f95e]: exited
+[debug] [2020-03-06T15:31:08.541Z] [worker-~diagnostic~-dddeeb2d-6cf3-4d7d-87f6-5227ea01f95e]: FINISHED
+[debug] [2020-03-06T15:31:09.993Z] [runtime-status] [30908] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-03-06T15:31:09.995Z] [runtime-status] [30908] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-06T15:31:10.007Z] [runtime-status] [30908] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-06T15:31:10.015Z] [runtime-status] [30908] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-03-06T15:31:10.019Z] [runtime-status] [30908] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-06T15:31:12.734Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-03-06T15:31:12.734Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-03-06T15:31:12.734Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-06T15:31:12.734Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-03-06T15:31:12.734Z] [worker-pool] Cleaned up workers for api: 1 --> 0
+[debug] [2020-03-06T15:31:12.752Z] [worker-pool] addWorker(api)
+[debug] [2020-03-06T15:31:12.752Z] [worker-pool] Adding worker with key api, total=1
+[debug] [2020-03-06T15:31:12.752Z] [worker-pool] submitWork(triggerId=api)
+[debug] [2020-03-06T15:31:12.752Z] [worker-api-8bec2a2b-2fd9-4bb0-a1e1-4c872641a8ab]: Assigning socketPath: \\?\pipe\D:\Projects\quesembrar\functions\7448
+[debug] [2020-03-06T15:31:12.752Z] [worker-api-8bec2a2b-2fd9-4bb0-a1e1-4c872641a8ab]: BUSY
+[debug] [2020-03-06T15:31:13.408Z] [worker-~diagnostic~-090945cd-bfa6-4e77-9dd6-0e2264d48ead]: IDLE
+[debug] [2020-03-06T15:31:13.804Z] [runtime-status] [7448] Functions runtime initialized. {"cwd":"D:\\Projects\\quesembrar\\functions","node_version":"10.16.3"}
+[debug] [2020-03-06T15:31:13.806Z] [runtime-status] [7448] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-03-06T15:31:13.819Z] [runtime-status] [7448] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-03-06T15:31:13.826Z] [runtime-status] [7448] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to D:\agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-03-06T15:31:13.830Z] [runtime-status] [7448] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Projects\\quesembrar\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-03-06T15:31:17.697Z] [runtime-status] [7448] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-06T15:31:17.699Z] [runtime-status] [7448] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-06T15:31:17.699Z] [runtime-status] [7448] Running api in mode HTTPS
+[debug] [2020-03-06T15:31:17.707Z] [runtime-status] [7448] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\7448
+[debug] [2020-03-06T15:31:17.718Z] [functions] Runtime ready! Sending request!
+[debug] [2020-03-06T15:31:17.758Z] [runtime-status] [7448] Ephemeral server handling GET request
