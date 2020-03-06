@@ -22,7 +22,8 @@
                             <button class="button is-primary is-light">Primary</button>
                             <button class="button is-link is-light">Link</button>
                         </div>
-                        <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @change="onSelectOption" @search="onSearch" >
+
+                        <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @input="onOptionSelected" v-model="valueOption" @search="onSearch">
                             <template slot="no-options">
                                 Escribe el nombre cultivo o producto
                             </template>
@@ -110,7 +111,10 @@
     import TradingVue from 'trading-vue-js'
     import Data from '../data/data.json'
     import _ from 'lodash'
+    import  'chartjs-plugin-zoom';
+    import moment from 'moment';
 
+    moment.locale('es-do');
     export default {
         name: "Dashboard",
         components:{
@@ -130,26 +134,120 @@
                 let db = vm.$firebase.firestore();
                 db.collection('agricultural_crops').orderBy('name_es')
                     .startAt(search).endAt(search+'\uf8ff').get().then(snap => {
-                    const pdCollection = [];
-                    snap.forEach(doc => {
-                        console.log(doc.data());
-                        pdCollection.push(doc.data());
-                    });
-                    vm.options = pdCollection;
-                    console.log(vm.options);
-                    loading(false);
-
+                        const colectionOptions = [];
+                        snap.forEach(doc => {
+                            colectionOptions.push(doc.data());
+                        });
+                        vm.options = colectionOptions;
+                        loading(false);
                 }).catch(err=>{
                     console.log(err)
                 });
 
             }, 350),
-            onSelectOption($event){
-                console.log("response-------")
-                console.log($event)
-            }
+            onOptionSelected(){
+                console.log(this.valueOption);
+                if (!this.valueOption) return
+                let price_type_id = "dsE4vwVF1JyfWVOVLgYA";
+                let market_id = "3BeNPYEum6Wvw1z2dFHw";
+                let crops_id = this.valueOption.id;
+                let db = this.$firebase.firestore();
+                let pricesDB = db.collection('prices');
+                pricesDB = pricesDB.where("price_type_id","==",price_type_id);
+                pricesDB = pricesDB.where("market_id","==",market_id);
+                pricesDB = pricesDB.where("crops_id","==",crops_id);
+                pricesDB = pricesDB.orderBy('date').limit(500);
+                pricesDB.get().then(snap => {
+                    const prices_data = [];
+                    const date_list = [];
+                    snap.forEach(doc => {
+                        prices_data.push(doc.data().price);
+                        date_list.push(moment(doc.data().date.toDate()).format("YYYY-MM-DD"));
+                    });
+                    this.value_list = prices_data;
+                    this.date_list = date_list;
+                    console.log(date_list);
+                    console.log(prices_data);
+
+                    this.updateChart();
+                }).catch(err=>{
+                    console.log(err)
+                });
+
+            },
+            updateChart(){
+                let ctx = document.getElementById('myChart').getContext('2d');
+                this.start_date = new Date(this.date_list[0]);
+                this.end_date = new Date(this.date_list[this.date_list.length-1]);
+                this.range_min = new Date(this.date_list[0]);
+                this.range_min.setDate(this.range_min.getDate()-10);
+                this.range_max = new Date(this.date_list[this.date_list.length-1]);
+                this.range_max.setDate(this.range_max.getDate()+10);
+                /* eslint-disable */
+                let myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+
+                        labels: this.date_list,
+                        datasets: [
+                            {
+                                label:this.valueOption?this.valueOption.name_es:"",
+                                fill: false,
+                                backgroundColor: ['rgba(71, 183,132,.5)'],
+                                data: this.value_list,
+                                borderColor: ["#47b784"],
+                                borderDash: [5, 5],
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales:{
+                            yAxes: [{
+                                type: 'linear',
+                                ticks: {
+                                    beginAtZero: true,
+                                }
+                            },
+                            ]
+                            /*xAxes: [{
+                                distribution: 'linear',
+                                type: "time",
+                                time: {
+                                    min: this.start_date.toDateString(),
+                                    max: this.end_date.toDateString(),
+                                    unit:'day',
+                                    stepSize: "1",
+                                },
+
+                            }]*/,
+                        },
+                        pan: {
+                            enabled: true,
+                            mode: 'x',
+                            rangeMin: {
+                                x: this.range_min,
+                            },
+                            rangeMax: {
+                                x: this.range_max,
+                            },
+                        },
+                        zoom: {
+                            enabled: true,
+                            mode: 'x',
+                            threshold: 10,
+                            rangeMin: {
+                                x: this.range_min,
+                            },
+                            rangeMax: {
+                                x: this.range_max,
+                            },
+                        },
+                    }
+                });
+            },
         },
-        data:function() {
+        data:()=> {
             return {
                 newTodoText: '',
                 visitCount: 0,
@@ -165,74 +263,19 @@
                     colorText: '#333',
                 },
                 options:[],
-                valueSelect:''
-
-        };
+                valueOption:"",
+                date_list:["2019-08-09","2019-08-10","2019-08-11","2019-08-12","2019-08-13","2019-08-14"],
+                value_list:[1000,2000,3000,2500,3000,5000],
+                start_date : "",
+                end_date : "",
+                range_min : "",
+                range_max : "",
+        }
         },
         mounted(){
             window.addEventListener('resize', this.onResize);
+            //this.updateChart()
             //let ctx = document.getElementById("myChart");
-            let ctx = document.getElementById('myChart').getContext('2d');
-            /* eslint-disable */
-            let myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8','day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8','day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8','day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'day8'],
-                    datasets: [{
-                            label: 'Filled',
-                            backgroundColor: ['rgba(27,255,146,0.5)'],
-                            borderColor: ["#b7b54b"],
-                            data: [
-                                120, 12, 56, 98, 130, 80, 55
-                            ],
-                            fill: true,
-                        }, {
-                        label: 'Unfilled',
-                        fill: false,
-                        backgroundColor: "#12cf5f",
-                        borderColor: "#24ca57",//window.chartColors.blue,
-                        data: [20, 40, 20, 70, 23, 34, 90],
-                    }, {
-                        label: 'Dashed',
-                        fill: false,
-                        backgroundColor: ['rgba(71, 183,132,.5)'],
-                        borderColor: ["#47b784"],
-                        borderDash: [5, 5],
-                        data: [20, 15, 24, 60, 45, 60, 100],
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    title: {
-                        display: true,
-                        text: 'Chart.js Line Chart'
-                    },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: false,
-                    },
-                    hover: {
-                        mode: 'nearest',
-                        intersect: true
-                    },
-                    scales: {
-                        x: {
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Month'
-                            }
-                        },
-                        y: {
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Value'
-                            }
-                        }
-                    }
-                }
-            });
         },
         beforeDestroy() {
             window.removeEventListener('resize', this.onResize)

@@ -232,9 +232,9 @@ app.use((req, res, next) => {
 });
 
 app.get('/delet-collection', async (req, res) => {
-    console.log("Hola quesembrar");
-    let deletCallection = await deleteCollection(db, 'prices', 450);
-    res.send(deletCallection)
+    //console.log("Hola quesembrar");
+    //let deletCallection = await deleteCollection(db, 'prices', 450);
+    //res.send(deletCallection)
 });
 
 app.get('/', async (req, res) => {
@@ -595,7 +595,7 @@ async function updateAllProductsDB(res){
         new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 6){
+                if (k1 >= 7){
                     resolve();
                     return 0
                 }
