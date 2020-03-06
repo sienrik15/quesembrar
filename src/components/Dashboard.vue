@@ -22,8 +22,7 @@
                             <button class="button is-primary is-light">Primary</button>
                             <button class="button is-link is-light">Link</button>
                         </div>
-
-                        <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @search="onSearch">
+                        <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @change="onSelectOption" @search="onSearch" >
                             <template slot="no-options">
                                 Escribe el nombre cultivo o producto
                             </template>
@@ -144,7 +143,11 @@
                     console.log(err)
                 });
 
-            }, 350)
+            }, 350),
+            onSelectOption($event){
+                console.log("response-------")
+                console.log($event)
+            }
         },
         data:function() {
             return {
@@ -161,7 +164,8 @@
                     colorGrid: '#eee',
                     colorText: '#333',
                 },
-                options:[]
+                options:[],
+                valueSelect:''
 
         };
         },
