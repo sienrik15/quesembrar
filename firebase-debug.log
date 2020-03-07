@@ -948,3 +948,960 @@
 [debug] [2020-03-06T15:31:17.707Z] [runtime-status] [7448] Attempting to listen to socketPath: \\?\pipe\D:\Projects\quesembrar\functions\7448
 [debug] [2020-03-06T15:31:17.718Z] [functions] Runtime ready! Sending request!
 [debug] [2020-03-06T15:31:17.758Z] [runtime-status] [7448] Ephemeral server handling GET request
+[debug] [2020-03-07T15:10:27.039Z] ----------------------------------------------------------------------
+[debug] [2020-03-07T15:10:27.042Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2020-03-07T15:10:27.043Z] CLI Version:   7.3.1
+[debug] [2020-03-07T15:10:27.043Z] Platform:      darwin
+[debug] [2020-03-07T15:10:27.043Z] Node Version:  v10.15.0
+[debug] [2020-03-07T15:10:27.057Z] Time:          Sat Mar 07 2020 10:10:27 GMT-0500 (Peru Standard Time)
+[debug] [2020-03-07T15:10:27.057Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2020-03-07T15:10:27.077Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-07T15:10:27.078Z] > authorizing via signed-in user
+[debug] [2020-03-07T15:10:27.078Z] [iam] checking project agroanalytics-b2462 for permissions ["firebase.projects.get"]
+[debug] [2020-03-07T15:10:27.081Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-03-07T15:10:27.082Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-03-07T15:10:32.247Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-07T15:10:32.275Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/agroanalytics-b2462:testIamPermissions  
+
+[debug] [2020-03-07T15:10:33.956Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-07T15:10:33.957Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462  
+ 
+[debug] [2020-03-07T15:10:35.276Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/macintoshhd/Documents/proyectos/agroanalytics'...
+[info] 
+[debug] [2020-03-07T15:10:35.284Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462/webApps/-/config  
+ 
+[info] ✔  functions: Using node@10 from host.
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2020-03-07T15:10:35.964Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "/Users/macintoshhd/Documents/proyectos/agroanalytics/functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: dist
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2020-03-07T15:10:37.374Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-03-07T15:10:37.374Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-07T15:10:37.388Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-07T15:10:37.391Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-07T15:10:37.392Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[info] ✔  functions[api]: http function initialized (http://localhost:5001/agroanalytics-b2462/us-central1/api).
+[debug] [2020-03-07T15:10:45.883Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-07T15:10:46.208Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-07T15:10:46.209Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-07T15:10:46.214Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-07T15:10:46.216Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-07T15:10:46.217Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-07T15:10:47.356Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-03-07T15:10:47.356Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-07T15:10:47.356Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-03-07T15:10:47.363Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_76547.sock"}
+[debug] [2020-03-07T15:10:47.366Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_76547.sock"}
+[debug] [2020-03-07T15:10:47.383Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-03-07T15:10:47.917Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init Total 996
+[info] >  init producto x3 332
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'SuKy9dPK6Ts0QrAKGphN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'SuKy9dPK6Ts0QrAKGphN' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'A27Zog86Ebw3ALKBwwFF' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'A27Zog86Ebw3ALKBwwFF' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  07/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'j30luJ73M7M3eru3Zxfs' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'j30luJ73M7M3eru3Zxfs' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'IyfYuYcznPA9cgsslXcc' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'IyfYuYcznPA9cgsslXcc' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: '15eJ374rlxtI5W8GLH5y' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: '15eJ374rlxtI5W8GLH5y' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'Z5hCOn8RJVrpQiQ4YVtB' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'Z5hCOn8RJVrpQiQ4YVtB' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'qGZ6XZFsHhS3IkaDLGB3' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'qGZ6XZFsHhS3IkaDLGB3' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  07/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'SNa3UaTdJm4Ev3qZaFit' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'SNa3UaTdJm4Ev3qZaFit' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'HbHq3cGh2tD2MMws6ra8' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'HbHq3cGh2tD2MMws6ra8' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  Sisap precios ===> 2
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'PeeyqViSuoTN3gOXkjDN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'PeeyqViSuoTN3gOXkjDN' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'LGnombIYDK3UIuPEiBrg' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'LGnombIYDK3UIuPEiBrg' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'ar9XhxSZ16HFzDovB4tZ' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'ar9XhxSZ16HFzDovB4tZ' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'Vi32MMIyzViWyn1NdK0q' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'Vi32MMIyzViWyn1NdK0q' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  07/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'mU1p9XiFCchKXEdYwzdi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'mU1p9XiFCchKXEdYwzdi' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  07/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  07/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'rN1ZhlRaJRbsYzr5rV3u' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'rN1ZhlRaJRbsYzr5rV3u' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Sisap precios ===> 2
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'U1FPpB9G9jDjC7i17Nus' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'U1FPpB9G9jDjC7i17Nus' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'L81ARthSRMXI0tr1dmNI' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'L81ARthSRMXI0tr1dmNI' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'A1PQrYWsAMQYWA79ePeY' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'A1PQrYWsAMQYWA79ePeY' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'OUZ4ccZYqT0oDG5ISwEN' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'OUZ4ccZYqT0oDG5ISwEN' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'bO3ELhMyAOEL3lEGfASB' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'bO3ELhMyAOEL3lEGfASB' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  07/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: '3AJFrp0SmeLEsag9isbA' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: '3AJFrp0SmeLEsag9isbA' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  07/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'U8g6LH246RzvkJ8p5Ssh' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'U8g6LH246RzvkJ8p5Ssh' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  07/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'GWXNpWjZRohdiwp0Ak5o' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'GWXNpWjZRohdiwp0Ak5o' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'lZVKZckuKfZ0y0uX3bdi' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'lZVKZckuKfZ0y0uX3bdi' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  07/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'hZIIuu3E2tDBYgLYZIsk' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'hZIIuu3E2tDBYgLYZIsk' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 2
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-10-Grupo
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'LSSjFnpArgWB0JXXCRBn' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'LSSjFnpArgWB0JXXCRBn' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  07/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  07/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 2
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 0
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2020-03-05T05:00:00.000Z, id: 'YKAYm4fR1L2eFysAAfiS' }
+[info] >  1
+[info] >  [ { date: 2020-03-05T05:00:00.000Z, id: 'YKAYm4fR1L2eFysAAfiS' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  07/03/2020
+[info] >  06/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Sisap precios ===> 2
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 0
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-1-Grupo
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-2-Grupo
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-9-Grupo
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-5-Grupo
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-8-Grupo
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-6-Grupo
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-3-Grupo
+[info] >  Sisap precios ===> 2
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-11-Grupo
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-4-Grupo
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-7-Grupo
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-12-Grupo
+[info] >  Se ingesto #996 registros
+[info] i  functions: Finished "api" in ~10s
+[debug] [2020-03-07T15:11:34.638Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-03-07T15:11:36.419Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-03-07T15:11:36.420Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-07T15:11:36.424Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-07T15:11:36.426Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-07T15:11:36.429Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-07T15:11:42.778Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-07T15:11:43.145Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-07T15:11:43.149Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-07T15:11:43.157Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-07T15:11:43.158Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-07T15:11:43.160Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-07T15:11:45.030Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-03-07T15:11:45.030Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-07T15:11:45.030Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-03-07T15:11:45.042Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_76557.sock"}
+[debug] [2020-03-07T15:11:45.044Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_76557.sock"}
+[debug] [2020-03-07T15:11:45.073Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-03-07T15:11:45.762Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init Total 996
+[info] >  init producto x3 332
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'u5GGarJQI7Sn20vSR7QW' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'u5GGarJQI7Sn20vSR7QW' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'HWNSqOi0w6WiXMjWw4e1' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'HWNSqOi0w6WiXMjWw4e1' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'Vo3DSpKepWKmQIk6E1TW' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'Vo3DSpKepWKmQIk6E1TW' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'zWVHHeiP07gzfBzlPgq2' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'zWVHHeiP07gzfBzlPgq2' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'wgCkwxjZ3KAYqPywtoWN' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'wgCkwxjZ3KAYqPywtoWN' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'qGZ6XZFsHhS3IkaDLGB3' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'qGZ6XZFsHhS3IkaDLGB3' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  07/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 010201
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'fy88ja1Hj0EVGqDWca9z' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'fy88ja1Hj0EVGqDWca9z' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'w0mnFg5EMjHf2cZADAI7' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'w0mnFg5EMjHf2cZADAI7' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'HPEj3PyJu4akAVN8qvey' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'HPEj3PyJu4akAVN8qvey' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'b9CCMGpWhjYQVA1s0yrh' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'b9CCMGpWhjYQVA1s0yrh' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'GFRHXIRTNVG0bK42HsZu' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'GFRHXIRTNVG0bK42HsZu' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'LzrCIIc1R9kFXmgltEIT' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'LzrCIIc1R9kFXmgltEIT' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: '05fT3dqOBfEMr5vwfguF' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: '05fT3dqOBfEMr5vwfguF' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'Vi32MMIyzViWyn1NdK0q' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'Vi32MMIyzViWyn1NdK0q' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  07/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  07/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'hKkBZdTL5XY2bgLIW8KU' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'hKkBZdTL5XY2bgLIW8KU' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 010201
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: '7pCbLQbBeyor2jXQ51KG' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: '7pCbLQbBeyor2jXQ51KG' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'pzw8K6aHkdZPpiiq5nX9' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'pzw8K6aHkdZPpiiq5nX9' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-4-Grupo
+[info] >  { date: 2020-03-02T05:00:00.000Z, id: 'bO3ELhMyAOEL3lEGfASB' }
+[info] >  1
+[info] >  [ { date: 2020-03-02T05:00:00.000Z, id: 'bO3ELhMyAOEL3lEGfASB' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  07/03/2020
+[info] >  03/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 010201
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  07/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_min
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'MmHaal5I52kXD8w2NnlO' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'MmHaal5I52kXD8w2NnlO' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-11-Grupo
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'GCuK22l9FLTkhnyIcXU9' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'GCuK22l9FLTkhnyIcXU9' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'b1OAE2x1XIXlRxNyNdHL' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'b1OAE2x1XIXlRxNyNdHL' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-8-Grupo
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'x0BAyhuSiaCX3t9BtNCF' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'x0BAyhuSiaCX3t9BtNCF' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-5-Grupo
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'ygqQ55pcZ6RWg7YOrYbD' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'ygqQ55pcZ6RWg7YOrYbD' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-6-Grupo
+[info] >  { date: 2020-03-07T05:00:00.000Z, id: 'N3d74Hcz9GuAW9Ibtojs' }
+[info] >  1
+[info] >  [ { date: 2020-03-07T05:00:00.000Z, id: 'N3d74Hcz9GuAW9Ibtojs' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  07/03/2020
+[info] >  08/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-07
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-12-Grupo
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'VLf2KYMOMM3yfHLsiSMX' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'VLf2KYMOMM3yfHLsiSMX' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  07/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'OZTXiADpCtY52F8ejHZy' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'OZTXiADpCtY52F8ejHZy' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-7-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-06T05:00:00.000Z, id: 'FUKxyfn6OutLevs3iyDg' }
+[info] >  1
+[info] >  [ { date: 2020-03-06T05:00:00.000Z, id: 'FUKxyfn6OutLevs3iyDg' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  07/03/2020
+[info] >  07/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-9-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-10-Grupo
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-1-Grupo
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-3-Grupo
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-2-Grupo
+[info] >  Sisap precios ===> 8029
+[info] >  Sisap precios ===> 8029
+[info] >  20
+[info] >  19
+[info] >  18
+[info] >  17
+[info] >  16
+[info] >  15
+[info] >  20
+[info] >  Sisap precios ===> 8029
+[info] >  14
+[info] >  19
+[info] >  13
+[info] >  18
+[info] >  12
+[info] >  17
+[info] >  11
+[info] >  16
+[info] >  10
+[info] >  15
+[info] >  9
+[info] >  14
+[info] >  20
+[info] >  8
+[info] >  13
+[info] >  19
+[info] >  Se agrego:  29  objetos
+[info] >  Se agrego:  29  objetos
+[info] >  7
+[info] >  12
+[info] >  18
+[info] >  6
+[info] >  11
+[info] >  17
+[info] >  5
+[info] >  10
+[info] >  16
+[info] >  4
+[info] >  9
+[info] >  15
+[info] >  3
+[info] >  8
+[info] >  14
+[info] >  2
+[info] >  7
+[info] >  13
+[info] >  1
+[info] >  6
+[info] >  12
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  5
+[info] >  11
+[info] >  4
+[info] >  10
+[info] >  3
+[info] >  9
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  2
+[info] >  8
+[info] >  Se agrego:  29  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  1
+[info] >  7
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  6
+[info] >  5
+[info] >  4
+[info] >  3
+[info] >  2
+[info] >  1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  ingesta subGrupo terminado======> 21
+[info] >  Finaliza ingesta de010201 : 21
+[info] >  Actualizado====> 21
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  ingesta subGrupo terminado======> 21
+[info] >  Finaliza ingesta de010201 : 21
+[info] >  Actualizado====> 21
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  ingesta subGrupo terminado======> 21
+[info] >  Finaliza ingesta de010201 : 21
+[info] >  Actualizado====> 21
+[info] >  Se ingesto-13-Grupo
+[info] >  Se ingesto #996 registros
+[info] i  functions: Finished "api" in ~53s
