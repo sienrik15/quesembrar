@@ -23,7 +23,7 @@
                             <button class="button is-link is-light">Link</button>
                         </div>
 
-                        <v-select class="v-select-custom" label="name" :filterable="false" :options="options" @input="onOptionSelected" v-model="valueOption" @search="onSearch">
+                        <v-select class="v-select-custom" label="name" :filterable="false" :options="optionCrops" @input="onOptionSelected" v-model="valueOption" @search="onSearch">
                             <template slot="no-options">
                                 Escribe el nombre cultivo o producto
                             </template>
@@ -138,7 +138,7 @@
                         snap.forEach(doc => {
                             colectionOptions.push(doc.data());
                         });
-                        vm.options = colectionOptions;
+                        vm.optionCrops = colectionOptions;
                         loading(false);
                 }).catch(err=>{
                     console.log(err)
@@ -156,7 +156,7 @@
                 pricesDB = pricesDB.where("price_type_id","==",price_type_id);
                 pricesDB = pricesDB.where("market_id","==",market_id);
                 pricesDB = pricesDB.where("crops_id","==",crops_id);
-                pricesDB = pricesDB.orderBy('date').limit(500);
+                pricesDB = pricesDB.orderBy('date').limit(730);
                 pricesDB.get().then(snap => {
                     const prices_data = [];
                     const date_list = [];
@@ -168,84 +168,99 @@
                     this.date_list = date_list;
                     console.log(date_list);
                     console.log(prices_data);
-
-                    this.updateChart();
+                    this.updateChartConf();
                 }).catch(err=>{
                     console.log(err)
                 });
 
             },
-            updateChart(){
-                let ctx = document.getElementById('myChart').getContext('2d');
+            initConfigChart(){
                 this.start_date = new Date(this.date_list[0]);
                 this.end_date = new Date(this.date_list[this.date_list.length-1]);
+                console.log("end-date");
+                console.log(this.end_date);
+                //console.log(moment().clone().add(1, 'd').toDate());
                 this.range_min = new Date(this.date_list[0]);
                 this.range_min.setDate(this.range_min.getDate()-10);
                 this.range_max = new Date(this.date_list[this.date_list.length-1]);
                 this.range_max.setDate(this.range_max.getDate()+10);
-                /* eslint-disable */
-                let myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-
-                        labels: this.date_list,
-                        datasets: [
-                            {
-                                label:this.valueOption?this.valueOption.name_es:"",
-                                fill: false,
-                                backgroundColor: ['rgba(71, 183,132,.5)'],
-                                data: this.value_list,
-                                borderColor: ["#47b784"],
-                                borderDash: [5, 5],
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        scales:{
-                            yAxes: [{
-                                type: 'linear',
-                                ticks: {
-                                    beginAtZero: true,
-                                }
-                            },
-                            ]
-                            /*xAxes: [{
-                                distribution: 'linear',
-                                type: "time",
-                                time: {
-                                    min: this.start_date.toDateString(),
-                                    max: this.end_date.toDateString(),
-                                    unit:'day',
-                                    stepSize: "1",
-                                },
-
-                            }]*/,
-                        },
-                        pan: {
-                            enabled: true,
-                            mode: 'x',
-                            rangeMin: {
-                                x: this.range_min,
-                            },
-                            rangeMax: {
-                                x: this.range_max,
-                            },
-                        },
-                        zoom: {
-                            enabled: true,
-                            mode: 'x',
-                            threshold: 10,
-                            rangeMin: {
-                                x: this.range_min,
-                            },
-                            rangeMax: {
-                                x: this.range_max,
-                            },
-                        },
-                    }
-                });
             },
+            updateChartConf(){
+                this.initConfigChart();
+                let timeFormat = "MM/DD/YYYY HH:mm";
+                this.startChart.data = {
+                    labels: this.date_list,
+                    datasets: [
+                        {
+                            label:this.valueOption?this.valueOption.name_es:"",
+                            fill: false,
+                            backgroundColor: ['rgba(71, 183,132,.5)'],
+                            data: this.value_list,
+                            borderColor: ["#47b784"],
+                            borderDash: [5, 5],
+                        }
+                    ]
+                };
+                this.startChart.options = {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: "Precios de productos"
+                    },
+                    scales:{
+                        yAxes: [{
+                            type: 'linear',
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Precio"
+                            }
+                        },
+                        ],
+                        xAxes: [{
+                            distribution: 'linear',
+                            type: "time",
+                            time: {
+                                //parser: timeFormat,
+                                min: this.start_date.toDateString(),
+                                max: this.end_date.toDateString(),
+                                //unit:'day',
+                                stepSize: "1",
+                                //tooltipFormat: 'll HH:mm'
+                            }
+                        }],
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'x',
+                        rangeMin: {
+                            x: this.range_min,
+                        },
+                        rangeMax: {
+                            x: this.range_max,
+                        },
+                        speed: 10,
+                        threshold: 10
+                    },
+                    zoom: {
+                        enabled: true,
+                        mode: 'x',
+                        threshold: 10,
+                        rangeMin: {
+                            x: this.range_min,
+                        },
+                        rangeMax: {
+                            x: this.range_max,
+                        },
+                        speed: 10,
+                        sensitivity:0.001,
+                        drag: false
+                    },
+                }
+                this.startChart.update();
+            }
         },
         data:()=> {
             return {
@@ -262,7 +277,7 @@
                     colorGrid: '#eee',
                     colorText: '#333',
                 },
-                options:[],
+                optionCrops:[],
                 valueOption:"",
                 date_list:["2019-08-09","2019-08-10","2019-08-11","2019-08-12","2019-08-13","2019-08-14"],
                 value_list:[1000,2000,3000,2500,3000,5000],
@@ -270,12 +285,20 @@
                 end_date : "",
                 range_min : "",
                 range_max : "",
-        }
+                startChart:null,
+            }
         },
         mounted(){
             window.addEventListener('resize', this.onResize);
-            //this.updateChart()
             //let ctx = document.getElementById("myChart");
+            let ctx = document.getElementById('myChart').getContext('2d');
+            /* eslint-disable */
+            this.startChart = new Chart(ctx, {
+                type: 'line',
+                data: {},
+                options: {}
+            });
+            this.updateChartConf();
         },
         beforeDestroy() {
             window.removeEventListener('resize', this.onResize)
