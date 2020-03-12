@@ -187,8 +187,14 @@
             },
             updateChartConf(){
                 this.initConfigChart();
-                let timeFormat = "MM/DD/YYYY HH:mm";
-                this.startChart.data = {
+                this.timeFormat = "MM/DD/YYYY HH:mm";
+                let dragOptions = {
+                    animationDuration: 1000
+                };
+                //this.date_list = ["2019-08-09","2019-08-10","2019-08-11","2019-08-12","2019-08-13","2019-08-14"];
+                //this. value_list=[1000,2000,3000,2500,3000,5000];
+
+                /*this.startChart.data = {
                     labels: this.date_list,
                     datasets: [
                         {
@@ -200,8 +206,8 @@
                             borderDash: [5, 5],
                         }
                     ]
-                };
-                this.startChart.options = {
+                };*/
+                /*this.startChart.options = {
                     responsive: true,
                     title: {
                         display: true,
@@ -258,8 +264,105 @@
                         sensitivity:0.001,
                         drag: false
                     },
+                }*/
+
+                this.startChart.data = {
+                    labels: [this.newDate(0), this.newDate(1), this.newDate(2), this.newDate(3), this.newDate(4), this.newDate(5), this.newDate(6)], // Date Objects
+                    datasets: [{
+                        label: 'My First dataset',
+                        data: [this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor()],
+                        fill: false,
+                        borderDash: [5, 5],
+                    }, {
+                        label: 'My Second dataset',
+                        data: [this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor(), this.randomScalingFactor()],
+                    }, {
+                        label: 'Dataset with point data',
+                        data: [{
+                            x: this.newDateString(0),
+                            y: this.randomScalingFactor()
+                        }, {
+                            x: this.newDateString(5),
+                            y: this.randomScalingFactor()
+                        }, {
+                            x: this.newDateString(7),
+                            y: this.randomScalingFactor()
+                        }, {
+                            x: this.newDateString(15),
+                            y: this.randomScalingFactor()
+                        }],
+                        fill: false
+                    }]
+                };
+                this.startChart.options = {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Chart.js Time Scale'
+                    },
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                parser: this.timeFormat,
+                                // round: 'day'
+                                tooltipFormat: 'll HH:mm'
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Date'
+                            },
+                            ticks: {
+                                maxRotation: 0
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'value'
+                            }
+                        }]
+                    },
+                    plugins: {
+                        zoom: {
+                            zoom: {
+                                enabled: true,
+                                drag: dragOptions,
+                                mode: 'x',
+                                speed: 0.05
+                            }
+                        }
+                    }
                 }
+
+                this.startChart.data.datasets.forEach((dataset)=> {
+                    dataset.borderColor = this.randomColor(0.4);
+                    dataset.backgroundColor = this.randomColor(0.5);
+                    dataset.pointBorderColor = this.randomColor(0.7);
+                    dataset.pointBackgroundColor = this.randomColor(0.5);
+                    dataset.pointBorderWidth = 1;
+                });
+
                 this.startChart.update();
+            },
+            randomScalingFactor() {
+                return Math.round(Math.random() * 100 * (Math.random() > 0.5 ? -1 : 1));
+            },
+
+            randomColorFactor() {
+                return Math.round(Math.random() * 255);
+            },
+
+            randomColor(opacity) {
+                return 'rgba(' + this.randomColorFactor() + ',' + this.randomColorFactor() + ',' + this.randomColorFactor() + ',' + (opacity || '.3') + ')';
+            },
+
+            newDate(days) {
+                return moment().add(days, 'd').toDate();
+            },
+
+            newDateString(days) {
+                return moment().add(days, 'd').format(this.timeFormat);
             }
         },
         data:()=> {
@@ -279,13 +382,14 @@
                 },
                 optionCrops:[],
                 valueOption:"",
-                date_list:["2019-08-09","2019-08-10","2019-08-11","2019-08-12","2019-08-13","2019-08-14"],
-                value_list:[1000,2000,3000,2500,3000,5000],
+                date_list:[],
+                value_list:[],
                 start_date : "",
                 end_date : "",
                 range_min : "",
                 range_max : "",
                 startChart:null,
+                timeFormat:"",
             }
         },
         mounted(){
