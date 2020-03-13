@@ -96,7 +96,7 @@
                 </div>
             </section>  -->
             <section class="section">
-                <div class="container">
+                <div class="container" >
                     <canvas id="myChart"></canvas>
                 </div>
             </section>
@@ -156,13 +156,15 @@
                 pricesDB = pricesDB.where("price_type_id","==",price_type_id);
                 pricesDB = pricesDB.where("market_id","==",market_id);
                 pricesDB = pricesDB.where("crops_id","==",crops_id);
-                pricesDB = pricesDB.orderBy('date').limit(730);
+                pricesDB = pricesDB.where("date",">=",moment("2019-12-01").toDate());
+                pricesDB = pricesDB.where("date","<=",moment().toDate());
+                pricesDB = pricesDB.orderBy('date');//.limit(365);
                 pricesDB.get().then(snap => {
                     const prices_data = [];
                     const date_list = [];
                     snap.forEach(doc => {
                         prices_data.push(doc.data().price);
-                        date_list.push(moment(doc.data().date.toDate()).format("YYYY-MM-DD"));
+                        date_list.push(doc.data().date.toDate());
                     });
                     this.value_list = prices_data;
                     this.date_list = date_list;
@@ -175,26 +177,29 @@
 
             },
             initConfigChart(){
-                this.start_date = new Date(this.date_list[0]);
-                this.end_date = new Date(this.date_list[this.date_list.length-1]);
+                this.start_date = moment(this.date_list[0]).format(this.timeFormat);
+                this.end_date = moment(this.date_list[this.date_list.length-1]).format(this.timeFormat);
                 console.log("end-date");
                 console.log(this.end_date);
                 //console.log(moment().clone().add(1, 'd').toDate());
-                this.range_min = new Date(this.date_list[0]);
-                this.range_min.setDate(this.range_min.getDate()-10);
-                this.range_max = new Date(this.date_list[this.date_list.length-1]);
-                this.range_max.setDate(this.range_max.getDate()+10);
+                this.range_min = moment(this.date_list[0],this.timeFormat);
+                this.range_min = moment(this.range_min.toDate()-10).format(this.timeFormat);
+                this.range_max =  moment(this.date_list[this.date_list.length-1],this.timeFormat);
+                this.range_max = moment(this.range_max.toDate()+10).format(this.timeFormat);
             },
             updateChartConf(){
-                this.initConfigChart();
                 this.timeFormat = "MM/DD/YYYY HH:mm";
+                this.date_list = this.date_list.map(vl=>{
+                    vl = moment(vl).format(this.timeFormat);
+                   return vl
+                });
+                this.initConfigChart();
                 let dragOptions = {
                     animationDuration: 1000
                 };
-                //this.date_list = ["2019-08-09","2019-08-10","2019-08-11","2019-08-12","2019-08-13","2019-08-14"];
-                //this. value_list=[1000,2000,3000,2500,3000,5000];
 
-                /*this.startChart.data = {
+
+                this.startChart.data = {
                     labels: this.date_list,
                     datasets: [
                         {
@@ -206,8 +211,8 @@
                             borderDash: [5, 5],
                         }
                     ]
-                };*/
-                /*this.startChart.options = {
+                };
+                this.startChart.options = {
                     responsive: true,
                     title: {
                         display: true,
@@ -229,16 +234,44 @@
                             distribution: 'linear',
                             type: "time",
                             time: {
-                                //parser: timeFormat,
-                                min: this.start_date.toDateString(),
-                                max: this.end_date.toDateString(),
+                                parser: this.timeFormat,
+                                //round: 'll',
+                                tooltipFormat: "ll",//"ll HH:mm",
+                                min: this.start_date,
+                                max: this.end_date,
+                                minUnit:'day',
+                                displayFormats: {
+                                    'day': 'MMMM-Do YY' //'ll'
+                                },
                                 //unit:'day',
-                                stepSize: "1",
-                                //tooltipFormat: 'll HH:mm'
+                                //stepSize: "1",
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Date"
+                            },
+                            ticks: {
+                                maxRotation: 0,
+                                beginAtZero: true,
                             }
                         }],
                     },
                     pan: {
+                        enabled: true,
+                        mode: "xy",
+                        speed: 10,
+                        threshold: 10
+                    },
+                    zoom: {
+                        enabled: true,
+                        drag: false,
+                        mode: "xy",
+                        limits: {
+                            max: 10,
+                            min: 0.5
+                        }
+                    }
+                    /*pan: {
                         enabled: true,
                         mode: 'x',
                         rangeMin: {
@@ -263,10 +296,10 @@
                         speed: 10,
                         sensitivity:0.001,
                         drag: false
-                    },
-                }*/
+                    },*/
+                }
 
-                this.startChart.data = {
+                /*this.startChart.data = {
                     labels: [this.newDate(0), this.newDate(1), this.newDate(2), this.newDate(3), this.newDate(4), this.newDate(5), this.newDate(6)], // Date Objects
                     datasets: [{
                         label: 'My First dataset',
@@ -293,55 +326,68 @@
                         }],
                         fill: false
                     }]
-                };
-                this.startChart.options = {
+                };*/
+                /*this.startChart.options = {
                     responsive: true,
                     title: {
                         display: true,
-                        text: 'Chart.js Time Scale'
+                        text: "Chart.js Time Scale"
                     },
                     scales: {
-                        xAxes: [{
-                            type: 'time',
-                            time: {
-                                parser: this.timeFormat,
-                                // round: 'day'
-                                tooltipFormat: 'll HH:mm'
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Date'
-                            },
-                            ticks: {
-                                maxRotation: 0
+                        xAxes: [
+                            {
+                                distribution: 'linear',
+                                type: "time",
+                                time: {
+                                    format: this.timeFormat,
+                                    // round: 'day'
+                                    tooltipFormat: "ll HH:mm",
+                                    min: this.newDate(0),
+                                    max: this.newDate(6)
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Date"
+                                },
+                                ticks: {
+                                    maxRotation: 0
+                                }
                             }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'value'
+                        ],
+                        yAxes: [
+                            {
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "value"
+                                }
                             }
-                        }]
+                        ]
                     },
-                    plugins: {
-                        zoom: {
-                            zoom: {
-                                enabled: true,
-                                drag: dragOptions,
-                                mode: 'x',
-                                speed: 0.05
-                            }
+                    pan: {
+                        enabled: true,
+                        mode: "xy",
+                        speed: 10,
+                        threshold: 10
+                    },
+                    zoom: {
+                        enabled: true,
+                        drag: false,
+                        mode: "xy",
+                        limits: {
+                            max: 10,
+                            min: 0.5
                         }
                     }
-                }
 
-                this.startChart.data.datasets.forEach((dataset)=> {
+                };*/
+
+                /*this.startChart.data.datasets.forEach((dataset)=> {
                     dataset.borderColor = this.randomColor(0.4);
                     dataset.backgroundColor = this.randomColor(0.5);
                     dataset.pointBorderColor = this.randomColor(0.7);
                     dataset.pointBackgroundColor = this.randomColor(0.5);
                     dataset.pointBorderWidth = 1;
-                });
+                });*/
 
                 this.startChart.update();
             },
@@ -382,8 +428,8 @@
                 },
                 optionCrops:[],
                 valueOption:"",
-                date_list:[],
-                value_list:[],
+                date_list:["2019-08-09","2019-08-10","2019-08-11","2019-08-12","2019-08-13","2019-08-14"],
+                value_list:[1000,2000,3000,2500,3000,5000],
                 start_date : "",
                 end_date : "",
                 range_min : "",
@@ -398,7 +444,7 @@
             let ctx = document.getElementById('myChart').getContext('2d');
             /* eslint-disable */
             this.startChart = new Chart(ctx, {
-                type: 'line',
+                type: "line",
                 data: {},
                 options: {}
             });
@@ -416,6 +462,12 @@
     .box-search
         padding-bottom: 10px !important
         padding-top: 30px !important
+
+    canvas
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+
 
     .v-select-custom
         img
