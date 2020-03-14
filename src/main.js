@@ -4,18 +4,22 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vSelect from 'vue-select'
-const path = require('path');
+//const path = require('path');
 import 'vue-select/dist/vue-select.css';
 import './assets/styles/main.styl'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VCalendar from 'v-calendar';
+
 library.add(faCheck)
 Vue.component('f-icon', FontAwesomeIcon);
 Vue.component('v-select', vSelect);
 
 import firebase from 'firebase';
 require('firebase/firestore');
+
+Vue.use(VCalendar,{componentPrefix: 'vc'});
 
 
 /* Paste your firebase configuration below */

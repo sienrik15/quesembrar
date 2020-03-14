@@ -1,0 +1,1983 @@
+[debug] [2020-03-14T21:40:45.778Z] ----------------------------------------------------------------------
+[debug] [2020-03-14T21:40:45.780Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2020-03-14T21:40:45.780Z] CLI Version:   7.3.1
+[debug] [2020-03-14T21:40:45.780Z] Platform:      darwin
+[debug] [2020-03-14T21:40:45.780Z] Node Version:  v10.15.0
+[debug] [2020-03-14T21:40:45.781Z] Time:          Sat Mar 14 2020 16:40:45 GMT-0500 (Peru Standard Time)
+[debug] [2020-03-14T21:40:45.781Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2020-03-14T21:40:45.793Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-14T21:40:45.794Z] > authorizing via signed-in user
+[debug] [2020-03-14T21:40:45.794Z] [iam] checking project agroanalytics-b2462 for permissions ["firebase.projects.get"]
+[debug] [2020-03-14T21:40:45.796Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-03-14T21:40:45.796Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-03-14T21:40:47.192Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-14T21:40:47.218Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/agroanalytics-b2462:testIamPermissions  
+
+[debug] [2020-03-14T21:40:50.855Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-14T21:40:50.857Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462  
+ 
+[debug] [2020-03-14T21:40:54.820Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/macintoshhd/Documents/proyectos/agroanalytics'...
+[info] 
+[debug] [2020-03-14T21:40:54.828Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462/webApps/-/config  
+ 
+[info] ✔  functions: Using node@10 from host.
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2020-03-14T21:40:58.247Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "/Users/macintoshhd/Documents/proyectos/agroanalytics/functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: dist
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2020-03-14T21:40:58.881Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-03-14T21:40:58.881Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-14T21:40:58.889Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-14T21:40:58.892Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T21:40:58.894Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[info] ✔  functions[api]: http function initialized (http://localhost:5001/agroanalytics-b2462/us-central1/api).
+[debug] [2020-03-14T21:41:26.741Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-14T21:41:27.300Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-14T21:41:27.302Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-14T21:41:27.309Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-14T21:41:27.311Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T21:41:27.314Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T21:41:29.491Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-03-14T21:41:29.491Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-14T21:41:29.491Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-03-14T21:41:29.501Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_82751.sock"}
+[debug] [2020-03-14T21:41:29.504Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_82751.sock"}
+[debug] [2020-03-14T21:41:29.523Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-03-14T21:41:30.108Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init Total 996
+[info] >  init producto x3 332
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: '2VaCpqxkcWBV8WZ6B0FA' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: '2VaCpqxkcWBV8WZ6B0FA' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: '14xUHB6xqMLtJ18swGGz' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: '14xUHB6xqMLtJ18swGGz' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'N4ueKNw7zBcrVvjqM4IK' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'N4ueKNw7zBcrVvjqM4IK' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'TSezHzrnTBjXGLePZaSd' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'TSezHzrnTBjXGLePZaSd' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'rIGNvgz7JHADgIL03IAe' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'rIGNvgz7JHADgIL03IAe' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'tQhik8jbH1Q6RT1mhFw9' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'tQhik8jbH1Q6RT1mhFw9' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'CnKI7aKhTvFNrhQsBkET' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'CnKI7aKhTvFNrhQsBkET' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'c5bEx9HXjkrhbGk6tCdG' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'c5bEx9HXjkrhbGk6tCdG' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'IWVRYXf8kwXm0JB7iBWe' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'IWVRYXf8kwXm0JB7iBWe' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'DeMsOyDatGpMTdNZBqEj' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'DeMsOyDatGpMTdNZBqEj' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'cZxZKiL5HSYDDgzBdsYW' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'cZxZKiL5HSYDDgzBdsYW' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'laod6yRrYbw6jCfpO9AG' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'laod6yRrYbw6jCfpO9AG' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 's1EJ51z9aalfQOdSHvpL' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 's1EJ51z9aalfQOdSHvpL' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'wEuzPu8MyoPn2zfH1Q4H' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'wEuzPu8MyoPn2zfH1Q4H' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Sisap precios ===> 3
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'e0v93VNDWhnnSZ4nt4jJ' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'e0v93VNDWhnnSZ4nt4jJ' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'XEIpfLAkc0RAPlV96lY0' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'XEIpfLAkc0RAPlV96lY0' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'DViANitUuAfLLWhvV325' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'DViANitUuAfLLWhvV325' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'pPqkTIfxTFLPFcuk3n98' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'pPqkTIfxTFLPFcuk3n98' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Sisap precios ===> 2
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 3
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: '8KNNHCby764NtX5zwfPe' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: '8KNNHCby764NtX5zwfPe' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'MJFF9n0vDpvVpq10a3wF' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'MJFF9n0vDpvVpq10a3wF' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'nMmkWsz3TfXNEn2e3plc' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'nMmkWsz3TfXNEn2e3plc' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  Sisap precios ===> 3
+[info] >  Sisap precios ===> 3
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'UeaZZqRGz0LzSDdBJ9AH' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'UeaZZqRGz0LzSDdBJ9AH' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'c1xUixXP9Dgpx8OhGxXr' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'c1xUixXP9Dgpx8OhGxXr' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'h7sqWb8dcPoSdO9KRuPY' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'h7sqWb8dcPoSdO9KRuPY' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'TYCRkrC65Dg8MqD841Qf' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'TYCRkrC65Dg8MqD841Qf' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'AtEMyaG23gov1fQk1kQe' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'AtEMyaG23gov1fQk1kQe' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'J9lnNDqZPGTWSpkTMnyi' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'J9lnNDqZPGTWSpkTMnyi' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'zG552mHvt26sOzFzwS3v' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'zG552mHvt26sOzFzwS3v' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'L5uyGwEsLIo13Sui3tIG' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'L5uyGwEsLIo13Sui3tIG' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Sisap precios ===> 3
+[info] >  Sisap precios ===> 3
+[info] >  Sisap precios ===> 3
+[info] >  Sisap precios ===> 3
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 3
+[info] >  Sisap precios ===> 3
+[info] >  Sisap precios ===> 3
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 2
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  { date: 2020-03-12T05:00:00.000Z, id: 'efcFABaLStAoAxuqOvgT' }
+[info] >  1
+[info] >  [ { date: 2020-03-12T05:00:00.000Z, id: 'efcFABaLStAoAxuqOvgT' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  13/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  Actualizado====> 0
+[info] >  Sisap precios ===> 3
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Sisap precios ===> 3
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  3  objetos
+[info] >  Se agrego:  3  objetos
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  actualizado precio_min
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  3  objetos
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 3
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Sisap precios ===> 3
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-4-Grupo
+[info] >  Sisap precios ===> 3
+[info] >  Sisap precios ===> 3
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Sisap precios ===> 2
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-9-Grupo
+[info] >  Sisap precios ===> 3
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-10-Grupo
+[info] >  Sisap precios ===> 3
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-8-Grupo
+[info] >  Se agrego:  2  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-7-Grupo
+[info] >  Sisap precios ===> 3
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 3
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-11-Grupo
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 3
+[info] >  Sisap precios ===> 3
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-3-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-1-Grupo
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-5-Grupo
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_min
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-6-Grupo
+[info] >  Sisap precios ===> 3
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-2-Grupo
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-13-Grupo
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  3  objetos
+[info] >  ingesta subGrupo terminado======> 1
+[info] >  actualizado precio_max
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-12-Grupo
+[info] >  Se ingesto #996 registros
+[info] i  functions: Finished "api" in ~21s
+[debug] [2020-03-14T21:43:06.197Z] File /Users/macintoshhd/Documents/proyectos/agroanalytics/functions/index.js changed, reloading triggers
+[debug] [2020-03-14T21:43:07.678Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[debug] [2020-03-14T21:43:07.679Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-14T21:43:07.683Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-14T21:43:07.684Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T21:43:07.685Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T21:43:39.542Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-14T21:43:40.066Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-14T21:43:40.068Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-14T21:43:40.077Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-14T21:43:40.080Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T21:43:40.082Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T21:43:41.874Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-03-14T21:43:41.874Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-14T21:43:41.874Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-03-14T21:43:41.885Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_82765.sock"}
+[debug] [2020-03-14T21:43:41.887Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_82765.sock"}
+[debug] [2020-03-14T21:43:41.905Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-03-14T21:43:42.408Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init Total 996
+[info] >  init producto x3 332
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'LQTwEwYVqQu0oFO1YDvR' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'LQTwEwYVqQu0oFO1YDvR' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'KshLMa5vQQUhaC8EV02w' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'KshLMa5vQQUhaC8EV02w' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-13T05:00:00.000Z, id: '5WhAxivNzbtyacp1SfNl' }
+[info] >  1
+[info] >  [ { date: 2020-03-13T05:00:00.000Z, id: '5WhAxivNzbtyacp1SfNl' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  14/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'b3D3SZpswGkEckcnqhlh' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'b3D3SZpswGkEckcnqhlh' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'r0f3vbm6weIWhwTRkZch' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'r0f3vbm6weIWhwTRkZch' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'rIGNvgz7JHADgIL03IAe' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'rIGNvgz7JHADgIL03IAe' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'wugYRKE2mGsVwShoBDzi' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'wugYRKE2mGsVwShoBDzi' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'tBZoStMAZWnXubDK2d4S' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'tBZoStMAZWnXubDK2d4S' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 010103
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'c1c44NG9ix4ptM38iF1S' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'c1c44NG9ix4ptM38iF1S' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'GPHNanukSRHbpZzoJkOg' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'GPHNanukSRHbpZzoJkOg' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'vSkhMbTOvJbzPH0kZ3bM' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'vSkhMbTOvJbzPH0kZ3bM' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-13T05:00:00.000Z, id: 'ZerRpz1y8wk7xvNU1hOg' }
+[info] >  1
+[info] >  [ { date: 2020-03-13T05:00:00.000Z, id: 'ZerRpz1y8wk7xvNU1hOg' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  14/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: '0xUxHfz7wcp6bEh0UT15' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: '0xUxHfz7wcp6bEh0UT15' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'K1aiJGQhxbiJ6BaZCydj' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'K1aiJGQhxbiJ6BaZCydj' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'laod6yRrYbw6jCfpO9AG' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'laod6yRrYbw6jCfpO9AG' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 010103
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'lFRivyXNwpSXLQ3UqCru' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'lFRivyXNwpSXLQ3UqCru' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'XjqA8nihdhYyTtB8SnRF' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'XjqA8nihdhYyTtB8SnRF' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'Zq4ZAxmv8QyBO6xZL44S' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'Zq4ZAxmv8QyBO6xZL44S' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_min
+[info] >  Actualizado====> 0
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: '2CaBIRXS5qjDBWXfv0OC' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: '2CaBIRXS5qjDBWXfv0OC' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'IrqP9cD2OYAPOoWt3dob' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'IrqP9cD2OYAPOoWt3dob' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-11-Grupo
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'Ke7s8VyROcXe0mrGsJb4' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'Ke7s8VyROcXe0mrGsJb4' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-4-Grupo
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'K3fcP4AO92R4NHsCGWsW' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'K3fcP4AO92R4NHsCGWsW' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-13-Grupo
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'KUH7Ktdx0OyMdHGEM8Tn' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'KUH7Ktdx0OyMdHGEM8Tn' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-5-Grupo
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'ti7fONitJMzgCBTin4me' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'ti7fONitJMzgCBTin4me' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-6-Grupo
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'c1xUixXP9Dgpx8OhGxXr' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'c1xUixXP9Dgpx8OhGxXr' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'lbiplGcWkkQ58hbFIdIy' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'lbiplGcWkkQ58hbFIdIy' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-8-Grupo
+[info] >  { date: 2020-03-13T05:00:00.000Z, id: 'DqjnxWvEIZPl1TFPJFnG' }
+[info] >  1
+[info] >  [ { date: 2020-03-13T05:00:00.000Z, id: 'DqjnxWvEIZPl1TFPJFnG' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  14/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'N18sirbAt3IGjXUaFnLU' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'N18sirbAt3IGjXUaFnLU' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-12-Grupo
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 010103
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'idrIjtuV7Cxe1BbBLXnd' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'idrIjtuV7Cxe1BbBLXnd' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'dWJO8KtzevnMpBvMgdXE' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'dWJO8KtzevnMpBvMgdXE' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-2-Grupo
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-10-Grupo
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-7-Grupo
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-9-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-1-Grupo
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-3-Grupo
+[info] >  Sisap precios ===> 8041
+[info] >  Sisap precios ===> 8041
+[info] >  20
+[info] >  19
+[info] >  18
+[info] >  17
+[info] >  16
+[info] >  20
+[info] >  15
+[info] >  19
+[info] >  14
+[info] >  18
+[info] >  13
+[info] >  17
+[info] >  12
+[info] >  16
+[info] >  11
+[info] >  15
+[info] >  10
+[info] >  Se agrego:  41  objetos
+[info] >  14
+[info] >  9
+[info] >  13
+[info] >  8
+[info] >  12
+[info] >  7
+[info] >  Se agrego:  41  objetos
+[info] >  11
+[info] >  6
+[info] >  10
+[info] >  5
+[info] >  9
+[info] >  4
+[info] >  8
+[info] >  3
+[info] >  7
+[info] >  2
+[info] >  6
+[info] >  1
+[info] >  5
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  4
+[info] >  3
+[info] >  2
+[info] >  1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Sisap precios ===> 8041
+[info] >  20
+[info] >  19
+[info] >  18
+[info] >  17
+[info] >  16
+[info] >  15
+[info] >  14
+[info] >  13
+[info] >  12
+[info] >  11
+[info] >  10
+[info] >  9
+[info] >  8
+[info] >  7
+[info] >  6
+[info] >  5
+[info] >  4
+[info] >  3
+[info] >  2
+[info] >  1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  ingesta subGrupo terminado======> 21
+[info] >  Finaliza ingesta de010103 : 21
+[info] >  Actualizado====> 21
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  ingesta subGrupo terminado======> 21
+[info] >  Finaliza ingesta de010103 : 21
+[info] >  Actualizado====> 21
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  { Error: 4 DEADLINE_EXCEEDED: Deadline exceeded
+[info] >      at Object.callErrorFromStatus (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call.js:30:26)
+[info] >      at Http2CallStream.call.on (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/client.js:96:33)
+[info] >      at Http2CallStream.emit (events.js:187:15)
+[info] >      at process.nextTick (/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/@grpc/grpc-js/build/src/call-stream.js:75:22)
+[info] >      at process._tickCallback (internal/process/next_tick.js:61:11)
+[info] >    code: 4,
+[info] >    details: 'Deadline exceeded',
+[info] >    metadata: Metadata { internalRepr: Map {}, options: {} } }
+[info] >  ingesta subGrupo terminado======> 21
+[info] >  Finaliza ingesta de010103 : 21
+[info] >  Actualizado====> 21
+[info] >  Se ingesto-14-Grupo
+[info] >  Se ingesto #996 registros
+[info] i  functions: Finished "api" in ~104s
+[debug] [2020-03-14T22:03:11.905Z] Accepted request GET /agroanalytics-b2462/us-central1/api/update-all --> api
+[debug] [2020-03-14T22:03:12.443Z] [runtime-status] Functions runtime initialized. {"cwd":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions","node_version":"10.15.0"}
+[info] i  functions: Beginning execution of "api"
+[debug] [2020-03-14T22:03:12.446Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-03-14T22:03:12.450Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-03-14T22:03:12.451Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T22:03:12.452Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/macintoshhd/Documents/proyectos/agroanalytics/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-03-14T22:03:14.614Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[debug] [2020-03-14T22:03:14.614Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2020-03-14T22:03:14.614Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2020-03-14T22:03:14.623Z] {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_82836.sock"}
+[debug] [2020-03-14T22:03:14.630Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/b7/5phm55692vz1t6h8s79dmx6m0000gn/T/firebase_emulator_invocation_82836.sock"}
+[debug] [2020-03-14T22:03:14.643Z] [runtime-status] Ephemeral server used! {}
+[debug] [2020-03-14T22:03:15.217Z] [runtime-status] Ephemeral server survived. {}
+[info] >  init Total 996
+[info] >  init producto x3 332
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'b3D3SZpswGkEckcnqhlh' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'b3D3SZpswGkEckcnqhlh' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-13T05:00:00.000Z, id: '5WhAxivNzbtyacp1SfNl' }
+[info] >  1
+[info] >  [ { date: 2020-03-13T05:00:00.000Z, id: '5WhAxivNzbtyacp1SfNl' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  14/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'c1c44NG9ix4ptM38iF1S' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'c1c44NG9ix4ptM38iF1S' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'KshLMa5vQQUhaC8EV02w' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'KshLMa5vQQUhaC8EV02w' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'rIGNvgz7JHADgIL03IAe' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'rIGNvgz7JHADgIL03IAe' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'LQTwEwYVqQu0oFO1YDvR' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'LQTwEwYVqQu0oFO1YDvR' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'tBZoStMAZWnXubDK2d4S' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'tBZoStMAZWnXubDK2d4S' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 1997-02-10T05:00:00.000Z, id: 'ZHbt2crcVFs1rqsGqCYL' }
+[info] >  1
+[info] >  [ { date: 1997-02-10T05:00:00.000Z, id: 'ZHbt2crcVFs1rqsGqCYL' } ]
+[info] >  Inicia ingesta a completar010103
+[info] >  14/03/2020
+[info] >  11/02/1997
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'wugYRKE2mGsVwShoBDzi' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'wugYRKE2mGsVwShoBDzi' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'r0f3vbm6weIWhwTRkZch' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'r0f3vbm6weIWhwTRkZch' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: '0xUxHfz7wcp6bEh0UT15' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: '0xUxHfz7wcp6bEh0UT15' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'K1aiJGQhxbiJ6BaZCydj' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'K1aiJGQhxbiJ6BaZCydj' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'GPHNanukSRHbpZzoJkOg' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'GPHNanukSRHbpZzoJkOg' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'laod6yRrYbw6jCfpO9AG' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'laod6yRrYbw6jCfpO9AG' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-13T05:00:00.000Z, id: 'ZerRpz1y8wk7xvNU1hOg' }
+[info] >  1
+[info] >  [ { date: 2020-03-13T05:00:00.000Z, id: 'ZerRpz1y8wk7xvNU1hOg' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  14/03/2020
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'vSkhMbTOvJbzPH0kZ3bM' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'vSkhMbTOvJbzPH0kZ3bM' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'NQmERdEZs24pIPexygSI' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_prom
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'Zq4ZAxmv8QyBO6xZL44S' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'Zq4ZAxmv8QyBO6xZL44S' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 010103
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'lFRivyXNwpSXLQ3UqCru' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'lFRivyXNwpSXLQ3UqCru' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'XjqA8nihdhYyTtB8SnRF' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'XjqA8nihdhYyTtB8SnRF' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'Ke7s8VyROcXe0mrGsJb4' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'Ke7s8VyROcXe0mrGsJb4' } ]
+[info] >  Inicia ingesta a completar023103
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-4-Grupo
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'KUH7Ktdx0OyMdHGEM8Tn' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'KUH7Ktdx0OyMdHGEM8Tn' } ]
+[info] >  Inicia ingesta a completar021701
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-5-Grupo
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 021814
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'K3fcP4AO92R4NHsCGWsW' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'K3fcP4AO92R4NHsCGWsW' } ]
+[info] >  Inicia ingesta a completar010201
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-13-Grupo
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'ti7fONitJMzgCBTin4me' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'ti7fONitJMzgCBTin4me' } ]
+[info] >  Inicia ingesta a completar030101
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-6-Grupo
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'IrqP9cD2OYAPOoWt3dob' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'IrqP9cD2OYAPOoWt3dob' } ]
+[info] >  Inicia ingesta a completar063716
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-11-Grupo
+[info] >  { date: 2020-03-09T05:00:00.000Z, id: 'c1xUixXP9Dgpx8OhGxXr' }
+[info] >  1
+[info] >  [ { date: 2020-03-09T05:00:00.000Z, id: 'c1xUixXP9Dgpx8OhGxXr' } ]
+[info] >  Inicia ingesta a completar040506
+[info] >  14/03/2020
+[info] >  10/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2001-06-30T05:00:00.000Z, id: 'pgnJo0u20TckDjQ8rLdN' }
+[info] >  1
+[info] >  [ { date: 2001-06-30T05:00:00.000Z, id: 'pgnJo0u20TckDjQ8rLdN' } ]
+[info] >  Inicia ingesta a completar010103
+[info] >  14/03/2020
+[info] >  01/07/2001
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'N18sirbAt3IGjXUaFnLU' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'N18sirbAt3IGjXUaFnLU' } ]
+[info] >  Inicia ingesta a completar062210
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-12-Grupo
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'MiBDOntI2joZAoQg8Asr' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_min
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'lbiplGcWkkQ58hbFIdIy' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'lbiplGcWkkQ58hbFIdIy' } ]
+[info] >  Inicia ingesta a completar063835
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-8-Grupo
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: '2CaBIRXS5qjDBWXfv0OC' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: '2CaBIRXS5qjDBWXfv0OC' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_prom
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  { date: 2020-03-13T05:00:00.000Z, id: 'DqjnxWvEIZPl1TFPJFnG' }
+[info] >  1
+[info] >  [ { date: 2020-03-13T05:00:00.000Z, id: 'DqjnxWvEIZPl1TFPJFnG' } ]
+[info] >  Inicia ingesta a completar100523
+[info] >  14/03/2020
+[info] >  14/03/2020
+[info] >  Pendiente de carga: true===precio_max
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' }
+[info] >  1
+[info] >  [ { date: 2004-06-15T05:00:00.000Z, id: 'a7Hv1W2hM9xi1kDLWKbT' } ]
+[info] >  Inicia ingesta a completar021802
+[info] >  14/03/2020
+[info] >  16/06/2004
+[info] >  Pendiente de carga: true===precio_max
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'dWJO8KtzevnMpBvMgdXE' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'dWJO8KtzevnMpBvMgdXE' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_min
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  { date: 2020-03-14T05:00:00.000Z, id: 'idrIjtuV7Cxe1BbBLXnd' }
+[info] >  1
+[info] >  [ { date: 2020-03-14T05:00:00.000Z, id: 'idrIjtuV7Cxe1BbBLXnd' } ]
+[info] >  Inicia ingesta a completar040102
+[info] >  14/03/2020
+[info] >  15/03/2020
+[info] >  Pendiente de carga: false===precio_max
+[info] >  No hay nuevos datos para actualizar, fecha de ultima carga: 2020-03-14
+[info] >  Actualizado====> 1
+[info] >  Se ingesto-2-Grupo
+[info] >  Finaliza ingesta de021814 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-10-Grupo
+[info] >  Actualizado====> 0
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  0
+[info] >  []
+[info] >  Inicia ingesta de total 101612
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-3-Grupo
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-9-Grupo
+[info] >  Finaliza ingesta de101612 : 0
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-1-Grupo
+[info] >  Actualizado====> 0
+[info] >  Se ingesto-7-Grupo
+[info] >  Sisap precios ===> 8000
+[info] >  Sisap precios ===> 8041
+[info] >  19
+[info] >  18
+[info] >  17
+[info] >  Sisap precios ===> 6400
+[info] >  20
+[info] >  16
+[info] >  19
+[info] >  18
+[info] >  15
+[info] >  17
+[info] >  14
+[info] >  16
+[info] >  15
+[info] >  15
+[info] >  13
+[info] >  14
+[info] >  14
+[info] >  12
+[info] >  13
+[info] >  13
+[info] >  12
+[info] >  11
+[info] >  12
+[info] >  11
+[info] >  Se agrego:  41  objetos
+[info] >  10
+[info] >  11
+[info] >  10
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  9
+[info] >  9
+[info] >  10
+[info] >  8
+[info] >  8
+[info] >  9
+[info] >  7
+[info] >  7
+[info] >  6
+[info] >  8
+[info] >  5
+[info] >  6
+[info] >  7
+[info] >  4
+[info] >  5
+[info] >  6
+[info] >  3
+[info] >  2
+[info] >  4
+[info] >  5
+[info] >  1
+[info] >  3
+[info] >  4
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  2
+[info] >  3
+[info] >  1
+[info] >  2
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  1
+[info] >  0
+[info] >  Objeto descripcion no se agrego: 0 => [object Object]
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  ingesta subGrupo terminado======> 20
+[info] >  actualizado precio_prom
+[info] >  Actualizado====> 20
+[info] >  Se agrego:  400  objetos
+[info] >  Se agrego:  400  objetos
+[info] >  ingesta subGrupo terminado======> 21
+[info] >  ingesta subGrupo terminado======> 16
+[info] >  actualizado precio_max
+[info] >  Finaliza ingesta de010103 : 21
+[info] >  Actualizado====> 16
+[info] >  Actualizado====> 21
+[info] >  Se ingesto-14-Grupo
+[info] >  Se ingesto #996 registros
+[info] i  functions: Finished "api" in ~77s

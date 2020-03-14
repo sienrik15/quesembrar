@@ -9,21 +9,35 @@
      <div class="container is-fullhd">
         <div class="notification">
             <section class="section box-search">
-                    <div class="container">
+                    <!--<div class="container">
                         <div class="title">
                            Que puedo sembrar
                         </div>
                         <h1 class="subtitle">
                             Analisis y Monitoreo de precios en cultivos para planificar que sembrar
                         </h1>
-                    </div>
-                    <div>
-                        <div class="buttons">
+                    </div>-->
+                    <div class="columns is-desktop is-multiline is-centered">
+                        <!--<div class="buttons">
                             <button class="button is-primary is-light">Primary</button>
                             <button class="button is-link is-light">Link</button>
-                        </div>
+                            &lt;!&ndash;<vc-date-picker
+                                    mode="range"
+                                    :value="null"
+                                    color="green"
+                                    is-inline
+                            />&ndash;&gt;
+                        </div>-->
 
-                        <v-select class="v-select-custom" label="name" :filterable="false" :options="optionCrops" @input="onOptionSelected" v-model="valueOption" @search="onSearch">
+
+                        <v-select class="v-select-custom column is-one-third is-narrow"
+                                  label="name"
+                                  :filterable="false"
+                                  :options="optionCrops"
+                                  @input="onOptionSelected"
+                                  v-model="valueOption"
+                                  @search="onSearch">
+
                             <template slot="no-options">
                                 Escribe el nombre cultivo o producto
                             </template>
@@ -40,6 +54,17 @@
                                 </div>
                             </template>
                         </v-select>
+
+                        <vc-date-picker
+                                class="column vc-appearance-style is-one-fifth is-narrow"
+                                mode='range'
+                                v-model='rangeDate'
+                                color="green"
+                        />
+
+                        <div class="column is-narrow">
+                            <button class="button is-success" style="border-radius: 20px;">Buscar</button>
+                        </div>
 
                     </div>
 
@@ -95,10 +120,8 @@
                 </div>
                 </div>
             </section>  -->
-            <section class="section">
-                <div class="container" >
+            <section class="section chart-container" style="background-color: #18314d">
                     <canvas id="myChart"></canvas>
-                </div>
             </section>
         </div>
     </div>
@@ -108,7 +131,7 @@
 
 <script>
     import Chart from 'chart.js';
-    import TradingVue from 'trading-vue-js'
+    //import TradingVue from 'trading-vue-js'
     import Data from '../data/data.json'
     import _ from 'lodash'
     import  'chartjs-plugin-zoom';
@@ -118,10 +141,10 @@
     export default {
         name: "Dashboard",
         components:{
-            TradingVue
+            //TradingVue
         },
         methods: {
-            onResize(event) {
+            onResize() {
                 this.width = window.innerWidth;
                 this.height = window.innerHeight
             },
@@ -141,12 +164,13 @@
                         vm.optionCrops = colectionOptions;
                         loading(false);
                 }).catch(err=>{
-                    console.log(err)
+                    //console.log(err)
+                    err.toString()
                 });
 
             }, 350),
             onOptionSelected(){
-                console.log(this.valueOption);
+                //console.log(this.valueOption);
                 if (!this.valueOption) return
                 let price_type_id = "dsE4vwVF1JyfWVOVLgYA";
                 let market_id = "3BeNPYEum6Wvw1z2dFHw";
@@ -156,8 +180,8 @@
                 pricesDB = pricesDB.where("price_type_id","==",price_type_id);
                 pricesDB = pricesDB.where("market_id","==",market_id);
                 pricesDB = pricesDB.where("crops_id","==",crops_id);
-                pricesDB = pricesDB.where("date",">=",moment("2019-12-01").toDate());
-                pricesDB = pricesDB.where("date","<=",moment().toDate());
+                pricesDB = pricesDB.where("date",">=",moment(this.rangeDate.start).toDate());
+                pricesDB = pricesDB.where("date","<=",moment(this.rangeDate.end).toDate());
                 pricesDB = pricesDB.orderBy('date');//.limit(365);
                 pricesDB.get().then(snap => {
                     const prices_data = [];
@@ -168,23 +192,24 @@
                     });
                     this.value_list = prices_data;
                     this.date_list = date_list;
-                    console.log(date_list);
-                    console.log(prices_data);
+                    //console.log(date_list);
+                    //console.log(prices_data);
                     this.updateChartConf();
                 }).catch(err=>{
-                    console.log(err)
+                    //console.log(err)
+                    err.toString()
                 });
 
             },
             initConfigChart(){
                 this.start_date = moment(this.date_list[0]).format(this.timeFormat);
                 this.end_date = moment(this.date_list[this.date_list.length-1]).format(this.timeFormat);
-                console.log("end-date");
-                console.log(this.end_date);
+                //console.log("end-date");
+                //console.log(this.end_date);
                 //console.log(moment().clone().add(1, 'd').toDate());
                 this.range_min = moment(this.date_list[0],this.timeFormat);
                 this.range_min = moment(this.range_min.toDate()-10).format(this.timeFormat);
-                this.range_max =  moment(this.date_list[this.date_list.length-1],this.timeFormat);
+                this.range_max = moment(this.date_list[this.date_list.length-1],this.timeFormat);
                 this.range_max = moment(this.range_max.toDate()+10).format(this.timeFormat);
             },
             updateChartConf(){
@@ -194,39 +219,61 @@
                    return vl
                 });
                 this.initConfigChart();
-                let dragOptions = {
-                    animationDuration: 1000
-                };
 
 
                 this.startChart.data = {
                     labels: this.date_list,
                     datasets: [
                         {
-                            label:this.valueOption?this.valueOption.name_es:"",
+                            label:this.valueOption?this.valueOption.name_es:"legend_name",
                             fill: false,
                             backgroundColor: ['rgba(71, 183,132,.5)'],
                             data: this.value_list,
-                            borderColor: ["#47b784"],
+                            borderColor:"#47b784", //["#47b784"],
                             borderDash: [5, 5],
+                            pointBorderWidth:1,
+                            pointRadius:5,
+                            lineTension:0.2,
+                            pointHitRadius:5,
+                            pointHoverBorderWidth:6,
+                            borderWidth:1,
+                            //pointStyle:'star',
+                            //pointBackgroundColor:'rgba(71, 183,132,.5)'
                         }
                     ]
                 };
                 this.startChart.options = {
                     responsive: true,
+                    legend:{
+                        position: "top",
+                        align: "start",
+                        labels: {
+                            fontColor: "#fff",
+                        }
+                    },
                     title: {
-                        display: true,
-                        text: "Precios de productos"
+                        display: false,
+                        text: "Precios de productos",
+                        fontColor: "#fff",
                     },
                     scales:{
                         yAxes: [{
                             type: 'linear',
                             ticks: {
                                 beginAtZero: true,
+                                fontColor: "#fff",
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: "Precio"
+                                labelString: "Precio",
+                                fontColor: "#fff",
+                            },
+                            gridLines: {
+                                color: 'rgba(255, 255, 255, 0.2)',
+                                //zeroLineWidth: 2,
+                                //zeroLineColor: "rgba(255, 255, 255, 0.4)",
+                                //lineWidth: 3,
+                                //display:false
                             }
                         },
                         ],
@@ -248,11 +295,18 @@
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: "Date"
+                                labelString: "Date",
+                                fontColor: "#fff",
                             },
                             ticks: {
                                 maxRotation: 0,
                                 beginAtZero: true,
+                                fontColor: "#fff",
+                            },
+                            gridLines: {
+                                color: 'rgba(255, 255, 255, 0.2)',
+                                //lineWidth: 3,
+                                //display:false
                             }
                         }],
                     },
@@ -260,16 +314,26 @@
                         enabled: true,
                         mode: "xy",
                         speed: 10,
+                        rangeMin: {
+                            y: 0,
+                        },
+                        /*rangeMax: {
+                            y: 11
+                        },*/
                         threshold: 10
                     },
                     zoom: {
                         enabled: true,
                         drag: false,
-                        mode: "xy",
+                        mode: "x",
+                        //threshold: 10,
                         limits: {
                             max: 10,
                             min: 0.5
-                        }
+                        },
+                        //speed: 0.1,
+                        //sensitivity: 10,
+
                     }
                     /*pan: {
                         enabled: true,
@@ -297,7 +361,7 @@
                         sensitivity:0.001,
                         drag: false
                     },*/
-                }
+                };
 
                 /*this.startChart.data = {
                     labels: [this.newDate(0), this.newDate(1), this.newDate(2), this.newDate(3), this.newDate(4), this.newDate(5), this.newDate(6)], // Date Objects
@@ -329,6 +393,13 @@
                 };*/
                 /*this.startChart.options = {
                     responsive: true,
+                    legend:{
+                        position: "top",
+                        align: "start",
+                        labels: {
+                            fontColor: "#fff",
+                        }
+                    },
                     title: {
                         display: true,
                         text: "Chart.js Time Scale"
@@ -436,6 +507,10 @@
                 range_max : "",
                 startChart:null,
                 timeFormat:"",
+                rangeDate:{
+                    start:moment("2020-01-01").toDate(), //moment("2019-01-01"), // Jan 16th, 2018
+                    end: moment().toDate(),   // Jan 19th, 2018
+                }
             }
         },
         mounted(){
@@ -446,7 +521,8 @@
             this.startChart = new Chart(ctx, {
                 type: "line",
                 data: {},
-                options: {}
+                options: {},
+
             });
             this.updateChartConf();
         },
@@ -459,9 +535,25 @@
 
 <style lang="stylus">
 
+    .chart-container
+        height: 100vh
+        width: 100vw
+        max-width: none;
+        padding-top 60px !important
+
+
+    .notification
+        padding 0 !important
+        section
+            padding 0
+
     .box-search
-        padding-bottom: 10px !important
-        padding-top: 30px !important
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 10;
+        padding-top: 18px !important;
+        padding-bottom: 18px !important;
 
     canvas
         -moz-user-select: none;
@@ -469,7 +561,37 @@
         -ms-user-select: none;
 
 
+    .column
+        padding: 10px 3px !important;
+
+    .vc-appearance-style
+        input
+            border-radius 20px
+            height: 2.5em;
+            border: solid 1px;
+            border-color: #cbd5e0;
+
     .v-select-custom
+        .vs__dropdown-menu
+            top: calc(100% - 9px) !important;
+            margin: 0px 3px;
+            width: 99%;
+
+        .vs__dropdown-toggle
+            border-radius 20px
+            border solid 1px
+            height: 2.4em;
+            background: #fff;
+            padding: 0;
+            border-color: #cbd5e0;
+            input
+                margin: 0 0;
+                padding: 0;
+            .vs__actions
+                svg
+                    fill: #cbd5e0;
+
+
         img
             height: auto;
             max-width: 2.5rem;
