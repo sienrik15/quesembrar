@@ -142,8 +142,11 @@
             onSearch(search, loading) {
                 loading(true);
                 this.search(loading, search, this);
+
+
             },
             search: _.debounce((loading, search, vm) => {
+                search = search.trim().toLowerCase();
                 if (search.length <= 0){ return loading(false); }
                 let db = vm.$firebase.firestore();
                 db.collection('agricultural_crops').orderBy('name_es')
@@ -153,7 +156,25 @@
                             colectionOptions.push(doc.data());
                         });
                         vm.optionCrops = colectionOptions;
+
                         loading(false);
+                }).then(()=>{
+                    setTimeout( () => {
+
+                        if (vm.isMobile()){
+                            let countImg = 0;
+                            vm.optionCrops.map(vl=>{
+                                if(vl.image_url!==""){
+                                    countImg++;
+                                }
+                            });
+                            let maxLength = vm.optionCrops.length<13?vm.optionCrops.length:12;
+                            let classStyle = vm.$el.getElementsByClassName("vs__dropdown-menu");
+                            let topSize = -1*((28*(maxLength-countImg))+(50*countImg));
+                            classStyle[0].setAttribute('style','top:' + topSize + 'px' + '!important');
+                        }
+
+                    }).bind(vm, 1500);
                 }).catch(err=>{
                     //console.log(err)
                     err.toString()
@@ -569,14 +590,75 @@
         max-width: none;
         padding-top 60px !important
 
+    .v-select-custom
+        .vs__dropdown-menu
+            top: calc(100% - 10px);
+            margin: 0px 3px;
+            width: 99%;
+
+        .vs__dropdown-toggle
+            border-radius 20px
+            border solid 1px
+            height: 2.4em;
+            background: #fff;
+            padding: 0;
+            border-color: #cbd5e0;
+            input
+                margin: 0 0;
+                padding: 0;
+            .vs__actions
+                svg
+                    fill: #cbd5e0;
+
+        img
+            height: auto;
+            max-width: 2.5rem;
+            margin-right: 1rem;
+        .d-center
+            display: flex;
+            align-items: center;
+
+
+        .selected
+            img
+                width: auto;
+                max-height: 23px;
+                margin-right: 0.5rem;
+
+
+        .v-select
+            .dropdown
+                li
+                    border-bottom: 1px solid rgba(112, 128, 144, 0.1);
+
+        .v-select
+            .dropdown
+                li:last-child
+                    border-bottom: none;
+
+        .v-select
+            .dropdown
+                li
+                    a
+                        padding: 10px 20px;
+                        width: 100%;
+                        font-size: 1.25em;
+                        color: #3c3c3c;
+
+        .v-select
+            .dropdown-menu
+                .active > a
+                    color: #fff
+
+
     @media only screen and (min-width: 320px) and (max-width: 750px)
         .notification
             height: 100vh !important;
 
         .chart-container
-            padding-top 10px !important
+            padding-top 50px !important
             //padding-bottom  10px !important
-            height: 90vh !important
+            height: 80vh !important
 
         .is-one-third
             width: 35% !important;
@@ -591,7 +673,10 @@
         .box-search
             bottom: 0 !important;
             top: unset !important;
-
+        .v-select-custom
+            .vs__dropdown-menu
+                top: -29px;
+                width 250px;
 
 
     .notification
@@ -624,70 +709,6 @@
             height: 2.5em;
             border: solid 1px;
             border-color: #cbd5e0;
-
-    .v-select-custom
-        .vs__dropdown-menu
-            top: calc(100% - 10px) !important;
-            margin: 0px 3px;
-            width: 99%;
-
-        .vs__dropdown-toggle
-            border-radius 20px
-            border solid 1px
-            height: 2.4em;
-            background: #fff;
-            padding: 0;
-            border-color: #cbd5e0;
-            input
-                margin: 0 0;
-                padding: 0;
-            .vs__actions
-                svg
-                    fill: #cbd5e0;
-
-
-        img
-            height: auto;
-            max-width: 2.5rem;
-            margin-right: 1rem;
-        .d-center
-            display: flex;
-            align-items: center;
-
-
-        .selected
-            img
-                width: auto;
-                max-height: 23px;
-                margin-right: 0.5rem;
-
-
-        .v-select
-            .dropdown
-                li
-                    border-bottom: 1px solid rgba(112, 128, 144, 0.1);
-
-
-        .v-select
-            .dropdown
-                li:last-child
-                    border-bottom: none;
-
-
-        .v-select
-            .dropdown
-                li
-                    a
-                        padding: 10px 20px;
-                        width: 100%;
-                        font-size: 1.25em;
-                        color: #3c3c3c;
-
-
-        .v-select
-            .dropdown-menu
-                .active > a
-                    color: #fff
 
 
     .loader-wrapper

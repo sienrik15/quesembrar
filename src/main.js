@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vSelect from 'vue-select'
+import Multiselect from 'vue-multiselect'
 //const path = require('path');
 import 'vue-select/dist/vue-select.css';
 import './assets/styles/main.styl'
@@ -15,6 +16,8 @@ import VCalendar from 'v-calendar';
 library.add(faCheck)
 Vue.component('f-icon', FontAwesomeIcon);
 Vue.component('v-select', vSelect);
+Vue.component('v-multiselect', Multiselect);
+
 
 import firebase from 'firebase';
 require('firebase/firestore');
