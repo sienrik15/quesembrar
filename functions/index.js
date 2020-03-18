@@ -595,7 +595,7 @@ async function updateAllProductsDB(res){
         new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 14){
+                if (k1 >= 21){
                     resolve();
                     return 0
                 }

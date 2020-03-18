@@ -7,7 +7,10 @@
     </trading-vue>-->
 
      <div class="container is-fullhd">
-        <div class="notification">
+        <div class="notification" style="background-color: #18314d">
+            <div v-if="loading" class="loader-wrapper">
+                <div class="loader is-loading"></div>
+            </div>
             <section class="section box-search">
                     <!--<div class="container">
                         <div class="title">
@@ -17,26 +20,15 @@
                             Analisis y Monitoreo de precios en cultivos para planificar que sembrar
                         </h1>
                     </div>-->
-                    <div class="columns is-desktop is-multiline is-centered">
-                        <!--<div class="buttons">
-                            <button class="button is-primary is-light">Primary</button>
-                            <button class="button is-link is-light">Link</button>
-                            &lt;!&ndash;<vc-date-picker
-                                    mode="range"
-                                    :value="null"
-                                    color="green"
-                                    is-inline
-                            />&ndash;&gt;
-                        </div>-->
-
+                    <div class="columns is-desktop is-mobile is-multiline is-centered">
 
                         <v-select class="v-select-custom column is-one-third is-narrow"
                                   label="name"
                                   :filterable="false"
                                   :options="optionCrops"
-                                  @input="onOptionSelected"
                                   v-model="valueOption"
                                   @search="onSearch">
+                            <!--@input="onOptionSelected"-->
 
                             <template slot="no-options">
                                 Escribe el nombre cultivo o producto
@@ -55,15 +47,14 @@
                             </template>
                         </v-select>
 
-                        <vc-date-picker
-                                class="column vc-appearance-style is-one-fifth is-narrow"
+                        <vc-date-picker class="column vc-appearance-style is-one-fifth is-narrow"
                                 mode='range'
                                 v-model='rangeDate'
                                 color="green"
                         />
 
-                        <div class="column is-narrow">
-                            <button class="button is-success" style="border-radius: 20px;">Buscar</button>
+                        <div class="column cl-btn-search is-narrow">
+                            <button class="button is-success" style="border-radius: 20px;" @click="onOptionSelected">Buscar</button>
                         </div>
 
                     </div>
@@ -120,7 +111,7 @@
                 </div>
                 </div>
             </section>  -->
-            <section class="section chart-container" style="background-color: #18314d">
+            <section class="section chart-container">
                     <canvas id="myChart"></canvas>
             </section>
         </div>
@@ -171,7 +162,8 @@
             }, 350),
             onOptionSelected(){
                 //console.log(this.valueOption);
-                if (!this.valueOption) return
+                if (!this.valueOption) return;
+                this.loading = true;
                 let price_type_id = "dsE4vwVF1JyfWVOVLgYA";
                 let market_id = "3BeNPYEum6Wvw1z2dFHw";
                 let crops_id = this.valueOption.id;
@@ -190,6 +182,7 @@
                         prices_data.push(doc.data().price);
                         date_list.push(doc.data().date.toDate());
                     });
+                    this.loading = false;
                     this.value_list = prices_data;
                     this.date_list = date_list;
                     //console.log(date_list);
@@ -197,7 +190,8 @@
                     this.updateChartConf();
                 }).catch(err=>{
                     //console.log(err)
-                    err.toString()
+                    this.loading = false;
+                    err.toString();
                 });
 
             },
@@ -211,6 +205,27 @@
                 this.range_min = moment(this.range_min.toDate()-10).format(this.timeFormat);
                 this.range_max = moment(this.date_list[this.date_list.length-1],this.timeFormat);
                 this.range_max = moment(this.range_max.toDate()+10).format(this.timeFormat);
+            },
+            getSizeRadius(){
+                let max = 6;
+                let listMax = 60;
+                let lengthSize = this.date_list.length;
+                //let lengthMax = (60x5)/x>70?x:60;
+                /*let pointRadius = 5
+                let pointHitRadius = 5
+                let pointHoverBorderWidth = 6*/
+                let sizeRadius = Math.round((max*listMax)/((lengthSize>listMax)?lengthSize:listMax));
+                //this.console.log(sizeRadius)
+                return sizeRadius<=1?1:sizeRadius;
+            },
+            getSizeHitRadius(){
+
+            },
+            getSizeHoverBorderWicth(){
+
+            },
+            isMobile() {
+                return ( window.innerWidth <= 750 ); //&& ( window.innerHeight <= 600 );
             },
             updateChartConf(){
                 this.timeFormat = "MM/DD/YYYY HH:mm";
@@ -232,7 +247,7 @@
                             borderColor:"#47b784", //["#47b784"],
                             borderDash: [5, 5],
                             pointBorderWidth:1,
-                            pointRadius:5,
+                            pointRadius:this.getSizeRadius(),
                             lineTension:0.2,
                             pointHitRadius:5,
                             pointHoverBorderWidth:6,
@@ -244,6 +259,7 @@
                 };
                 this.startChart.options = {
                     responsive: true,
+                    maintainAspectRatio: false,
                     legend:{
                         position: "top",
                         align: "start",
@@ -262,11 +278,16 @@
                             ticks: {
                                 beginAtZero: true,
                                 fontColor: "#fff",
+                                fontSize:this.isMobile()?10:14,
+                                callback: (label) =>{
+                                    return Math.round(label)+' S/';
+                                }
                             },
                             scaleLabel: {
                                 display: true,
                                 labelString: "Precio",
                                 fontColor: "#fff",
+                                fontSize:this.isMobile()?14:24,
                             },
                             gridLines: {
                                 color: 'rgba(255, 255, 255, 0.2)',
@@ -288,20 +309,22 @@
                                 max: this.end_date,
                                 minUnit:'day',
                                 displayFormats: {
-                                    'day': 'MMMM-Do YY' //'ll'
+                                    'day': 'MMM-Do YY' //'ll'
                                 },
                                 //unit:'day',
                                 //stepSize: "1",
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: "Date",
+                                labelString: "Fechas",
                                 fontColor: "#fff",
+                                fontSize:this.isMobile()?14:24,
                             },
                             ticks: {
-                                maxRotation: 0,
+                                maxRotation: this.isMobile()?26:0,
                                 beginAtZero: true,
                                 fontColor: "#fff",
+                                fontSize:this.isMobile()?10:14
                             },
                             gridLines: {
                                 color: 'rgba(255, 255, 255, 0.2)',
@@ -462,6 +485,7 @@
 
                 this.startChart.update();
             },
+
             randomScalingFactor() {
                 return Math.round(Math.random() * 100 * (Math.random() > 0.5 ? -1 : 1));
             },
@@ -510,8 +534,12 @@
                 rangeDate:{
                     start:moment("2020-01-01").toDate(), //moment("2019-01-01"), // Jan 16th, 2018
                     end: moment().toDate(),   // Jan 19th, 2018
-                }
-            }
+                },
+                loading: false,
+                /*pointRadius: 5,
+                pointHitRadius: 5,
+                pointHoverBorderWidth: 6*/
+        }
         },
         mounted(){
             window.addEventListener('resize', this.onResize);
@@ -541,6 +569,30 @@
         max-width: none;
         padding-top 60px !important
 
+    @media only screen and (min-width: 320px) and (max-width: 750px)
+        .notification
+            height: 100vh !important;
+
+        .chart-container
+            padding-top 10px !important
+            //padding-bottom  10px !important
+            height: 90vh !important
+
+        .is-one-third
+            width: 35% !important;
+            font-size: 14px !important;
+        .is-one-fifth
+            width: 35% !important;
+            input
+                font-size 14px !important
+        .cl-btn-search
+            button
+                font-size: 14px !important;
+        .box-search
+            bottom: 0 !important;
+            top: unset !important;
+
+
 
     .notification
         padding 0 !important
@@ -559,6 +611,8 @@
         -moz-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
+        //min-height:850px
+        //height: 80vh/500px/whatever
 
 
     .column
@@ -573,7 +627,7 @@
 
     .v-select-custom
         .vs__dropdown-menu
-            top: calc(100% - 9px) !important;
+            top: calc(100% - 10px) !important;
             margin: 0px 3px;
             width: 99%;
 
@@ -634,6 +688,27 @@
             .dropdown-menu
                 .active > a
                     color: #fff
+
+
+    .loader-wrapper
+        position absolute
+        top 0
+        left 0
+        height 100%
+        width 100%
+        background #47c77359
+        transition opacity .3s
+        display flex
+        justify-content center
+        align-items center
+        border-radius 6px
+        opacity 1
+        z-index 1
+        .loader
+            height 80px
+            width 80px
+            opacity 1
+            z-index 1
 
 
 </style>
