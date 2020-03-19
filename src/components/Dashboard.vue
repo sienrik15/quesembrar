@@ -603,12 +603,22 @@
             background: #fff;
             padding: 0;
             border-color: #cbd5e0;
-            input
-                margin: 0 0;
-                padding: 0;
             .vs__actions
                 svg
                     fill: #cbd5e0;
+            .vs__selected-options
+                .vs__selected
+                    width: 100%;
+                    position: absolute;
+                    .selected
+                        width: 100%;
+                        white-space: nowrap;
+                        overflow-x: hidden;
+                        text-overflow: ellipsis;
+                input
+                    margin: 0 0;
+                    padding: 0;
+
 
         img
             height: auto;

@@ -240,10 +240,10 @@ app.get('/delet-collection', async (req, res) => {
 app.get('/', async (req, res) => {
     console.log("Hola quesembrar");
     //res.send("Hola quesembrar");
-    let  priceRef = db.collection('prices');
+    //let  priceRef = db.collection('prices');
     //priceRef = await priceRef.where('price', '>', "0");
     //priceRef = await priceRef.where("crops_id","==","08XDzSuu8cxyiZgauQcl");
-    priceRef = await priceRef.orderBy("date", "desc").limit(10);
+    /*priceRef = await priceRef.orderBy("date", "desc").limit(10);
     let response = await priceRef.get().then(async value => {
         let resData = [];
         await value.forEach(doc => {
@@ -259,7 +259,47 @@ app.get('/', async (req, res) => {
         res.send(resData);
 
         return value.size;
+    });*/
+
+//Product list
+
+    let agriculturalCrops = db.collection('agricultural_crops');
+    await agriculturalCrops.get().then(async value => {
+
+        let resPrice = [];
+        await value.forEach(async doc => {
+            //res.push(doc.data());
+            let  priceRef = db.collection('prices');
+            priceRef = priceRef.where("crops_id","==",doc.data().id);
+            priceRef =  priceRef.orderBy("date", "desc").limit(1);
+            await priceRef.get().then( async prices => {
+
+                await prices.forEach( async docPrs => {
+                    let object = {};
+                    object["date"] = docPrs.data().date.toDate();
+                    object["price"] = docPrs.data().price;
+                    object["id"] = doc.data().id;
+                    object["name_es"] = doc.data().name_es;
+                    await resPrice.push(object);
+                    console.log(object);
+
+                    if (resPrice.length >= 21){
+                        console.log(resPrice);
+                        res.send(resPrice);
+                    }
+
+                });
+
+            })
+
+        });
+
+
+
+    }).catch(err => {
+        console.log('Error getting documents', err);
     });
+
     //await getProductCrops(res)
 });
 
@@ -595,7 +635,7 @@ async function updateAllProductsDB(res){
         new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 22){
+                if (k1 >= 26){
                     resolve();
                     return 0
                 }
