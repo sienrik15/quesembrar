@@ -1,0 +1,32 @@
+[debug] [2020-03-20T08:16:13.841Z] ----------------------------------------------------------------------
+[debug] [2020-03-20T08:16:13.843Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2020-03-20T08:16:13.843Z] CLI Version:   7.3.1
+[debug] [2020-03-20T08:16:13.843Z] Platform:      darwin
+[debug] [2020-03-20T08:16:13.843Z] Node Version:  v10.15.0
+[debug] [2020-03-20T08:16:13.844Z] Time:          Fri Mar 20 2020 03:16:13 GMT-0500 (Peru Standard Time)
+[debug] [2020-03-20T08:16:13.844Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2020-03-20T08:16:13.856Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-20T08:16:13.856Z] > authorizing via signed-in user
+[debug] [2020-03-20T08:16:13.856Z] [iam] checking project agroanalytics-b2462 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-03-20T08:16:13.858Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/agroanalytics-b2462:testIamPermissions  
+
+[debug] [2020-03-20T08:16:15.214Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-20T08:16:15.218Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/agroanalytics-b2462  
+ 
+[debug] [2020-03-20T08:16:15.713Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'agroanalytics-b2462'...
+[info] 
+[info] i  deploying database, storage, firestore, functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] ✔  functions: Finished running predeploy script.
+[info] i  database: checking rules syntax...
+[debug] [2020-03-20T08:16:21.983Z] >>> HTTP REQUEST PUT https://agroanalytics-b2462.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".read": false,
+    ".write": false
+  }
+}

@@ -35,13 +35,13 @@
                             </template>
                             <template slot="option" slot-scope="option">
                                 <div class="d-center">
-                                    <img :src='option.image_url'/>
+                                    <img :src='option.icon_url'/>
                                     {{ option.name_es }}
                                 </div>
                             </template>
                             <template slot="selected-option" slot-scope="option">
                                 <div class="selected d-center">
-                                    <img :src='option.image_url'/>
+                                    <img :src='option.icon_url'/>
                                     {{ option.name_es }}
                                 </div>
                             </template>
@@ -152,11 +152,17 @@
                 db.collection('agricultural_crops').orderBy('name_es')
                     .startAt(search).endAt(search+'\uf8ff').get().then(snap => {
                         const colectionOptions = [];
-                        snap.forEach(doc => {
-                            colectionOptions.push(doc.data());
-                        });
-                        vm.optionCrops = colectionOptions;
+                        snap.forEach(async doc => {
+                            let data = {};
 
+                            data.icon_url = await vm.downloadIcon(doc.data().icon_url);
+                            data.name_es = doc.data().name_es;
+                            data.id = doc.data().id;
+                            colectionOptions.push(data);
+                        });
+
+                        //console.log(colectionOptions)
+                        vm.optionCrops = colectionOptions;
                         loading(false);
                 }).then(()=>{
                     setTimeout( () => {
@@ -245,6 +251,17 @@
             getSizeHoverBorderWicth(){
 
             },
+            downloadIcon(img_name){
+                if (!img_name || (img_name && img_name==="")){
+                    return "";
+                }
+                return this.storageIconRef.child(img_name).getDownloadURL().then((url) => {
+                    return url
+                }).catch((error)=> {
+                    console.log(error.code);
+                    return ""
+                });
+            },
             isMobile() {
                 return ( window.innerWidth <= 750 ); //&& ( window.innerHeight <= 600 );
             },
@@ -326,8 +343,6 @@
                                 parser: this.timeFormat,
                                 //round: 'll',
                                 tooltipFormat: "ll",//"ll HH:mm",
-                                min: this.start_date,
-                                max: this.end_date,
                                 minUnit:'day',
                                 displayFormats: {
                                     'day': 'MMM-Do YY' //'ll'
@@ -345,7 +360,9 @@
                                 maxRotation: this.isMobile()?26:0,
                                 beginAtZero: true,
                                 fontColor: "#fff",
-                                fontSize:this.isMobile()?10:14
+                                fontSize:this.isMobile()?10:14,
+                                min: this.start_date,
+                                max: this.end_date,
                             },
                             gridLines: {
                                 color: 'rgba(255, 255, 255, 0.2)',
@@ -557,6 +574,7 @@
                     end: moment().toDate(),   // Jan 19th, 2018
                 },
                 loading: false,
+                storageIconRef:null,
                 /*pointRadius: 5,
                 pointHitRadius: 5,
                 pointHoverBorderWidth: 6*/
@@ -565,6 +583,8 @@
         mounted(){
             window.addEventListener('resize', this.onResize);
             //let ctx = document.getElementById("myChart");
+            this.storageIconRef = this.$firebase.storage().ref().child("gricultural_icons");
+
             let ctx = document.getElementById('myChart').getContext('2d');
             /* eslint-disable */
             this.startChart = new Chart(ctx, {
@@ -607,14 +627,6 @@
                 svg
                     fill: #cbd5e0;
             .vs__selected-options
-                .vs__selected
-                    width: 100%;
-                    position: absolute;
-                    .selected
-                        width: 100%;
-                        white-space: nowrap;
-                        overflow-x: hidden;
-                        text-overflow: ellipsis;
                 input
                     margin: 0 0;
                     padding: 0;
@@ -687,6 +699,21 @@
             .vs__dropdown-menu
                 top: -29px;
                 width 250px;
+
+        .vs__selected-options
+            padding: 0 0 !important;
+            .vs__selected
+                line-height: 1.6;
+                width: 100%;
+                position: absolute;
+                .selected
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow-x: hidden;
+                    text-overflow: ellipsis;
+            input
+                margin: 0 0;
+                padding: 0;
 
 
     .notification

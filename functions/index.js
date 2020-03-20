@@ -19,14 +19,14 @@ moment.locale('es-do');
 
 
 //Prod
-//admin.initializeApp(functions.config().firebase);
+admin.initializeApp(functions.config().firebase);
 
 //Local
-const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
+/*const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://agroanalytics-b2462.firebaseio.com"
-});
+});*/
 
 const db = admin.firestore();
 db.settings({ timestampsInSnapshots: true });
