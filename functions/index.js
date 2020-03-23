@@ -19,14 +19,14 @@ moment.locale('es-do');
 
 
 //Prod
-admin.initializeApp(functions.config().firebase);
+//admin.initializeApp(functions.config().firebase);
 
 //Local
-/*const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
+const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://agroanalytics-b2462.firebaseio.com"
-});*/
+});
 
 const db = admin.firestore();
 db.settings({ timestampsInSnapshots: true });
@@ -109,10 +109,59 @@ deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
 
 // Post Producto por mercado : http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado  mercado: * (empty) ajax: true
 // Post subproducto de producto : http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/variedades/filtrarPorGenero expandir: 0231~checkBox (empty) ajax: true
+makeIdProducts = async ()=>{
+    let productList = [];
+    console.log("inite");
 
+    for ( let i=1; i<=13;i++){
+        for (let j=1; j<=32;j++){
+            let sI = (i<10)?"0":"";
+            let ej = (j<10)?"0":"";
+
+            let id = sI+i+ej+j;
+            let objectPor = {};
+            objectPor.id = id;
+            objectPor.name = "";
+            productList.push(objectPor)
+        }
+    }
+    //console.log(productList.length);
+
+
+    /*let agriculturalCrops = db.collection('agricultural_crops');
+    let agroCrops = await agriculturalCrops.get().then(async value => {
+
+        let resProducts = [];
+        await value.forEach(async doc => {
+            //res.push(doc.data());
+            let object = {};
+            //object["id"] = doc.data().id;
+            object["name_es"] = doc.data().name_es;
+            object["id_ref"] = doc.data().id_ref;
+            resProducts.push(object);
+        });
+
+        return resProducts
+
+    }).catch(err => {
+        console.log('Error getting documents', err);
+    });
+
+
+    let productUpdate = productList.map((vlPr,index) => {
+        agroCrops.map(vlAgro => {
+            if (vlAgro.id_ref === vlPr.id){
+                console.log(vlAgro.id_ref);
+                delete productList[index];
+            }
+        });
+    });*/
+
+    return productList
+};
 
 getProductCrops = async (res)=>{
-    let resProMercado = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado',
+    /*let resProMercado = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado',
         querystring.stringify({
             mercado: '*'
         }));
@@ -125,11 +174,34 @@ getProductCrops = async (res)=>{
         modelProduct.id = vl.child[0].child[0].attr.value;
         modelProduct.name = vl.child[2].text === 'Pi�a'?'piña':vl.child[2].text.toLowerCase();
         productList.push(modelProduct)
+    });*/
+
+    let agriculturalCrops = db.collection('agricultural_crops');
+    let agroCrops = await agriculturalCrops.get().then(async value => {
+
+        let resProducts = [];
+        await value.forEach(async doc => {
+            //res.push(doc.data());
+            let object = {};
+            //object["id"] = doc.data().id;
+            object["name_es"] = doc.data().name_es;
+            object["id_ref"] = doc.data().id_ref;
+            resProducts.push(object);
+        });
+
+        console.log("Cantidad de productos");
+        console.log(resProducts.length);
+        return resProducts
+
+    }).catch(err => {
+        console.log('Error getting documents', err);
     });
+
+    let resProMercado = await makeIdProducts();
 
     let subProductsList = [];
 
-    let promises = productList.map( (vl,i)=>
+    let promises =  resProMercado.map( (vl,i)=>
         new Promise(async resolve =>
 
             await setTimeout(async () => {
@@ -142,7 +214,10 @@ getProductCrops = async (res)=>{
                     console.log(err.message);
                 });
 
+
                 let subProductJson = await html2json(resListProduc.data);
+
+                console.log(subProductJson);
 
                 if (subProductJson.child.length === 1){
                     vl.id = subProductJson.child[0].child[0].child[0].attr.value;
@@ -166,16 +241,31 @@ getProductCrops = async (res)=>{
                 }
 
                 resolve()
-            }, 500 * productList.length - 500 * i)
+            }, 100 * resProMercado.length - 100 * i)
 
         ));
 
     await Promise.all(promises).then(()=> console.log("respons"));
 
+    subProductsList.map((vlPr,index) => {
+        agroCrops.map(vlAgro => {
+            if (vlAgro.id_ref === vlPr.id){
+                console.log(vlAgro.id_ref);
+                delete subProductsList[index];
+            }
+        });
+    });
 
-    let isInsertProducts = await inserDataProduct(subProductsList);
+    let subProducts = [];
+    subProductsList.map(pVl=>{
+       if (pVl.id !== "070209" && pVl.id !== "120302" && pVl.id !== "120305" && pVl.id !== "120301" && pVl.id !== "120304" && pVl.id !== "120303"){
+           subProducts.push(pVl)
+       }
+    });
 
-    res.send(isInsertProducts ? subProductsList:'Err al insertar en firestore');
+    let isInsertProducts = await inserDataProduct(subProducts);
+
+    res.send(isInsertProducts ? subProducts:'Err al insertar en firestore');
 
 };
 
@@ -271,7 +361,7 @@ app.get('/', async (req, res) => {
             //res.push(doc.data());
             let  priceRef = db.collection('prices');
             priceRef = priceRef.where("crops_id","==",doc.data().id);
-            priceRef =  priceRef.orderBy("date", "desc").limit(1);
+            priceRef =  priceRef.orderBy("date", "desc").limit(3);
             await priceRef.get().then( async prices => {
 
                 await prices.forEach( async docPrs => {
@@ -283,7 +373,7 @@ app.get('/', async (req, res) => {
                     await resPrice.push(object);
                     console.log(object);
 
-                    if (resPrice.length >= 21){
+                    if (resPrice.length >= 69){
                         console.log(resPrice);
                         res.send(resPrice);
                     }
@@ -304,7 +394,10 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/query', async (req, res) => {
-    let mParams = {
+
+    //await getProductCrops(res);
+    //res.send(response)
+    /*let mParams = {
         crops_id_ref: "",
         crops_id:"BzgL14JQFRorQxPooJRb",
         market_id:"3BeNPYEum6Wvw1z2dFHw", //codifgo defauld, implementar mas adelante
@@ -315,7 +408,7 @@ app.get('/query', async (req, res) => {
         let productDB = await getLastProductDB(mParams);
         if (k > 1)
             res.send(productDB)
-    });
+    });*/
 
 });
 
@@ -635,7 +728,7 @@ async function updateAllProductsDB(res){
         new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 26){
+                if (k1 >= 29){
                     resolve();
                     return 0
                 }
