@@ -149,7 +149,7 @@
                 search = search.trim().toLowerCase();
                 if (search.length <= 0){ return loading(false); }
                 let db = vm.$firebase.firestore();
-                db.collection('agricultural_crops').orderBy('name_es')
+                db.collection('agricultural_crops').where("state", "==",1).orderBy('name_es')
                     .startAt(search).endAt(search+'\uf8ff').get().then(snap => {
                         const colectionOptions = [];
                         snap.forEach(async doc => {

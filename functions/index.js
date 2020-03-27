@@ -10,13 +10,11 @@ const history = require('connect-history-api-fallback');
 const CronJob = require('cron').CronJob;
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-//const request = require('request');
 const querystring = require('querystring');
 const HtmlTableToJson = require('html-table-to-json');
 const _ = require('lodash');
 const moment = require('moment');
 moment.locale('es-do');
-
 
 //Prod
 //admin.initializeApp(functions.config().firebase);
@@ -125,39 +123,77 @@ makeIdProducts = async ()=>{
             productList.push(objectPor)
         }
     }
-    //console.log(productList.length);
 
+    return productList
+};
 
-    /*let agriculturalCrops = db.collection('agricultural_crops');
-    let agroCrops = await agriculturalCrops.get().then(async value => {
+updateAgroCrops = async ()=>{
 
+    let agriculturalCrops = db.collection('agricultural_crops');
+
+    let agroCrops = await agriculturalCrops.get().then(value => {
         let resProducts = [];
-        await value.forEach(async doc => {
-            //res.push(doc.data());
+        value.forEach( (doc,index) => {
             let object = {};
             //object["id"] = doc.data().id;
             object["name_es"] = doc.data().name_es;
             object["id_ref"] = doc.data().id_ref;
+            object["id"] = doc.data().id;
             resProducts.push(object);
         });
-
         return resProducts
-
     }).catch(err => {
         console.log('Error getting documents', err);
     });
 
+    let CropsList = await _.chunk(agroCrops, 200);
 
-    let productUpdate = productList.map((vlPr,index) => {
-        agroCrops.map(vlAgro => {
-            if (vlAgro.id_ref === vlPr.id){
-                console.log(vlAgro.id_ref);
-                delete productList[index];
+    let count = 0;
+    let countUp = 0;
+    let countDown = 0;
+
+    for (let agroProd of CropsList){
+        for (let [i,doc] of agroProd.entries()){
+            let paramPrices = {
+                start:moment().subtract(1, 'day').format("DD/MM/YYYY"),
+                last:moment().subtract(1, 'day').format("DD/MM/YYYY"),
+                type:["precio_prom"], //,'precio_prom','precio_min'
+                product:[doc.id_ref],
+            };
+
+            let response = await getPricesSisap(paramPrices);
+
+            if (response){
+
+                let toJSON = await HtmlTableToJson.parse(response)._results[0];
+
+                if (toJSON && toJSON.length > 0){
+                    await db.collection("agricultural_crops").doc(doc.id).update({state: 1});
+                    countUp++;
+                    console.log("Update  ===> 1")
+                }else {
+                    await db.collection("agricultural_crops").doc(doc.id).update({state: 0});
+                    countDown++;
+                    console.log("Update  ===> 0")
+                }
+
             }
-        });
-    });*/
 
-    return productList
+            count++;
+            console.log("Contador-----> "+count);
+
+            if (count >= agroCrops.length){
+                console.log("Total "+agroCrops.length);
+                console.log("Contador-----> "+countUp);
+                console.log("Contador-----> "+countDown);
+                return agroCrops.length
+            }
+        }
+    }
+
+
+    return agroCrops
+
 };
 
 getProductCrops = async (res)=>{
@@ -293,21 +329,24 @@ getScrap = async () =>{
 getPricesSisap = async (param) => {
     let today = moment().format("DD/MM/YYYY");
     let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
-        querystring.stringify({
-            mercado: '*',
-            'variables[]': param.type,
-            fecha: today,//'02/02/2020',
-            desde: param.start,//'01/01/1997',//1997
-            hasta: param.last,//'02/02/2020',
-            //'anios[]': '2020',
-            //'meses[]': '11',
-            //'semanas[]': '48',
-            //'productos[]': '0633',
-            'productos[]': param.product, //"0633"
-            periodicidad: 'intervalo'
-        }));
+            querystring.stringify({
+                mercado: '*',
+                'variables[]': param.type,
+                fecha: today,//'02/02/2020',
+                desde: param.start,//'01/01/1997',//1997
+                hasta: param.last,//'02/02/2020',
+                //'anios[]': '2020',
+                //'meses[]': '11',
+                //'semanas[]': '48',
+                //'productos[]': '0633',
+                'productos[]': param.product, //"0633"
+                periodicidad: 'intervalo'
+            })).catch((err) => {
+                console.log("========"+param.product+"========");console.log(err.message)
+            });
 
-    return response.data;
+    
+    return response ? response.data :false;
 };
 
 const API_PREFIX = 'api';
@@ -393,22 +432,12 @@ app.get('/', async (req, res) => {
     //await getProductCrops(res)
 });
 
+
 app.get('/query', async (req, res) => {
 
-    //await getProductCrops(res);
-    //res.send(response)
-    /*let mParams = {
-        crops_id_ref: "",
-        crops_id:"BzgL14JQFRorQxPooJRb",
-        market_id:"3BeNPYEum6Wvw1z2dFHw", //codifgo defauld, implementar mas adelante
-        price_type_id_ref: "",
-        price_type_id: "AFuN7owOgTMIvwBzFNBG"
-    };
-    let sma = await [0,1,3].map(async (vl,k) => {
-        let productDB = await getLastProductDB(mParams);
-        if (k > 1)
-            res.send(productDB)
-    });*/
+    let response = await updateAgroCrops();
+    //console.log("------------> "+response);
+    res.sendStatus(response)
 
 });
 
@@ -422,6 +451,9 @@ async function updateAllPrices(param) {
         product:param.crops_id_ref,
     };
     let response = await getPricesSisap(paramPrices);
+
+    if (!response)
+        return 0;
 
     let toJSON = await HtmlTableToJson.parse(response)._results[0];
 
@@ -444,10 +476,10 @@ async function updateAllPrices(param) {
                 console.log(k3);
                 await inserDataDays(valList,param);
                 resolve()
-            }, 350 * toJSON.length - 350 * k3)
-        ));
+            }, 500 * toJSON.length - 500 * k3)
+        ).catch(() => {}));
 
-    await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount));
+    await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount)).catch(() => {});
 
     return frInsertCount
 
@@ -528,6 +560,10 @@ async function updatePricesProduct(crops,price){
             product:mParams.crops_id_ref,
         };
         let sisapPrices = await getPricesSisap(paramPrices);
+
+        if (!sisapPrices)
+            return 0;
+
         let pricesResult = await HtmlTableToJson.parse(sisapPrices)._results[0];
 
         if (pricesResult && pricesResult.length > 0){
@@ -549,9 +585,9 @@ async function updatePricesProduct(crops,price){
                     await inserDataDays(valList,mParams);
                     resolve()
                 }, 500 * pricesResultClean.length - 500 * k3)
-            ));
+            ).catch(() => {}));
 
-        await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount));
+        await Promise.all(promiseJsonInsert).then(()=> console.log("ingesta subGrupo terminado======> "+frInsertCount)).catch(() => {});
 
         //console.log(pricesResultClean.length);
         //let isCorrectInset = await inserDataDays(pricesResultClean,mParams);
@@ -704,6 +740,8 @@ async function getPricesTypeDB(){
 
 async function getAgriculturalCropsDB(){
     let agriculturalCrops = db.collection('agricultural_crops');
+    //agriculturalCrops = agriculturalCrops.orderBy("created_at", "desc");
+    agriculturalCrops = agriculturalCrops.where("state", "==",1);
     return await agriculturalCrops.get().then(value => {
         let res = [];
         value.forEach(doc => {
@@ -728,10 +766,12 @@ async function updateAllProductsDB(res){
         new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 29){
+                if (k1 >= 33){
                     resolve();
                     return 0
                 }
+
+                console.log(crops.name_es);
 
                 let promisePrices = pricesTypeDB.map( (vlTprice,k2) =>
                     new Promise(async resolve =>
@@ -741,18 +781,19 @@ async function updateAllProductsDB(res){
 
                             console.log("Actualizado====> "+updatePrices);
                             resolve()
-                        }, 500 * pricesTypeDB.length - 500 * k2)
-                    ));
+
+                        }, 700 * pricesTypeDB.length - 700 * k2)
+                    ).catch(() => {}));
 
                 let rgister = k1+1;
-                await Promise.all(promisePrices).then(()=> console.log("Se ingesto-"+rgister+"-Grupo"));
+                await Promise.all(promisePrices).then(()=> console.log("Se ingesto-"+rgister+"-Grupo")).catch(() => {});
 
                 resolve()
-            }, 500 * pricesTypeDB.length - 500 * k1)
-        )
+            }, 700 * pricesTypeDB.length - 700 * k1)
+        ).catch(() => {})
     );
 
-    await Promise.all(promiseAgricultura).then(()=> console.log("Se ingesto #"+limitUpd+" registros"));
+    await Promise.all(promiseAgricultura).then(()=> console.log("Se ingesto #"+limitUpd+" registros")).catch(() => {});
 
     res.send({data_ingestada:limitUpd});
 }
