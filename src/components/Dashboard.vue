@@ -182,7 +182,7 @@
 
                     }).bind(vm, 1500);
                 }).catch(err=>{
-                    //console.log(err)
+                    console.log(err)
                     err.toString()
                 });
 
@@ -258,7 +258,7 @@
                 return this.storageIconRef.child(img_name).getDownloadURL().then((url) => {
                     return url
                 }).catch((error)=> {
-                    console.log(error.code);
+                    //console.log(error.code);
                     return ""
                 });
             },
