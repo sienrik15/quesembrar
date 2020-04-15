@@ -23,7 +23,7 @@
         "source": "/",
         "destination": "*//**",
         "type": 301
-      }
+      }`
     ],*/
     "rewrites": [
       {

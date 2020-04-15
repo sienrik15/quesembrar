@@ -5,15 +5,16 @@ import App from './App.vue'
 import router from './router'
 import vSelect from 'vue-select'
 import Multiselect from 'vue-multiselect'
+
 //const path = require('path');
 import 'vue-select/dist/vue-select.css';
 import './assets/styles/main.styl'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck,faSortUp,faCaretUp,faSortDown,faLongArrowAltDown,faLongArrowAltUp,faSearch} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VCalendar from 'v-calendar';
 
-library.add(faCheck)
+library.add([faCheck,faSortUp,faCaretUp,faSortDown,faLongArrowAltDown,faLongArrowAltUp,faSearch]);
 Vue.component('f-icon', FontAwesomeIcon);
 Vue.component('v-select', vSelect);
 Vue.component('v-multiselect', Multiselect);

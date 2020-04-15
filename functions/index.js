@@ -17,14 +17,14 @@ const moment = require('moment');
 moment.locale('es-do');
 
 //Prod
-admin.initializeApp(functions.config().firebase);
+//admin.initializeApp(functions.config().firebase);
 
 //Local
-/*const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
+const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://agroanalytics-b2462.firebaseio.com"
-});*/
+});
 
 const db = admin.firestore();
 db.settings({ timestampsInSnapshots: true });
@@ -127,6 +127,7 @@ makeIdProducts = async ()=>{
     return productList
 };
 
+/*
 updateAgroCrops = async ()=>{
 
     let agriculturalCrops = db.collection('agricultural_crops');
@@ -195,6 +196,7 @@ updateAgroCrops = async ()=>{
     return agroCrops
 
 };
+*/
 
 getProductCrops = async (res)=>{
     /*let resProMercado = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado',
@@ -543,8 +545,8 @@ async function updatePricesProduct(crops,price){
         /**Verificar si hay datos para actualizar deacuerdo a la fecha**/
         let isUpdateData = moment(beforeLastDate).isSameOrBefore(today);
 
-        console.log(moment(today).format("DD/MM/YYYY"));
-        console.log(moment(beforeLastDate).format("DD/MM/YYYY"));
+        //console.log(moment(today).format("DD/MM/YYYY"));
+        //console.log(moment(beforeLastDate).format("DD/MM/YYYY"));
         console.log("Pendiente de carga: "+isUpdateData +"==="+mParams.price_type_id_ref);
         /**En caso la ultima fecha insertada no es menor o igual a la fecha actual, no se realiza la actualizacion de la DB**/
         if (!isUpdateData){
@@ -762,11 +764,24 @@ async function updateAllProductsDB(res){
     console.log("init producto x3 "+agriculturalCropsDB.length);
 
 
-    let promiseAgricultura = await agriculturalCropsDB.map((crops,k1)=>
+    for (let [k1,crops] of agriculturalCropsDB.entries()){
+        for (let [k2,vlTprice] of pricesTypeDB.entries()){
+            /*if (k1 >= 200){
+                return 0
+            }*/
+
+            let updatePrices = await updatePricesProduct(crops,vlTprice);
+
+            let rgister = k1+1;
+            console.log(rgister+" preductos"+" Actualizado====> "+updatePrices);
+        }
+    }
+
+    /*let promiseAgricultura = await agriculturalCropsDB.map((crops,k1)=>
         new Promise(async resolve =>
             await setTimeout(async () => {
 
-                if (k1 >= 33){
+                if (k1 >= 40){
                     resolve();
                     return 0
                 }
@@ -791,9 +806,9 @@ async function updateAllProductsDB(res){
                 resolve()
             }, 700 * pricesTypeDB.length - 700 * k1)
         ).catch(() => {})
-    );
+    );*/
 
-    await Promise.all(promiseAgricultura).then(()=> console.log("Se ingesto #"+limitUpd+" registros")).catch(() => {});
+    //await Promise.all(promiseAgricultura).then(()=> console.log("Se ingesto #"+limitUpd+" registros")).catch(() => {});
 
     res.send({data_ingestada:limitUpd});
 }

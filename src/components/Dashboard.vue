@@ -1,25 +1,13 @@
 <template>
 
-    <!-- :color-back="colors.colorBack"
-                 :color-grid="colors.colorGrid"
-                 :color-text="colors.colorText" -->
-    <!--<trading-vue :data="chart" :width="this.width" :height="this.height">
-    </trading-vue>-->
-
      <div class="container is-fullhd">
-        <div class="notification" style="background-color: #18314d">
-            <div v-if="loading" class="loader-wrapper">
+        <div class="notification" v-bind:style="{'background-color':switchDark?'#18314d':'#fafafa'}">
+            <div v-if="loading" class="loader-wrapper" v-bind:style="{'background':switchDark?'#47c77359':'#00000059'}">
                 <div class="loader is-loading"></div>
             </div>
+
             <section class="section box-search">
-                    <!--<div class="container">
-                        <div class="title">
-                           Que puedo sembrar
-                        </div>
-                        <h1 class="subtitle">
-                            Analisis y Monitoreo de precios en cultivos para planificar que sembrar
-                        </h1>
-                    </div>-->
+
                     <div class="columns is-desktop is-mobile is-multiline is-centered">
 
                         <v-select class="v-select-custom column is-one-third is-narrow"
@@ -58,64 +46,19 @@
                         </div>
 
                     </div>
-
-
             </section>
-            <!--<section class="section">
-                <div class="container">
-                    <div class="tile is-ancestor">
-                    <div class="tile is-vertical is-8">
-                        <div class="tile">
-                            <div class="tile is-parent is-vertical">
-                                <article class="tile is-child notification is-primary">
-                                    <p class="title">Grafica 1</p>
-                                    <p class="subtitle">graficos</p>
-                                </article>
-                                <article class="tile is-child notification is-warning">
-                                    <p class="title">Grafica 2</p>
-                                    <p class="subtitle">datos</p>
-                                </article>
-                            </div>
-                            <div class="tile is-parent">
-                                <article class="tile is-child notification is-info grafico-003">
-                                    <p class="title">Grafica 3 </p>
-                                    <p class="subtitle">graficos</p>
-                                    <canvas id="myChart" width="400" height="400"></canvas>
 
-                                </article>
-                            </div>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child notification is-danger">
-                                <p class="title">Grafica 4 </p>
-                                <p class="subtitle">graficso y datos</p>
-                                <div class="content">
-
-
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child notification is-success">
-                            <div class="content">
-                                <p class="title">Tall tile</p>
-                                <p class="subtitle">With even more content</p>
-                                <div class="content">
-
-
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                </div>
-            </section>  -->
+            <div class="field switch-dark" v-bind:style="{color:switchDark?'#fff':'#000'}">
+                <input id="switchRoundedOutlinedSuccess" type="checkbox" name="switchRoundedOutlinedSuccess"
+                       class="switch is-rounded is-outlined is-success" v-model="switchDark" checked="checked" @change="modeDark(switchDark)">
+                <label for="switchRoundedOutlinedSuccess">Dark</label>
+            </div>
             <section class="section chart-container">
-                    <canvas id="myChart"></canvas>
+                <canvas id="myChart"></canvas>
             </section>
-        </div>
     </div>
+
+     </div>
 
 
 </template>
@@ -127,6 +70,7 @@
     import _ from 'lodash'
     import  'chartjs-plugin-zoom';
     import moment from 'moment';
+
 
     moment.locale('es-do');
     export default {
@@ -182,7 +126,7 @@
 
                     }).bind(vm, 1500);
                 }).catch(err=>{
-                    console.log(err)
+                    console.log(err);
                     err.toString()
                 });
 
@@ -191,27 +135,36 @@
                 //console.log(this.valueOption);
                 if (!this.valueOption) return;
                 this.loading = true;
-                let price_type_id = "dsE4vwVF1JyfWVOVLgYA";
+                let price_type_ids = ["AFuN7owOgTMIvwBzFNBG","ShlOjc8bm8QP9q7rw4kp","dsE4vwVF1JyfWVOVLgYA"];//prom dsE4vwVF1JyfWVOVLgYA
                 let market_id = "3BeNPYEum6Wvw1z2dFHw";
                 let crops_id = this.valueOption.id;
                 let db = this.$firebase.firestore();
+                console.log("snap");
+
                 let pricesDB = db.collection('prices');
-                pricesDB = pricesDB.where("price_type_id","==",price_type_id);
+                pricesDB = pricesDB.where("price_type_id","in",price_type_ids);
                 pricesDB = pricesDB.where("market_id","==",market_id);
                 pricesDB = pricesDB.where("crops_id","==",crops_id);
                 pricesDB = pricesDB.where("date",">=",moment(this.rangeDate.start).toDate());
                 pricesDB = pricesDB.where("date","<=",moment(this.rangeDate.end).toDate());
                 pricesDB = pricesDB.orderBy('date');//.limit(365);
                 pricesDB.get().then(snap => {
-                    const prices_data = [];
-                    const date_list = [];
-                    snap.forEach(doc => {
-                        prices_data.push(doc.data().price);
-                        date_list.push(doc.data().date.toDate());
+
+                    this.value_list = [];
+                    price_type_ids.forEach(type => {
+                        const prices_data = [];
+                        const date_list = [];
+                        let mSnap = snap.docs.filter(doc => {return doc.data().price_type_id === type});
+                        mSnap.forEach(doc => {
+                            prices_data.push(doc.data().price);
+                            date_list.push(doc.data().date.toDate());
+                        });
+                        this.date_list = date_list;
+                        this.value_list.push(prices_data);
                     });
+
+
                     this.loading = false;
-                    this.value_list = prices_data;
-                    this.date_list = date_list;
                     //console.log(date_list);
                     //console.log(prices_data);
                     this.updateChartConf();
@@ -245,10 +198,16 @@
                 //this.console.log(sizeRadius)
                 return sizeRadius<=1?1:sizeRadius;
             },
-            getSizeHitRadius(){
-
-            },
-            getSizeHoverBorderWicth(){
+            modeDark(event){
+                console.log(event)
+                if (!event){
+                    this.colorTextStage = "#000";
+                    this.colorLineXy="rgba(0, 0, 0, 0.2)"
+                } else {
+                    this.colorTextStage = "#fff";
+                    this.colorLineXy="rgba(255, 255, 255, 0.2)"
+                }
+                this.updateChartConf();
 
             },
             downloadIcon(img_name){
@@ -258,7 +217,7 @@
                 return this.storageIconRef.child(img_name).getDownloadURL().then((url) => {
                     return url
                 }).catch((error)=> {
-                    //console.log(error.code);
+                    console.log(error.code);
                     return ""
                 });
             },
@@ -281,7 +240,7 @@
                             label:this.valueOption?this.valueOption.name_es:"legend_name",
                             fill: false,
                             backgroundColor: ['rgba(71, 183,132,.5)'],
-                            data: this.value_list,
+                            data: this.value_list[2],
                             borderColor:"#47b784", //["#47b784"],
                             borderDash: [5, 5],
                             pointBorderWidth:1,
@@ -292,7 +251,52 @@
                             borderWidth:1,
                             //pointStyle:'star',
                             //pointBackgroundColor:'rgba(71, 183,132,.5)'
+                        },{
+                            label:"Max",
+                            fill: false,
+                            backgroundColor: ['rgba(71, 183,132,.5)'],
+                            data: this.value_list[0],
+                            borderColor:"#ff432e", //["#47b784"],
+                            //borderDash: [5, 5],
+                            pointBorderWidth:1,
+                            pointRadius:0.3,//this.getSizeRadius(),
+                            lineTension:0.1,
+                            pointHitRadius:5,
+                            pointHoverBorderWidth:6,
+                            borderWidth:0.5,
+                        },
+                        {
+                            label:"Min",
+                            fill: false,
+                            backgroundColor: ['rgba(71, 183,132,.5)'],
+                            data: this.value_list[1],
+                            borderColor:"#1287b7", //["#47b784"],
+                            //borderDash: [5, 5],
+                            pointBorderWidth:1,
+                            pointRadius:0.3,//this.getSizeRadius(),
+                            lineTension:0.1,
+                            pointHitRadius:5,
+                            pointHoverBorderWidth:6,
+                            borderWidth:0.5,
                         }
+                        /*{
+                            label: 'Dataset with point data',
+                            borderColor:"#b7b75b",
+                            data: [{
+                                x: moment("2019-08-09").toDate(),
+                                y: 1000
+                            }, {
+                                x: moment("2019-08-10").toDate(),
+                                y: 5000
+                            }, {
+                                x: moment("2019-08-11").toDate(),
+                                y: 6000
+                            }, {
+                                x: moment("2019-08-15").toDate(),
+                                y: 8500
+                            }],
+                            fill: false
+                        }*/
                     ]
                 };
                 this.startChart.options = {
@@ -302,20 +306,20 @@
                         position: "top",
                         align: "start",
                         labels: {
-                            fontColor: "#fff",
+                            fontColor: this.colorTextStage,
                         }
                     },
                     title: {
                         display: false,
                         text: "Precios de productos",
-                        fontColor: "#fff",
+                        fontColor: this.colorTextStage,
                     },
                     scales:{
                         yAxes: [{
                             type: 'linear',
                             ticks: {
                                 beginAtZero: true,
-                                fontColor: "#fff",
+                                fontColor: this.colorTextStage,
                                 fontSize:this.isMobile()?10:14,
                                 callback: (label) =>{
                                     return Math.round(label)+' S/';
@@ -324,11 +328,11 @@
                             scaleLabel: {
                                 display: true,
                                 labelString: "Precio",
-                                fontColor: "#fff",
+                                fontColor: this.colorTextStage,
                                 fontSize:this.isMobile()?14:24,
                             },
                             gridLines: {
-                                color: 'rgba(255, 255, 255, 0.2)',
+                                color: this.colorLineXy,
                                 //zeroLineWidth: 2,
                                 //zeroLineColor: "rgba(255, 255, 255, 0.4)",
                                 //lineWidth: 3,
@@ -353,19 +357,19 @@
                             scaleLabel: {
                                 display: true,
                                 labelString: "Fechas",
-                                fontColor: "#fff",
+                                fontColor: this.colorTextStage,
                                 fontSize:this.isMobile()?14:24,
                             },
                             ticks: {
                                 maxRotation: this.isMobile()?26:0,
                                 beginAtZero: true,
-                                fontColor: "#fff",
+                                fontColor: this.colorTextStage,
                                 fontSize:this.isMobile()?10:14,
                                 min: this.start_date,
                                 max: this.end_date,
                             },
                             gridLines: {
-                                color: 'rgba(255, 255, 255, 0.2)',
+                                color: this.colorLineXy,
                                 //lineWidth: 3,
                                 //display:false
                             }
@@ -549,6 +553,8 @@
                 newTodoText: '',
                 visitCount: 0,
                 hideCompletedTodos: false,
+                colorLineXy:"rgba(255, 255, 255, 0.2)",
+                colorTextStage:"#fff",
                 todos: [],
                 error: null,
                 chart: Data,
@@ -560,9 +566,9 @@
                     colorText: '#333',
                 },
                 optionCrops:[],
-                valueOption:"",
+                valueOption:null,
                 date_list:["2019-08-09","2019-08-10","2019-08-11","2019-08-12","2019-08-13","2019-08-14"],
-                value_list:[1000,2000,3000,2500,3000,5000],
+                value_list:[[10,9.86,11,10,11.24,11],[9.25,8.15,10,9,10.75,10],[9,8,9,8.27,9.45,9]],
                 start_date : "",
                 end_date : "",
                 range_min : "",
@@ -575,6 +581,7 @@
                 },
                 loading: false,
                 storageIconRef:null,
+                switchDark:true,
                 /*pointRadius: 5,
                 pointHitRadius: 5,
                 pointHoverBorderWidth: 6*/
@@ -594,6 +601,12 @@
 
             });
             this.updateChartConf();
+            if (this.$route.query){
+                this.valueOption = this.$route.query.crop;
+                this.onOptionSelected();
+                this.$router.replace(this.$route.path);
+                console.log('The id is: ' + this.$route.query.crop);
+            }
         },
         beforeDestroy() {
             window.removeEventListener('resize', this.onResize)
@@ -603,6 +616,15 @@
 </script>
 
 <style lang="stylus">
+    @import '~bulma-switch/dist/css/bulma-switch.min.css';
+
+
+    .switch-dark
+        color #fff
+        position: absolute;
+        right: 20px;
+        top: 28px
+        z-index: 1;
 
     .chart-container
         height: 100vh
@@ -725,7 +747,7 @@
         position: fixed;
         width: 100%;
         top: 0;
-        z-index: 10;
+        z-index: 1;
         padding-top: 18px !important;
         padding-bottom: 18px !important;
 
@@ -735,7 +757,6 @@
         -ms-user-select: none;
         //min-height:850px
         //height: 80vh/500px/whatever
-
 
     .column
         padding: 10px 3px !important;

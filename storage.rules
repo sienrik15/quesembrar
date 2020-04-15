@@ -1,7 +1,18 @@
 service firebase.storage {
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if request.auth!=null;
+    //match /{allPaths=**} {
+    //  allow read, write: if request.auth!=null;
+    //}
+    match /gricultural_icons {
+      match /{allPaths=**} {
+      	allow read, write;
+    	}
+    }
+
+    match /agricultural_images {
+      match /{allPaths=**} {
+        allow read, write;
+        }
     }
   }
 }
