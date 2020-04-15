@@ -336,7 +336,7 @@
                     snap.forEach(async doc => {
 
                         let pricesDB = await db.collection('prices');
-                        pricesDB = pricesDB.where("price_type_id","==","ShlOjc8bm8QP9q7rw4kp");
+                        pricesDB = pricesDB.where("price_type_id","==","dsE4vwVF1JyfWVOVLgYA");
                         pricesDB = pricesDB.where("market_id","==","3BeNPYEum6Wvw1z2dFHw");
                         pricesDB = pricesDB.where("crops_id","==",doc.data().id);
                         pricesDB = pricesDB.orderBy('date','desc').limit(2);
