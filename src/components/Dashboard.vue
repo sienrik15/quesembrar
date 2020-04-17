@@ -49,6 +49,10 @@
             </section>
 
             <div class="field switch-dark" v-bind:style="{color:switchDark?'#fff':'#000'}">
+                <span>
+                    S/ {{this.value_list[2][(this.value_list[2].length -1)]}}
+                    <span style="font-size: 12px"> {{this.getDate(this.date_list[(this.date_list.length-1)])}} </span>
+                </span>
                 <input id="switchRoundedOutlinedSuccess" type="checkbox" name="switchRoundedOutlinedSuccess"
                        class="switch is-rounded is-outlined is-success" v-model="switchDark" checked="checked" @change="modeDark(switchDark)">
                 <label for="switchRoundedOutlinedSuccess">Dark</label>
@@ -197,6 +201,9 @@
                 let sizeRadius = Math.round((max*listMax)/((lengthSize>listMax)?lengthSize:listMax));
                 //this.console.log(sizeRadius)
                 return sizeRadius<=1?1:sizeRadius;
+            },
+            getDate(date){
+                return moment(date).format("DD MMM YY")
             },
             modeDark(event){
                 console.log(event)
@@ -568,7 +575,7 @@
                 optionCrops:[],
                 valueOption:null,
                 date_list:["2019-08-09","2019-08-10","2019-08-11","2019-08-12","2019-08-13","2019-08-14"],
-                value_list:[[10,9.86,11,10,11.24,11],[9.25,8.15,10,9,10.75,10],[9,8,9,8.27,9.45,9]],
+                value_list:[[10,9.86,11,10,11.24,11],[9.25,8.15,10,9,10.75,10],[9,8,9,8.27,9.45,9.87]],
                 start_date : "",
                 end_date : "",
                 range_min : "",
@@ -590,7 +597,7 @@
         mounted(){
             window.addEventListener('resize', this.onResize);
             //let ctx = document.getElementById("myChart");
-            this.storageIconRef = this.$firebase.storage().ref().child("gricultural_icons");
+            this.storageIconRef = this.$firebase.storage().ref().child("agricultural_icons");
 
             let ctx = document.getElementById('myChart').getContext('2d');
             /* eslint-disable */

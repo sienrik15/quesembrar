@@ -5,7 +5,8 @@
             <nav class="navbar header-navigation" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="https://bulma.io">
-                        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                        <!--<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
+                        <img src="@/assets/images/iso-logo.png" >
                     </a>
 
                     <a role="button" class="navbar-burger burger" v-on:click="showNav = !showNav" v-bind:class="{ 'is-active' : showNav }">
@@ -18,14 +19,14 @@
                 <div class="navbar-menu" v-bind:class="{ 'is-active' : showNav }">
                     <div class="navbar-start">
                         <a class="navbar-item">
-                            Home
+                            Inicio
                         </a>
 
                         <a class="navbar-item">
-                            Documentation
+                            Historial de precios
                         </a>
 
-                        <div class="navbar-item has-dropdown is-hoverable">
+                        <!--<div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link">
                                 More
                             </a>
@@ -45,7 +46,7 @@
                                     Report an issue
                                 </a>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
 
                     <div class="navbar-end">
@@ -105,9 +106,9 @@
                                 </multiselect>
 
 
-                                <div class="button is-rounded btn-search is-primary">
+                                <!--<div class="button is-rounded btn-search is-primary">
                                     <strong>Buscar</strong>
-                                </div>
+                                </div>-->
                             </div>
 
                             <div class="sub-title">
@@ -173,10 +174,11 @@
                 </div>
             </section>-->
 
-            <section class="section section-style">
+            <div class="section section-style">
+
                 <div class="container">
 
-                    <div class="columns is-mobile is-multiline is-centered colums-container">
+                    <div class="columns is-mobile is-desktop is-multiline is-centered colums-container">
                         <div class="column is-half-mobile is-two-fifths-desktop" style="padding: 0px !important;">
                             PRECIOS
                         </div>
@@ -184,8 +186,8 @@
                             Ver más ->
                         </div>
                     </div>
-                    <div class="columns is-mobile is-multiline is-centered colums-container">
-                        <div v-for="item in productList" class="column pdtb-1 is-narrow is-one-third-mobile" :key="item.id" @click="onClickProduct(item)">
+                    <div class="columns is-mobile is-desktop is-multiline is-centered colums-container">
+                        <div v-for="item in productList" class="column pdtb-1 is-narrow is-one-third-mobile is-one-fifth-desktop" :key="item.id" @click="onClickProduct(item)">
                             <div class="card card-border">
                                 <div class="card-image">
                                     <figure class="image is-4by3">
@@ -222,7 +224,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
         </div>
     </div>
@@ -376,7 +378,7 @@
             }
         },
         mounted (){
-            this.storageIconRef = this.$firebase.storage().ref().child("gricultural_icons");
+            this.storageIconRef = this.$firebase.storage().ref().child("agricultural_icons");
             this.storageImgRef = this.$firebase.storage().ref().child("agricultural_images");
             this.getPricesTop({limit:4,isTop:true});
             this.getPricesTop({limit:6,isTop:false});
@@ -419,11 +421,30 @@
             background-image: url('~@/assets/images/home-banner.png')
             background-repeat: no-repeat
             //background-position: center top;
-            background-size: 34% auto;
+            background-size: 26% auto;
             background-position: left bottom;
 
             //background-size:  cover;
             //background-color: #999
+
+        .section
+            padding: 3rem 8.5rem;
+
+        .banner-body
+            padding: 10% 25% 1px 25% !important;
+            background: rgba(255,255,255,0.19);
+
+        .search-container
+            text-align center
+            .title-search
+                color #184624
+                font-size 35px
+                padding: 20px 10px;
+            .sub-title
+                color #184624
+                padding 5px
+                font-size 20px
+                padding-top: 30px;
 
         .hero-body
             //background: rgba(0, 0, 0, 0.33);
@@ -488,7 +509,32 @@
         .subtitle-cart
             position: relative;
 
+        .card-content
+            .content
+                .title-card
+                    padding-top 8px
+                    padding-bottom 5px
+                    font-size 16px;
+                .subtitle-cart
+                    font-size: 16px;
+                    text-align: right
+                    .price-title
+                        position: relative
+                        .price
+                            width: 60%;
+                            display: inline-block;
+                            text-align: start;
+                            span
+                                padding-right: 3px;
+                                font-weight: 700;
+                        .many
+                            width: 40%;
+                            display: inline-block;
+                            text-align: end;
+
         @media only screen and (min-width: 320px) and (max-width: 750px)
+            .section
+                padding: 3rem 0.8rem;
             .banner-body
                 padding: 70px 15px 1px 15px !important;
                 background #ffffff2b
