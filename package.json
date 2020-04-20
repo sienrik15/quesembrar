@@ -18,6 +18,7 @@
     "chartjs-plugin-zoom": "^0.7.5",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "trading-vue-js": "^0.4.4",

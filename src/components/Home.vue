@@ -4,10 +4,13 @@
 
             <nav class="navbar header-navigation" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                    <a class="navbar-item" href="https://bulma.io">
-                        <!--<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
-                        <img src="@/assets/images/iso-logo.png" >
-                    </a>
+
+                    <router-link to="/" exact>
+                        <a style="padding: 14px;" class="navbar-item" href="/">
+                            <!--<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
+                            <img src="@/assets/images/iso-logo.png" >
+                        </a>
+                    </router-link>
 
                     <a role="button" class="navbar-burger burger" v-on:click="showNav = !showNav" v-bind:class="{ 'is-active' : showNav }">
                         <span aria-hidden="true"></span>
@@ -127,13 +130,13 @@
                 </div>
             </section>
 
-            <div style="display: flex; justify-content: center;background: #fff;padding: 10px;"><!--style="display: inline-flex;"-->
+            <div class="content-item-circel"><!--style="display: inline-flex;"-->
 
-                <div v-for="item in topSearches" style="text-align: center; position: relative; width: 82px;height: 74px;" :key="item.id" @click="onClickProduct(item)">
+                <div v-for="item in topSearches" class="item-circle" :key="item.id" @click="onClickProduct(item)">
                     <div class="img-circle">
                         <img :src="item.icon_url" alt="#">
                     </div>
-                    <div style="font-size: 10px; width: 100%; bottom: -5px; position: absolute;">
+                    <div class="desc-img-cicle">
                         <div>{{item.name_es}}</div>
                         <strong :style="{color: item.isUp?'#3dcb43':'#ff4c4c'}" >S/ {{item.price}}</strong>
                         <f-icon v-if="item.isUp" icon="long-arrow-alt-up" style="color: #3dcb43;"/>
@@ -179,10 +182,10 @@
                 <div class="container">
 
                     <div class="columns is-mobile is-desktop is-multiline is-centered colums-container">
-                        <div class="column is-half-mobile is-two-fifths-desktop" style="padding: 0px !important;">
+                        <div class="column is-half-mobile is-half-desktop title-column-left">
                             PRECIOS
                         </div>
-                        <div class="column is-half-mobile is-two-fifths-desktop" style="padding: 0px !important;font-size: 12px; text-align: right">
+                        <div class="column is-half-mobile is-half-desktop title-column-right">
                             Ver más ->
                         </div>
                     </div>
@@ -375,13 +378,16 @@
             onClickProduct(model){
                 //console.log(model);
                 this.$router.push({ name: "dashboard",query: { crop:model}});
+            },
+            isMobile() {
+                return ( window.innerWidth <= 750 ); //&& ( window.innerHeight <= 600 );
             }
         },
         mounted (){
             this.storageIconRef = this.$firebase.storage().ref().child("agricultural_icons");
             this.storageImgRef = this.$firebase.storage().ref().child("agricultural_images");
-            this.getPricesTop({limit:4,isTop:true});
-            this.getPricesTop({limit:6,isTop:false});
+            this.getPricesTop({limit:this.isMobile()?4:6,isTop:true});
+            this.getPricesTop({limit:this.isMobile()?6:15,isTop:false});
 
             let db = this.$firebase.firestore();
             db.collection('agricultural_crops').where("state", "==",1).orderBy('name_es').get().then(snap => {
@@ -404,6 +410,7 @@
     }
 </script>
 
+
 <style lang="stylus">
     @import '~vue-multiselect/dist/vue-multiselect.min.css';
 
@@ -424,8 +431,37 @@
             background-size: 26% auto;
             background-position: left bottom;
 
-            //background-size:  cover;
-            //background-color: #999
+        //background-size:  cover;
+        //background-color: #999
+
+        .content-item-circel
+            display: flex;
+            justify-content: center;
+            background: #fff;
+            padding: 15px;
+            .item-circle
+                text-align: center;
+                position: relative;
+                width: 98px;
+                height: 110px;
+                margin-left: 15px;
+                margin-right: 15px;
+                .img-circle
+                    position: relative;
+                    display: inline-block;
+                    width: 66px;
+                    height: 66px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    img
+                        width: 100%
+                        height: auto
+                .desc-img-cicle
+                    font-size: 14px;
+                    width: 100%;
+                    bottom: -5px;
+                    position: absolute;
+
 
         .section
             padding: 3rem 8.5rem;
@@ -483,6 +519,12 @@
         /*.multiselect__content-wrapper
             z-index 10 !important*/
 
+        .navbar-item
+            &:hover
+                background-color: #fafafa !important
+            &:focus
+                background-color: #fafafa !important
+
         .pdtb-1
             padding-bottom 2px
             padding-top 0px
@@ -508,6 +550,18 @@
 
         .subtitle-cart
             position: relative;
+
+        .section-style
+            background: #FFFDF2;
+            padding-top: 50px !important;
+
+        .title-column-left
+            font-size 18px !important
+            padding: 0px !important;
+        .title-column-right
+            padding: 0px !important;
+            text-align: right
+            font-size 18px
 
         .card-content
             .content
@@ -553,16 +607,42 @@
                 background: #FFFDF2;
                 padding-top: 30px !important;
 
-            .img-circle
-                position: relative;
-                display: inline-block;
-                width: 48px;
-                height: 48px;
-                overflow: hidden;
-                border-radius: 50%;
-                img
-                    width: 100%
-                    height: auto
+            .title-column-left
+                font-size 12px !important
+                padding: 0px !important;
+            .title-column-right
+                padding: 0px !important;
+                text-align: right
+                font-size 12px
+
+
+            .content-item-circel
+                display: flex;
+                justify-content: center;
+                background: #fff;
+                padding: 10px;
+                .item-circle
+                    text-align: center;
+                    position: relative;
+                    width: 82px;
+                    height: 74px;
+                    margin-left: 1px;
+                    margin-right: 1px;
+                    .img-circle
+                        position: relative;
+                        display: inline-block;
+                        width: 48px;
+                        height: 48px;
+                        overflow: hidden;
+                        border-radius: 50%;
+                        img
+                            width: 100%
+                            height: auto
+                    .desc-img-cicle
+                        font-size: 10px;
+                        width: 100%;
+                        bottom: -5px;
+                        position: absolute;
 
             .bg-img
                 //height: 430px;

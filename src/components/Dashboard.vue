@@ -6,6 +6,14 @@
                 <div class="loader is-loading"></div>
             </div>
 
+            <router-link style="position: absolute; top: 10px;z-index: 10" to="/" exact>
+                <a style="padding: 14px;" class="navbar-item" href="/">
+                    <!--<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
+                    <img v-if="switchDark" src="@/assets/images/iso-logo-w.png" >
+                    <img v-else src="@/assets/images/iso-logo.png" >
+                </a>
+            </router-link>
+
             <section class="section box-search">
 
                     <div class="columns is-desktop is-mobile is-multiline is-centered">
@@ -49,10 +57,10 @@
             </section>
 
             <div class="field switch-dark" v-bind:style="{color:switchDark?'#fff':'#000'}">
-                <span>
+                <strong>
                     S/ {{this.value_list[2][(this.value_list[2].length -1)]}}
                     <span style="font-size: 12px"> {{this.getDate(this.date_list[(this.date_list.length-1)])}} </span>
-                </span>
+                </strong>
                 <input id="switchRoundedOutlinedSuccess" type="checkbox" name="switchRoundedOutlinedSuccess"
                        class="switch is-rounded is-outlined is-success" v-model="switchDark" checked="checked" @change="modeDark(switchDark)">
                 <label for="switchRoundedOutlinedSuccess">Dark</label>
@@ -74,9 +82,11 @@
     import _ from 'lodash'
     import  'chartjs-plugin-zoom';
     import moment from 'moment';
+    import "moment-timezone";
 
 
     moment.locale('es-do');
+    moment.tz.setDefault("America/Lima");
     export default {
         name: "Dashboard",
         components:{
@@ -155,6 +165,7 @@
                 pricesDB.get().then(snap => {
 
                     this.value_list = [];
+                    //let updateDate = [];
                     price_type_ids.forEach(type => {
                         const prices_data = [];
                         const date_list = [];
@@ -162,6 +173,7 @@
                         mSnap.forEach(doc => {
                             prices_data.push(doc.data().price);
                             date_list.push(doc.data().date.toDate());
+                            //updateDate.push({date:doc.data().date.toDate(),created_at:doc.data().created_at.toDate()})
                         });
                         this.date_list = date_list;
                         this.value_list.push(prices_data);
@@ -169,7 +181,7 @@
 
 
                     this.loading = false;
-                    //console.log(date_list);
+                    //console.log(updateDate);
                     //console.log(prices_data);
                     this.updateChartConf();
                 }).catch(err=>{
@@ -583,7 +595,7 @@
                 startChart:null,
                 timeFormat:"",
                 rangeDate:{
-                    start:moment("2020-01-01").toDate(), //moment("2019-01-01"), // Jan 16th, 2018
+                    start:moment().subtract(60, 'days').toDate(), //moment("2019-01-01"), // Jan 16th, 2018
                     end: moment().toDate(),   // Jan 19th, 2018
                 },
                 loading: false,
@@ -611,8 +623,10 @@
             if (this.$route.query){
                 this.valueOption = this.$route.query.crop;
                 this.onOptionSelected();
-                this.$router.replace(this.$route.path);
-                console.log('The id is: ' + this.$route.query.crop);
+                if (this.valueOption) {
+                    this.$router.replace(this.$route.path);
+                    console.log('The id is: ' + this.$route.query.crop);
+                }
             }
         },
         beforeDestroy() {
@@ -639,6 +653,13 @@
         max-width: none;
         padding-top 60px !important
 
+
+    .navbar-item
+        &:hover
+            background-color #243f5a !important
+        &:focus
+            background-color #243f5a !important
+
     .v-select-custom
         .vs__dropdown-menu
             top: calc(100% - 10px);
@@ -659,8 +680,6 @@
                 input
                     margin: 0 0;
                     padding: 0;
-
-
         img
             height: auto;
             max-width: 2.5rem;

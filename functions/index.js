@@ -15,16 +15,17 @@ const HtmlTableToJson = require('html-table-to-json');
 const _ = require('lodash');
 const moment = require('moment');
 moment.locale('es-do');
+moment.tz.setDefault("America/Lima");
 
 //Prod
-//admin.initializeApp(functions.config().firebase);
+admin.initializeApp(functions.config().firebase);
 
 //Local
-const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
+/*const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://agroanalytics-b2462.firebaseio.com"
-});
+});*/
 
 const db = admin.firestore();
 db.settings({ timestampsInSnapshots: true });
@@ -489,31 +490,47 @@ async function updateAllPrices(param) {
 
 app.get('/prod-all', async (req, res) => {
 
-    let priceRef = await db.collection('prices');
-    priceRef = await priceRef.where('crops_id', '==', "BzgL14JQFRorQxPooJRb");
-    priceRef = await priceRef.where('price_type_id', '==', "ShlOjc8bm8QP9q7rw4kp"); // precio_prom: dsE4vwVF1JyfWVOVLgYA precio_max: AFuN7owOgTMIvwBzFNBG , min: ShlOjc8bm8QP9q7rw4kp
+    //let priceRef = await db.collection('prices');
+    let dateNew = new Date(1587168000000);
+    let fromDate = admin.firestore.Timestamp.fromDate(dateNew);
+    let day = moment().format("LLLL");
+
+    let daySam = moment().tz("America/Los_Angeles").format("LLLL");
+
+    console.log(day);
+    console.log(daySam);
+    /*priceRef = await  priceRef.where("date",">=",fromDate);
+    //priceRef = await priceRef.where('crops_id', '==', "BzgL14JQFRorQxPooJRb");
+    //priceRef = await priceRef.where('price_type_id', '==', "ShlOjc8bm8QP9q7rw4kp"); // precio_prom: dsE4vwVF1JyfWVOVLgYA precio_max: AFuN7owOgTMIvwBzFNBG , min: ShlOjc8bm8QP9q7rw4kp
     let lastPrice = await priceRef.get()
         .then(async value => {
-            let res = [];
+            let resList = [];
             await value.forEach(doc => {
                 let object = {};
-                object["date"] = doc.data().date.toDate();
+                object["date"] = doc.data().date;
+                object["created_at"] = doc.data().created_at.toDate();
                 object["id"] = doc.data().id;
-                //console.log(object);
-                res.push(object);
+                console.log(object);
+                resList.push(object);
                 //console.log(doc.id, '=>', doc.data());
             });
-            return  res
+            return  resList
         }).catch(err => {
             console.log('Error getting documents', err);
         });
+
     console.log(lastPrice.length);
-    res.send(lastPrice);
+
+    for (let [k1,price] of lastPrice.entries()){
+        await db.collection('prices').doc(price.id).delete().then(vl=>{console.log("eliminado => "+price.id)});
+    }*/
+
+    res.send(fromDate);
 });
 
 app.get('/update-all',async (req, res) => {
 
-    await updateAllProductsDB(res)
+    //await updateAllProductsDB(res)
 
 });
 
@@ -529,7 +546,7 @@ async function updatePricesProduct(crops,price){
 
     /**@function getLastProductDB obtien el ultimo dato ingestado de la DB*/
     let productDB = await getLastProductDB(mParams);
-    console.log(productDB);
+    //console.log(productDB);
 
     if (productDB && productDB.length === 0) {
         console.log("Inicia ingesta de total " +  mParams.crops_id_ref );
@@ -583,7 +600,7 @@ async function updatePricesProduct(crops,price){
         let promiseJsonInsert = pricesResultClean.map( (valList,k3) =>
             new Promise(async resolve =>
                 await setTimeout(async () => {
-                    console.log(k3);
+                    //console.log(k3);
                     await inserDataDays(valList,mParams);
                     resolve()
                 }, 500 * pricesResultClean.length - 500 * k3)
@@ -748,6 +765,16 @@ async function getAgriculturalCropsDB(){
         let res = [];
         value.forEach(doc => {
             res.push(doc.data());
+            /*
+            let today = moment().format("YYYY-MM-DD");  //DD/MM/YYYY
+            let beforeLastDate = moment(doc.data().date).add(1, 'day').format("YYYY-MM-DD");
+
+            let isUpdateData = moment(beforeLastDate).isSameOrBefore(today);
+
+            if (isUpdateData && (res.length <= 100)){
+                    res.push(doc.data());
+            }
+            */
         });
         return  res
     }).catch(err => {
@@ -755,15 +782,13 @@ async function getAgriculturalCropsDB(){
     });
 }
 
-async function updateAllProductsDB(res){
+async function updateAllProductsDB(){
     let pricesTypeDB = await getPricesTypeDB();
     let agriculturalCropsDB = await getAgriculturalCropsDB();
 
     let limitUpd = agriculturalCropsDB.length*pricesTypeDB.length;
-    console.log("init Total "+limitUpd);
-    console.log("init producto x3 "+agriculturalCropsDB.length);
 
-
+    /* eslint-disable no-await-in-loop */
     for (let [k1,crops] of agriculturalCropsDB.entries()){
         for (let [k2,vlTprice] of pricesTypeDB.entries()){
             /*if (k1 >= 200){
@@ -777,41 +802,28 @@ async function updateAllProductsDB(res){
         }
     }
 
-    /*let promiseAgricultura = await agriculturalCropsDB.map((crops,k1)=>
-        new Promise(async resolve =>
-            await setTimeout(async () => {
-
-                if (k1 >= 40){
-                    resolve();
-                    return 0
-                }
-
-                console.log(crops.name_es);
-
-                let promisePrices = pricesTypeDB.map( (vlTprice,k2) =>
-                    new Promise(async resolve =>
-                        await setTimeout(async () => {
-
-                            let updatePrices = await updatePricesProduct(crops,vlTprice);
-
-                            console.log("Actualizado====> "+updatePrices);
-                            resolve()
-
-                        }, 700 * pricesTypeDB.length - 700 * k2)
-                    ).catch(() => {}));
-
-                let rgister = k1+1;
-                await Promise.all(promisePrices).then(()=> console.log("Se ingesto-"+rgister+"-Grupo")).catch(() => {});
-
-                resolve()
-            }, 700 * pricesTypeDB.length - 700 * k1)
-        ).catch(() => {})
-    );*/
-
-    //await Promise.all(promiseAgricultura).then(()=> console.log("Se ingesto #"+limitUpd+" registros")).catch(() => {});
-
-    res.send({data_ingestada:limitUpd});
+    return {data_ingested:limitUpd}
+    //res.send({data_ingestada:limitUpd});
 }
+
+exports.executeUpdateSisaptoDBTask = functions
+    .runWith({ memory: functions.VALID_MEMORY_OPTIONS[3], timeoutSeconds: functions.MAX_TIMEOUT_SECONDS })
+    .pubsub.schedule('0-17/9 9 * * *') //23 0-23/2 * * *
+    .timeZone('America/Lima') // Users can choose timezone - default is America/Los_Angeles
+    .onRun( (context) => {
+        return new Promise(async (resolve, reject) => {
+
+            let counter = await updateAllProductsDB();
+
+            if (counter && (counter.data_ingested > 0)){
+                console.log('Esta job se ejecuta a las 9:00 am, productos max,min,prom ==> '+counter.data_ingested);
+                resolve("Ok");
+            } else {
+                reject(new Error('error'));
+            }
+
+        });
+    });
 
 exports[API_PREFIX] = functions.https.onRequest(app);
 
