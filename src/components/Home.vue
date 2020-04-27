@@ -95,13 +95,13 @@
                                     </span>
 
                                     <template slot="singleLabel" slot-scope="props">
-                                        <img style="width: 38px; padding-right: 2px" class="option__image" :src="props.option.icon_url ? props.option.icon_url:getImgUrl('generic-icon.png')">
+                                        <img style="height: 38px;width: 38px; padding-right: 2px" class="option__image" :src="props.option.icon_url ? props.option.icon_url:getImgUrl('generic-icon.png')">
                                         <span class="option__title">{{ props.option.name_es }}</span>
                                     </template>
 
 
                                     <template slot="option" slot-scope="props" style="display: inline-flex;align-items: center;">
-                                        <img style="width: 38px;padding-right: 2px" class="option__image" :src="props.option.icon_url ? props.option.icon_url:getImgUrl('generic-icon.png')">
+                                        <img style="height: 38px;width: 38px;padding-right: 2px" class="option__image" :src="props.option.icon_url ? props.option.icon_url:getImgUrl('generic-icon.png')">
                                         <span class="option__title">{{ props.option.name_es }}</span>
                                     </template>
 
@@ -185,7 +185,7 @@
                         <div class="column is-half-mobile is-half-desktop title-column-left">
                             PRECIOS
                         </div>
-                        <div class="column is-half-mobile is-half-desktop title-column-right">
+                        <div class="column is-half-mobile is-half-desktop title-column-right" style="cursor: pointer" @click="viewAll()">
                             Ver más ->
                         </div>
                     </div>
@@ -210,13 +210,19 @@
                                             <div class="price-title">
                                                 <div class="price" :style="{color: item.isUp?'#3dcb43':'#ff4c4c'}">
                                                       <span>
-                                                          {{item.price}}
+                                                          <span style="padding: 0px">{{item.price}}</span>
                                                           <f-icon v-if="item.isUp" icon="long-arrow-alt-up" style="color: #3dcb43;"/>
                                                           <f-icon v-else icon="long-arrow-alt-down" style="color: #ff4c4c;"/>
+                                                          <span style="font-size: 8px;padding: 0px">x1kg</span>
                                                       </span>
-
                                                 </div>
-                                                <div class="many">x 1Kg</div>
+                                                <div class="many"></div>
+                                            </div>
+                                            <div class="add-shopping">
+                                                <span style="border: solid 1px; border-radius: 30px; padding-left: 5px;padding-right: 5px;border-color: #9da1a1;">
+                                                    <span>Agregar</span>
+                                                    <f-icon icon="shopping-cart" style="color: #afebff;"/>
+                                                </span>
                                             </div>
 
                                         </div>
@@ -225,6 +231,10 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="has-text-centered">
+                        <div class="button is-rounded btn-search is-primary has-text-centered"> <strong>Ver todo los productos</strong> </div>
                     </div>
                 </div>
             </div>
@@ -353,7 +363,7 @@
                             data.image_url = await this.downloadImg(doc.data().image_url);
                             data.searches = doc.data().searches;
                             let stateUp = this.isPricesUp(docPrice);
-                            data.price = stateUp.price;
+                            data.price = stateUp.price.trim();
                             data.isUp = stateUp.isUp;
                             data.date = stateUp.date;
                             colectionOptions.push(data);
@@ -370,17 +380,28 @@
                 })
             },
             searchCrops($option){
-
-                console.log($option);
                 this.getPricesTop({limit:1,isTop:false,id:$option.id});
+                let db = this.$firebase.firestore();
+                if(!$option.searches ){$option.searches = 1}
 
+                (!$option.searches || $option.searches==="NaN")? ($option.searches = 1):($option.searches++);
+                db.collection("agricultural_crops").doc($option.id).update({searches: $option.searches});
             },
             onClickProduct(model){
                 //console.log(model);
+                this.searchCrops(model);
+                let db = this.$firebase.firestore();
+                (!model.searches || model.searches==="NaN")? (model.searches = 1):(model.searches++);
+                db.collection("agricultural_crops").doc(model.id).update({searches: model.searches});
+            },
+            viewHistory(model){
                 this.$router.push({ name: "dashboard",query: { crop:model}});
             },
             isMobile() {
                 return ( window.innerWidth <= 750 ); //&& ( window.innerHeight <= 600 );
+            },
+            viewAll(){
+                this.getPricesTop({limit:200,isTop:false});
             }
         },
         mounted (){
@@ -398,6 +419,7 @@
                     data.icon_url = await this.downloadIcon(doc.data().icon_url);
                     data.name_es = doc.data().name_es;
                     data.id = doc.data().id;
+                    data.searches = doc.data().searches;
                     colectionOptions.push(data);
                 });
 
@@ -575,14 +597,14 @@
                     .price-title
                         position: relative
                         .price
-                            width: 60%;
+                            width: 70%;
                             display: inline-block;
                             text-align: start;
                             span
                                 padding-right: 3px;
                                 font-weight: 700;
                         .many
-                            width: 40%;
+                            width: 30%;
                             display: inline-block;
                             text-align: end;
 
@@ -653,7 +675,9 @@
                 background-size: 48% auto;
                 background-position: left bottom;
             .btn-search
-                display none !important
+                //display none !important
+                font-size 12px
+
 
             .card-category
                 border: 1px solid;
@@ -676,6 +700,7 @@
                         padding-top 5px
                         padding-bottom 1px
                         font-size 12px;
+                        height: 42px;
                     .subtitle-cart
                         font-size: 12px;
                         text-align: right

@@ -348,7 +348,7 @@ getPricesSisap = async (param) => {
                 console.log("========"+param.product+"========");console.log(err.message)
             });
 
-    
+
     return response ? response.data :false;
 };
 
@@ -810,7 +810,7 @@ async function updateAllProductsDB(){
 
 exports.executeUpdateSisaptoDBTask = functions
     .runWith({ memory: functions.VALID_MEMORY_OPTIONS[3], timeoutSeconds: functions.MAX_TIMEOUT_SECONDS })
-    .pubsub.schedule('0-17/9 9-14 * * *') //'0-17/9 10 * * *'
+    .pubsub.schedule('0-17/9 9-17 * * *') //'0-17/9 10 * * *'
     .timeZone('America/Lima') // Users can choose timezone - default is America/Los_Angeles
     .onRun( (context) => {
         return new Promise(async (resolve, reject) => {
