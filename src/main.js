@@ -10,11 +10,11 @@ import Multiselect from 'vue-multiselect'
 import 'vue-select/dist/vue-select.css';
 import './assets/styles/main.styl'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheck,faSortUp,faCaretUp,faSortDown,faLongArrowAltDown,faLongArrowAltUp,faSearch,faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import { faCheck,faSortUp,faCaretUp,faSortDown,faLongArrowAltDown,faLongArrowAltUp,faSearch,faShoppingCart,faChartLine} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VCalendar from 'v-calendar';
 
-library.add([faCheck,faSortUp,faCaretUp,faSortDown,faLongArrowAltDown,faLongArrowAltUp,faSearch,faShoppingCart]);
+library.add([faCheck,faSortUp,faCaretUp,faSortDown,faLongArrowAltDown,faLongArrowAltUp,faSearch,faShoppingCart,faChartLine]);
 Vue.component('f-icon', FontAwesomeIcon);
 Vue.component('v-select', vSelect);
 Vue.component('v-multiselect', Multiselect);

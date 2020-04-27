@@ -1,7 +1,9 @@
 <template>
     <div class="container is-fullhd container-home">
         <div class="notification">
-
+            <div v-if="loading" class="loader-wrapper" style="background:rgba(89,88,88,0.35);min-height: 100vh;z-index: 40">
+                <div class="loader is-loading"></div>
+            </div>
             <nav class="navbar header-navigation" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
 
@@ -83,7 +85,7 @@
                                              :options="optionCrops"
                                              :show-labels="false"
                                              @input="searchCrops"
-                                             :option-height="60"
+                                             :option-height="62"
                                              :multiple = "false"
                                              :searchable="true"
                                              :close-on-select="true"
@@ -137,7 +139,7 @@
                         <img :src="item.icon_url" alt="#">
                     </div>
                     <div class="desc-img-cicle">
-                        <div>{{item.name_es}}</div>
+                        <div style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{item.name_es}}</div>
                         <strong :style="{color: item.isUp?'#3dcb43':'#ff4c4c'}" >S/ {{item.price}}</strong>
                         <f-icon v-if="item.isUp" icon="long-arrow-alt-up" style="color: #3dcb43;"/>
                         <f-icon v-else icon="long-arrow-alt-down" style="color: #ff4c4c;"/>
@@ -190,7 +192,7 @@
                         </div>
                     </div>
                     <div class="columns is-mobile is-desktop is-multiline is-centered colums-container">
-                        <div v-for="item in productList" class="column pdtb-1 is-narrow is-one-third-mobile is-one-fifth-desktop" :key="item.id" @click="onClickProduct(item)">
+                        <div v-for="item in productList" class="column pdtb-1 is-narrow is-one-third-mobile is-one-fifth-desktop" :key="item.id">
                             <div class="card card-border">
                                 <div class="card-image">
                                     <figure class="image is-4by3">
@@ -201,22 +203,30 @@
                                     <div class="content">
                                         <div class="title-card">
                                             <strong>{{item.name_es}}</strong>
+                                            <div style="line-height: 0.2;cursor: pointer"  @click="viewHistory(item)" >
+                                                <span class="txt-history">
+                                                    Ver historial
+                                                    <span> <f-icon icon="chart-line"/> </span>
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="subtitle-cart">
-                                            <div class="date">
-                                                <span>{{getDate(item.date)}}</span>
-                                            </div>
+
 
                                             <div class="price-title">
                                                 <div class="price" :style="{color: item.isUp?'#3dcb43':'#ff4c4c'}">
                                                       <span>
-                                                          <span style="padding: 0px">{{item.price}}</span>
+                                                          <span style="padding: 0px">s/{{item.price}}</span>
                                                           <f-icon v-if="item.isUp" icon="long-arrow-alt-up" style="color: #3dcb43;"/>
                                                           <f-icon v-else icon="long-arrow-alt-down" style="color: #ff4c4c;"/>
                                                           <span style="font-size: 8px;padding: 0px">x1kg</span>
                                                       </span>
                                                 </div>
-                                                <div class="many"></div>
+                                                <div class="many">
+                                                    <div class="date">
+                                                        <span>{{getDate(item.date)}}</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="add-shopping">
                                                 <span style="border: solid 1px; border-radius: 30px; padding-left: 5px;padding-right: 5px;border-color: #9da1a1;">
@@ -234,7 +244,7 @@
                     </div>
 
                     <div class="has-text-centered">
-                        <div class="button is-rounded btn-search is-primary has-text-centered"> <strong>Ver todo los productos</strong> </div>
+                        <div @click="viewAll" class="button is-rounded btn-search is-primary has-text-centered"> <strong>Ver más productos</strong> </div>
                     </div>
                 </div>
             </div>
@@ -273,7 +283,9 @@
                         icon_url:""
                     }
                 ],
-                isLoading: false
+                isLoading: false,
+                loading: false,
+                switchDark:true,
             }
         },
         methods:{
@@ -372,7 +384,7 @@
                         });
                     });
 
-                    if (mParam.isTop){
+                    if (mParam.isTop && mParam.limit <= 8){
                         this.topSearches = colectionOptions;
                     }else {
                         this.productList = colectionOptions;
@@ -380,12 +392,20 @@
                 })
             },
             searchCrops($option){
-                this.getPricesTop({limit:1,isTop:false,id:$option.id});
-                let db = this.$firebase.firestore();
-                if(!$option.searches ){$option.searches = 1}
+                this.loading = true;
+                if($option){
+                    this.getPricesTop({limit:1,isTop:false,id:$option.id});
+                    let db = this.$firebase.firestore();
+                    if(!$option.searches ){$option.searches = 1}
 
-                (!$option.searches || $option.searches==="NaN")? ($option.searches = 1):($option.searches++);
-                db.collection("agricultural_crops").doc($option.id).update({searches: $option.searches});
+                    (!$option.searches || $option.searches==="NaN")? ($option.searches = 1):($option.searches++);
+                    db.collection("agricultural_crops").doc($option.id).update({searches: $option.searches});
+                }else {
+                    this.getPricesTop({limit:this.isMobile()?6:15,isTop:false});
+                }
+                setTimeout(async () => {
+                    this.loading = false;
+                }, 1800 )
             },
             onClickProduct(model){
                 //console.log(model);
@@ -401,14 +421,19 @@
                 return ( window.innerWidth <= 750 ); //&& ( window.innerHeight <= 600 );
             },
             viewAll(){
+                this.loading = true;
                 this.getPricesTop({limit:200,isTop:false});
+                setTimeout(async () => {
+                    this.loading = false;
+                }, 3000 )
             }
         },
         mounted (){
+            this.loading = true;
             this.storageIconRef = this.$firebase.storage().ref().child("agricultural_icons");
             this.storageImgRef = this.$firebase.storage().ref().child("agricultural_images");
-            this.getPricesTop({limit:this.isMobile()?4:6,isTop:true});
-            this.getPricesTop({limit:this.isMobile()?6:15,isTop:false});
+            this.getPricesTop({limit:this.isMobile()?4:8,isTop:true});
+            this.getPricesTop({limit:this.isMobile()?6:15,isTop:true});
 
             let db = this.$firebase.firestore();
             db.collection('agricultural_crops').where("state", "==",1).orderBy('name_es').get().then(snap => {
@@ -425,6 +450,10 @@
 
                 //console.log(colectionOptions)
                 this.optionCrops = colectionOptions;
+
+                setTimeout(async () => {
+                    this.loading = false;
+                }, 3000 )
                 //loading(false);
             })
 
@@ -477,7 +506,8 @@
                     border-radius: 50%;
                     img
                         width: 100%
-                        height: auto
+                        height: 100%
+                        padding 2px
                 .desc-img-cicle
                     font-size: 14px;
                     width: 100%;
@@ -584,6 +614,8 @@
             padding: 0px !important;
             text-align: right
             font-size 18px
+        .txt-history
+            font-size: 11px; color: #0b65ff;padding-right: 5px;
 
         .card-content
             .content
@@ -596,15 +628,17 @@
                     text-align: right
                     .price-title
                         position: relative
+                        padding-top 8px
+                        padding-bottom 8px
                         .price
-                            width: 70%;
+                            width: 60%;
                             display: inline-block;
                             text-align: start;
                             span
                                 padding-right: 3px;
                                 font-weight: 700;
                         .many
-                            width: 30%;
+                            width: 40%;
                             display: inline-block;
                             text-align: end;
 
@@ -637,6 +671,8 @@
                 text-align: right
                 font-size 12px
 
+            .txt-history
+                font-size: 8px; color: #0b65ff;padding-right: 5px;
 
             .content-item-circel
                 display: flex;
@@ -700,12 +736,14 @@
                         padding-top 5px
                         padding-bottom 1px
                         font-size 12px;
-                        height: 42px;
+                        height: 52px;
                     .subtitle-cart
                         font-size: 12px;
                         text-align: right
                         .price-title
                             position: relative
+                            padding-top  8px
+                            padding-bottom 8px
                             .price
                                 width: 60%;
                                 display: inline-block;
