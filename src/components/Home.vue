@@ -405,7 +405,7 @@
                 }
                 setTimeout(async () => {
                     this.loading = false;
-                }, 1800 )
+                }, 2800 )
             },
             onClickProduct(model){
                 //console.log(model);
