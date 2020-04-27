@@ -177,3 +177,46 @@
 [debug] [2020-04-27T22:14:03.896Z] [rules] releasing firebase.storage/agroanalytics-b2462.appspot.com with ruleset projects/agroanalytics-b2462/rulesets/6704f775-ee7c-4f14-8236-019237eb4f40
 [debug] [2020-04-27T22:14:03.896Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/agroanalytics-b2462/releases/firebase.storage/agroanalytics-b2462.appspot.com  
 
+[debug] [2020-04-27T22:14:05.572Z] <<< HTTP RESPONSE 200
+[debug] [2020-04-27T22:14:05.573Z] [rules] updated release projects/agroanalytics-b2462/releases/firebase.storage/agroanalytics-b2462.appspot.com
+[info] ✔  storage: released rules storage.rules to firebase.storage/agroanalytics-b2462.appspot.com
+[debug] [2020-04-27T22:14:05.573Z] [rules] releasing cloud.firestore with ruleset projects/agroanalytics-b2462/rulesets/d44e3100-9612-4a70-9cdc-5477a1d0b820
+[debug] [2020-04-27T22:14:05.574Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/agroanalytics-b2462/releases/cloud.firestore  
+
+[debug] [2020-04-27T22:14:06.294Z] <<< HTTP RESPONSE 200
+[debug] [2020-04-27T22:14:06.295Z] [rules] updated release projects/agroanalytics-b2462/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore
+[debug] [2020-04-27T22:14:06.297Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/agroanalytics-b2462/locations/-/functions  
+ 
+[debug] [2020-04-27T22:14:08.139Z] <<< HTTP RESPONSE 200
+[info] i  functions: updating Node.js 10 (Beta) function executeUpdateSisaptoDBTask(us-central1)...
+[debug] [2020-04-27T22:14:08.142Z] Trigger is:  {"eventTrigger":{"resource":"projects/agroanalytics-b2462/topics/firebase-schedule-executeUpdateSisaptoDBTask-us-central1","eventType":"google.pubsub.topic.publish","service":"pubsub.googleapis.com"}}
+[info] i  functions: updating Node.js 10 (Beta) function api(us-central1)...
+[debug] [2020-04-27T22:14:08.142Z] Trigger is:  {"httpsTrigger":{}}
+[info] i  scheduler: ensuring necessary APIs are enabled...
+[info] i  pubsub: ensuring necessary APIs are enabled...
+[debug] [2020-04-27T22:14:08.144Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/agroanalytics-b2462/services/cloudscheduler.googleapis.com  
+ 
+[debug] [2020-04-27T22:14:08.144Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/agroanalytics-b2462/services/pubsub.googleapis.com  
+ 
+[debug] [2020-04-27T22:14:09.908Z] <<< HTTP RESPONSE 200
+[info] ✔  scheduler: all necessary APIs are enabled
+[debug] [2020-04-27T22:14:10.108Z] <<< HTTP RESPONSE 200
+[info] ✔  pubsub: all necessary APIs are enabled
+[debug] [2020-04-27T22:14:10.110Z] >>> HTTP REQUEST GET https://cloudscheduler.googleapis.com/v1beta1/projects/agroanalytics-b2462/locations/us-central1/jobs/firebase-schedule-executeUpdateSisaptoDBTask-us-central1  
+ 
+[debug] [2020-04-27T22:14:12.186Z] <<< HTTP RESPONSE 200
+[info] i  functions: scheduler job firebase-schedule-executeUpdateSisaptoDBTask-us-central1 is up to date, no changes required
+[debug] [2020-04-27T22:14:12.189Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/agroanalytics-b2462/locations/us-central1/functions/executeUpdateSisaptoDBTask {"updateMask":"sourceUploadUrl,name,labels,runtime,availableMemoryMb,timeout,eventTrigger.resource,eventTrigger.eventType,eventTrigger.service"} 
+
+[debug] [2020-04-27T22:14:12.190Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/agroanalytics-b2462/locations/us-central1/functions/api {"updateMask":"sourceUploadUrl,name,labels,runtime,httpsTrigger"} 
+
+[debug] [2020-04-27T22:14:14.144Z] <<< HTTP RESPONSE 200
+[debug] [2020-04-27T22:14:15.112Z] <<< HTTP RESPONSE 200
+[debug] [2020-04-27T22:14:15.114Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/agroanalytics-b2462/locations/-/functions  
+ 
+[debug] [2020-04-27T22:14:16.966Z] <<< HTTP RESPONSE 200
+[debug] [2020-04-27T22:14:16.967Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YWdyb2FuYWx5dGljcy1iMjQ2Mi91cy1jZW50cmFsMS9leGVjdXRlVXBkYXRlU2lzYXB0b0RCVGFzay85MlNfMEQtQmZFMA  
+ 
+[debug] [2020-04-27T22:14:16.968Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/YWdyb2FuYWx5dGljcy1iMjQ2Mi91cy1jZW50cmFsMS9hcGkvU3E4Ymx6LUFodlU  
+ 
