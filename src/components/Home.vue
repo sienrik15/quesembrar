@@ -1,7 +1,7 @@
 <template>
     <div class="container is-fullhd container-home">
         <div class="notification">
-            <div v-if="loading" class="loader-wrapper" style="background:rgba(89,88,88,0.35);min-height: 100vh;z-index: 40">
+            <div v-if="loading" class="loader-wrapper" style="background:rgba(89,88,88,0.35);min-height: 100%;z-index: 40">
                 <div class="loader is-loading"></div>
             </div>
             <nav class="navbar header-navigation" role="navigation" aria-label="main navigation">
@@ -211,8 +211,6 @@
                                             </div>
                                         </div>
                                         <div class="subtitle-cart">
-
-
                                             <div class="price-title">
                                                 <div class="price" :style="{color: item.isUp?'#3dcb43':'#ff4c4c'}">
                                                       <span>
@@ -229,14 +227,12 @@
                                                 </div>
                                             </div>
                                             <div class="add-shopping">
-                                                <span class="button is-rounded " style="padding-top:2px;padding-bottom:2px;height: 29px;border-color: rgb(212,211,213); color: rgb(63,63,63) !important;">
+                                                <span class="button is-rounded btn-add-shop">
                                                     <span>Agregar</span>
                                                     <f-icon style="font-size: 12px" icon="shopping-cart"/>
                                                 </span>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -489,6 +485,13 @@
         //background-size:  cover;
         //background-color: #999
 
+        .btn-add-shop
+            padding-top:2px;
+            padding-bottom:2px;
+            height: 29px;
+            border-color: rgb(212,211,213);
+            color: rgb(63,63,63) !important;
+
         .content-item-circel
             display: flex;
             justify-content: center;
@@ -652,6 +655,15 @@
             .banner-body
                 padding: 70px 15px 1px 15px !important;
                 background #ffffff2b
+
+            .btn-add-shop
+                padding-top:2px;
+                padding-bottom:2px;
+                height: 24px;
+                width: 100%
+                font-size 12px
+                border-color: rgb(212,211,213);
+                color: rgb(63,63,63) !important;
 
             .search-container
                 text-align center

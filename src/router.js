@@ -18,7 +18,7 @@ export default new Router({
             children: [
                 {
                     path: '/',
-                    //redirect:'/',
+                    //redirect:'/sam',
                     name: 'resultado',
                     component: {
                         render (c) { return c('router-view') }

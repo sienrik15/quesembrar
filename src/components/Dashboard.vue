@@ -166,6 +166,7 @@
 
                     this.value_list = [];
                     //let updateDate = [];
+                    let dataAll = [];
                     price_type_ids.forEach(type => {
                         const prices_data = [];
                         const date_list = [];
@@ -174,6 +175,7 @@
                             prices_data.push(doc.data().price);
                             date_list.push(doc.data().date.toDate());
                             //updateDate.push({date:doc.data().date.toDate(),created_at:doc.data().created_at.toDate()})
+                            dataAll.push(doc.data())
                         });
                         this.date_list = date_list;
                         this.value_list.push(prices_data);
@@ -182,7 +184,7 @@
 
                     this.loading = false;
                     //console.log(updateDate);
-                    //console.log(prices_data);
+                    console.log(dataAll);
                     this.updateChartConf();
                 }).catch(err=>{
                     //console.log(err)
@@ -644,8 +646,9 @@
         color #fff
         position: absolute;
         right: 20px;
-        top: 28px
+        top: 62px;
         z-index: 1;
+        margin-bottom: 0px;
 
     .chart-container
         height: 100vh
