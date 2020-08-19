@@ -191,7 +191,7 @@
                             Ver más ->
                         </div>
                     </div>
-                    <div class="columns is-mobile is-desktop is-multiline is-centered colums-container">
+                    <div class="columns is-mobile is-desktop is-multiline is-centered colums-container pd-5">
                         <div v-for="item in productList" class="column pdtb-1 is-narrow is-one-third-mobile is-one-fifth-desktop" :key="item.id">
                             <div class="card card-border">
                                 <div class="card-image">
@@ -229,9 +229,9 @@
                                                 </div>
                                             </div>
                                             <div class="add-shopping">
-                                                <span style="border: solid 1px; border-radius: 30px; padding-left: 5px;padding-right: 5px;border-color: #9da1a1;">
+                                                <span class="button is-rounded " style="padding-top:2px;padding-bottom:2px;height: 29px;border-color: rgb(212,211,213); color: rgb(63,63,63) !important;">
                                                     <span>Agregar</span>
-                                                    <f-icon icon="shopping-cart" style="color: #afebff;"/>
+                                                    <f-icon style="font-size: 12px" icon="shopping-cart"/>
                                                 </span>
                                             </div>
 
@@ -338,7 +338,11 @@
                 return param
             },
             getDate(date){
-                return moment(date.toDate()).format("DD MMM YY")
+                if(this.isMobile()){
+                   return moment(date.toDate()).format("DD MMM")
+                } else {
+                   return moment(date.toDate()).format("DD MMM YY")
+                }
             },
             getPricesTop(param){
                 let mParam = {
@@ -384,7 +388,7 @@
                         });
                     });
 
-                    if (mParam.isTop && mParam.limit <= 8){
+                    if (mParam.isTop && (mParam.limit === 4 || mParam.limit === 8)){
                         this.topSearches = colectionOptions;
                     }else {
                         this.productList = colectionOptions;
@@ -742,19 +746,21 @@
                         text-align: right
                         .price-title
                             position: relative
-                            padding-top  8px
+                            padding-top  0px
                             padding-bottom 8px
                             .price
-                                width: 60%;
+                                width: 69%;
                                 display: inline-block;
                                 text-align: start;
+                                font-size 11px
                                 span
                                     padding-right: 3px;
                                     font-weight: 700;
                             .many
-                                width: 40%;
+                                width: 31%;
                                 display: inline-block;
                                 text-align: end;
+                                font-size 9px;
 
             .colums-container
                 margin: 0px !important;
