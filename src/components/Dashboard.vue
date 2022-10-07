@@ -19,7 +19,7 @@
                     <div class="columns is-desktop is-mobile is-multiline is-centered">
 
                         <v-select class="v-select-custom column is-one-third is-narrow"
-                                  label="name"
+                                  label="name_es"
                                   :filterable="false"
                                   :options="optionCrops"
                                   v-model="valueOption"
@@ -107,8 +107,10 @@
                 search = search.trim().toLowerCase();
                 if (search.length <= 0){ return loading(false); }
                 let db = vm.$firebase.firestore();
-                db.collection('agricultural_crops').where("state", "==",1).orderBy('name_es')
+                db.collection('agricultural_crops')
+                    .where("state", "==",1).orderBy('name_es')
                     .startAt(search).endAt(search+'\uf8ff').get().then(snap => {
+
                         const colectionOptions = [];
                         snap.forEach(async doc => {
                             let data = {};
@@ -153,7 +155,7 @@
                 let market_id = "3BeNPYEum6Wvw1z2dFHw";
                 let crops_id = this.valueOption.id;
                 let db = this.$firebase.firestore();
-                console.log("snap");
+                //console.log("snap");
 
                 let pricesDB = db.collection('prices');
                 pricesDB = pricesDB.where("price_type_id","in",price_type_ids);
@@ -163,7 +165,7 @@
                 pricesDB = pricesDB.where("date","<=",moment(this.rangeDate.end).toDate());
                 pricesDB = pricesDB.orderBy('date');//.limit(365);
                 pricesDB.get().then(snap => {
-
+                    //console.log(snap);
                     this.value_list = [];
                     //let updateDate = [];
                     let dataAll = [];
@@ -187,7 +189,7 @@
                     console.log(dataAll);
                     this.updateChartConf();
                 }).catch(err=>{
-                    //console.log(err)
+                    console.log(err.message)
                     this.loading = false;
                     err.toString();
                 });

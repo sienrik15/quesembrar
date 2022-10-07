@@ -1,7 +1,7 @@
 <template>
     <div class="container is-fullhd container-home">
         <div class="notification">
-            <div v-if="loading" class="loader-wrapper" style="background:rgba(89,88,88,0.35);min-height: 100%;z-index: 40">
+            <div v-if="loading" class="loader-wrapper" style="background:rgba(89,88,88,0.35);min-height: 100vh;z-index: 40">
                 <div class="loader is-loading"></div>
             </div>
             <nav class="navbar header-navigation" role="navigation" aria-label="main navigation">
@@ -53,8 +53,8 @@
                             </div>
                         </div>-->
                     </div>
-
-                    <div class="navbar-end">
+                        
+                    <!-- <div class="navbar-end">
                         <div class="navbar-item">
                             <div class="buttons">
                                 <a class="button is-rounded is-primary">
@@ -65,7 +65,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </nav>
 
@@ -75,7 +75,7 @@
 
                         <div class="search-container">
                             <div class="title-search">
-                                <strong> Productos organicos saludables </strong>
+                                <strong> Precios del Dia Mercado Mayorista del Perú </strong>
                             </div>
 
                             <div>
@@ -415,6 +415,7 @@
                 db.collection("agricultural_crops").doc(model.id).update({searches: model.searches});
             },
             viewHistory(model){
+                //console.log(model)
                 this.$router.push({ name: "dashboard",query: { crop:model}});
             },
             isMobile() {
@@ -466,6 +467,9 @@
     @import '~vue-multiselect/dist/vue-multiselect.min.css';
 
     .container-home
+        min-height 100vh
+        .notification
+            min-height 100vh
         .header-navigation
             position: absolute !important;
             width: 100% !important;

@@ -14,53 +14,30 @@ const querystring = require('querystring');
 const HtmlTableToJson = require('html-table-to-json');
 const _ = require('lodash');
 const moment = require('moment');
+const Jimp = require('jimp');
+const imagemin = require("imagemin");
+const imageminPngquant = require("imagemin-pngquant");
+const imageminJpegtran = require('imagemin-jpegtran');
+const tinify = require("tinify");
+tinify.key = "lxWWsDsbSXtXlR1wL9861HjMGWjxDqPr";
+const Fs = require('fs')
+const Path = require('path')
+
 moment.locale('es-do');
 moment.tz.setDefault("America/Lima");
 
 //Prod
-admin.initializeApp(functions.config().firebase);
+//admin.initializeApp(functions.config().firebase);
 
 //Local
-/*const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
+const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://agroanalytics-b2462.firebaseio.com"
-});*/
+});
 
 const db = admin.firestore();
 db.settings({ timestampsInSnapshots: true });
-
-createProducto = async () => {
-    let productRef = db.collection('precios');
-    productRef.doc('sandia').set({
-        fecha:'',
-        peso:'1kg',
-        unidad:'S/',
-        precio_max:'',
-        precio_prom:'',
-        precio_min:''
-    });
-
-    let volumenRef = db.collection('volumen');
-    volumenRef.doc('sandia').set({
-        fecha:'',
-        unidad:'t',
-        ciudad:'',
-    });
-};
-
-deletefilevalue = async ()=>{
-    // Get the `FieldValue` object
-    let FieldValue = require('firebase-admin').firestore.FieldValue;
-
-    // Create a document reference
-    let cityRef = db.collection('users').doc('alovelace');
-
-    // Remove the 'capital' field from the document
-    let removeCapital = cityRef.update({
-        last: FieldValue.delete()
-    });
-};
 
 deleteCollection = (db, collectionPath, batchSize) => {
     let collectionRef = db.collection(collectionPath);
@@ -106,8 +83,8 @@ deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
 };
 
 
-// Post Producto por mercado : http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado  mercado: * (empty) ajax: true
-// Post subproducto de producto : http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/variedades/filtrarPorGenero expandir: 0231~checkBox (empty) ajax: true
+// Post Producto por mercado : http://sistemas.midagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado  mercado: * (empty) ajax: true
+// Post subproducto de producto : http://sistemas.midagri.gob.pe/sisap/portal2/mayorista/variedades/filtrarPorGenero expandir: 0231~checkBox (empty) ajax: true
 makeIdProducts = async ()=>{
     let productList = [];
     console.log("inite");
@@ -200,7 +177,7 @@ updateAgroCrops = async ()=>{
 */
 
 getProductCrops = async (res)=>{
-    /*let resProMercado = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado',
+    /*let resProMercado = await axios.post('http://sistemas.midagri.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado',
         querystring.stringify({
             mercado: '*'
         }));
@@ -245,7 +222,7 @@ getProductCrops = async (res)=>{
 
             await setTimeout(async () => {
 
-                let resListProduc =  await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/variedades/filtrarPorGenero',
+                let resListProduc =  await axios.post('http://sistemas.midagri.gob.pe/sisap/portal2/mayorista/variedades/filtrarPorGenero',
                     querystring.stringify({
                         expandir: vl.id
                     })).catch(err=>{
@@ -308,30 +285,9 @@ getProductCrops = async (res)=>{
 
 };
 
-
-getScrap = async () =>{
-    let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
-        querystring.stringify({
-            mercado: '*',
-            'variables[]': 'volumen',
-            'procedencias[]': '110000',
-            fecha: '07/09/2019',
-            desde: '01/01/2019',//1997
-            hasta: '07/09/2019',
-            'anios[]': '2019',
-            'meses[]': '09',
-            'semanas[]': '36',
-            //'productos[]': '0633',
-            'productos[]': '063301',
-            periodicidad: 'intervalo'
-        }));
-
-    return response.data;
-};
-
 getPricesSisap = async (param) => {
     let today = moment().format("DD/MM/YYYY");
-    let response = await axios.post('http://sistemas.minagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
+    let response = await axios.post('http://sistemas.midagri.gob.pe/sisap/portal2/mayorista/resumenes/filtrar',
             querystring.stringify({
                 mercado: '*',
                 'variables[]': param.type,
@@ -355,7 +311,6 @@ getPricesSisap = async (param) => {
 const API_PREFIX = 'api';
 const app = express();
 
-
 app.use((req, res, next) => {
     if (req.url.indexOf(`/${API_PREFIX}/`) === 0) {
         req.url = req.url.substring(API_PREFIX.length + 1);
@@ -363,19 +318,19 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/delet-collection', async (req, res) => {
+/*app.get('/delet-collection', async (req, res) => {
     //console.log("Hola quesembrar");
     //let deletCallection = await deleteCollection(db, 'prices', 450);
     //res.send(deletCallection)
-});
+});*/
 
-app.get('/', async (req, res) => {
+/*app.get('/', async (req, res) => {
     console.log("Hola quesembrar");
     //res.send("Hola quesembrar");
     //let  priceRef = db.collection('prices');
     //priceRef = await priceRef.where('price', '>', "0");
     //priceRef = await priceRef.where("crops_id","==","08XDzSuu8cxyiZgauQcl");
-    /*priceRef = await priceRef.orderBy("date", "desc").limit(10);
+    /!*priceRef = await priceRef.orderBy("date", "desc").limit(10);
     let response = await priceRef.get().then(async value => {
         let resData = [];
         await value.forEach(doc => {
@@ -391,7 +346,7 @@ app.get('/', async (req, res) => {
         res.send(resData);
 
         return value.size;
-    });*/
+    });*!/
 
 //Product list
 
@@ -433,16 +388,151 @@ app.get('/', async (req, res) => {
     });
 
     //await getProductCrops(res)
+});*/
+
+let Cookie = 'cfid=1af7cdc7-ab7e-46e7-8a49-799e1888778d; cftoken=0; _ga=GA1.2.1966463352.1597959184; _gid=GA1.2.200242297.1598127995; REDIRECT_URL_2657=http%3A%2F%2Fus.saltpluspepper.com%2F%3FGO%3DRECIPEDETAILS%26ContentID%3D404373%26wasinternalredirect%3Dtrue; _gat=1'
+
+app.get('/', async (req, res) => {
+
+    let recipeImages = [];
+    let recipeList = []
+    let recipes = await db.collection('kitchen_recipes');
+    //let batch = db.batch();
+    recipes = recipes.select('id','id_ref','image_url')
+    recipes = recipes.where('id_ref','>=','404408').where('id_ref','<=','404413') //404413
+    await recipes.get().then( async vl=>{
+        //let ingredients = db.collection('kitchen_recipes_ingredients');
+        console.log(vl.docs.length)
+
+        vl.docs.forEach(doc=>{
+            recipeList.push(doc.data())
+            recipeImages.push(downloadImage(doc.data().id_ref,doc.data().image_url));
+        })
+
+        Promise.all(recipeImages).then(values => {
+            console.log(values);
+        });
+
+
+        res.setTimeout(30000, ()=>{
+            res.send(recipeList);
+        })
+
+    })
+
+    /*for (let doc in recipeListData){
+        let source = await tinify.fromUrl('http://image-previews.awap.tv/95/2320/'+doc.id_ref+'/1024/0/preview');
+        await source.toFile('images/'+doc.image_url);
+    }*/
+
+
+    /**let recipeList = [];
+    let batch = db.batch();
+    for (let i=451;i<=500;i++){//480338 379 500 , step 42 /v2 404353 - 404413
+        let doc = db.collection('kitchen_recipes').doc();
+        let auditoryDay = moment().toDate();
+        let date_auditory = admin.firestore.Timestamp.fromDate(auditoryDay);
+
+        let recipeValue = await axios.get('http://us.saltpluspepper.com/index.cfm?GO=RECIPEDETAILS&ContentID=480'+i, //338 - 501
+            { 'headers': { Cookie: Cookie } });
+
+        let dom = new JSDOM(recipeValue.data);
+
+        let toJSON = {
+            image_url:'',
+            indications:'',
+            language:'en',
+            name:'',
+            ingredients:[],
+            id_ref:'480'+i,
+            id: doc.id,
+            created_at:date_auditory
+        };
+
+        toJSON.image_url = dom.window.document.querySelector("h2").textContent.toLowerCase().replace(/[',]/g,'').replace(/&/g,'and').replace(/[- ]/g,'_')+'_image.png'
+        toJSON.name = dom.window.document.querySelector("h2").textContent.toLowerCase().replace(/&/g,'and')
+        toJSON.indications = dom.window.document.querySelector(".recipe-method").textContent
+        let lengthIngedients = dom.window.document.querySelectorAll(".recipe-ingredient-quantity")
+
+        lengthIngedients.forEach((vl,index)=>{
+            let value = dom.window.document.querySelectorAll(".recipe-ingredient-value")[index].textContent
+            toJSON.ingredients.push({quantity:vl.textContent,value:value});
+        });
+
+        console.log("http:"+dom.window.document.querySelector("img").src)
+        //let toJSON = html2json(recipeValue.data)
+        console.log(i)
+
+        await batch.set(doc, toJSON);
+        recipeList.push(toJSON);
+    }
+
+    await batch.commit().then(() => {
+        console.log("Se agrego:  "+ recipeList.length+"  objetos");
+        res.send(recipeList);
+    }).catch(err=>{
+        console.log(err.message);
+    });*/
+
+    //res.send(recipeList);
+
+    /*res.setTimeout(15000, ()=>{
+        res.send(recipeList);
+    })*/
+
+    //for (let i=338;i<=500;i++){
+    /*Jimp.read(
+            'http://image-previews.awap.tv/95/2320/480500/1024/0/preview',
+             (err, lenna) => {
+            if (err) throw err;
+            lenna.quality(70).writeAsync('images/meat_free_chickpea_and_potato_curry_image3.jpg'); // resize
+                //.quality(60) // set JPEG quality
+                //.quality(83).rgba(true)
+                //.pixelate(0) .quality(95).rgba(true)
+                //.greyscale() // set greyscale
+                 // save
+        }).then(vl=>{
+            console.log(vl)
+    });*/
+    //}
+    //let source = tinify.fromUrl("http://image-previews.awap.tv/95/2320/480500/1024/0/preview");
+    //source.toFile("images/meat_free_chickpea_and_potato_curry_image2.jpg");
+
+    /*await imagemin('http://image-previews.awap.tv/95/2320/480500/1024/0/preview', {//['images/*.{jpg,png}']
+        destination: 'build/images',
+        plugins: [
+            imageminJpegtran({
+                progressive: true,
+                //max: 10
+            }),
+            imageminPngquant({
+                speed: 1,
+                quality: [0.85, 0.95]
+            })
+        ]
+    });*/
+
+
 });
 
+async function downloadImage (order,nameFile) {
+    const url = 'http://image-previews.awap.tv/95/2320/'+order+'/1024/0/preview'
+    const path = Path.resolve(__dirname, 'images', nameFile)
+    const writer = Fs.createWriteStream(path)
 
-app.get('/query', async (req, res) => {
+    const response = await axios({
+        url,
+        method: 'GET',
+        responseType: 'stream'
+    })
 
-    //let response = await updateAgroCrops();
-    //console.log("------------> "+response);
-    //res.sendStatus(response)
+    await response.data.pipe(writer)
 
-});
+    return new Promise((resolve, reject) => {
+        writer.on('finish', resolve)
+        writer.on('error', reject)
+    })
+}
 
 
 async function updateAllPrices(param) {
@@ -488,7 +578,7 @@ async function updateAllPrices(param) {
 
 }
 
-app.get('/prod-all', async (req, res) => {
+/*app.get('/prod-all', async (req, res) => {
 
     //let priceRef = await db.collection('prices');
     let dateNew = new Date(1587168000000);
@@ -499,7 +589,7 @@ app.get('/prod-all', async (req, res) => {
 
     console.log(day);
     console.log(daySam);
-    /*priceRef = await  priceRef.where("date",">=",fromDate);
+    /!*priceRef = await  priceRef.where("date",">=",fromDate);
     //priceRef = await priceRef.where('crops_id', '==', "BzgL14JQFRorQxPooJRb");
     //priceRef = await priceRef.where('price_type_id', '==', "ShlOjc8bm8QP9q7rw4kp"); // precio_prom: dsE4vwVF1JyfWVOVLgYA precio_max: AFuN7owOgTMIvwBzFNBG , min: ShlOjc8bm8QP9q7rw4kp
     let lastPrice = await priceRef.get()
@@ -523,18 +613,18 @@ app.get('/prod-all', async (req, res) => {
 
     for (let [k1,price] of lastPrice.entries()){
         await db.collection('prices').doc(price.id).delete().then(vl=>{console.log("eliminado => "+price.id)});
-    }*/
+    }*!/
 
     res.send(fromDate);
-});
+});*/
 
-app.get('/update-all',async (req, res) => {
+/*app.get('/update-all',async (req, res) => {
 
     let pStr = await updateAllProductsDB();
 
     res.send(pStr);
 
-});
+});*/
 
 
 async function updatePricesProduct(crops,price){
@@ -808,7 +898,7 @@ async function updateAllProductsDB(){
     //res.send({data_ingestada:limitUpd});
 }
 
-exports.executeUpdateSisaptoDBTask = functions
+/*exports.executeUpdateSisaptoDBTask = functions
     .runWith({ memory: functions.VALID_MEMORY_OPTIONS[3], timeoutSeconds: functions.MAX_TIMEOUT_SECONDS })
     .pubsub.schedule('0-17/9 9-17 * * *') //'0-17/9 10 * * *'
     .timeZone('America/Lima') // Users can choose timezone - default is America/Los_Angeles
@@ -825,7 +915,7 @@ exports.executeUpdateSisaptoDBTask = functions
             }
 
         });
-    });
+    });*/
 
 exports[API_PREFIX] = functions.https.onRequest(app);
 
