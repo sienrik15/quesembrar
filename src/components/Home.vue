@@ -1,5 +1,5 @@
 <template>
-    <div class="container is-fullhd container-home">
+    <div class="container is-fullhd container-home" style="max-width:100% !important;" >
         <div class="notification">
             <div v-if="loading" class="loader-wrapper" style="background:rgba(89,88,88,0.35);min-height: 100vh;z-index: 40">
                 <div class="loader is-loading"></div>
@@ -75,7 +75,7 @@
 
                         <div class="search-container">
                             <div class="title-search">
-                                <strong> Precios del Dia Mercado Mayorista del Perú </strong>
+                                <strong> Precios al Día Mercado Mayorista Perú </strong>
                             </div>
 
                             <div>
