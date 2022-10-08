@@ -1,23 +1,25 @@
 /* eslint-disable promise/always-return,consistent-return */
 const admin = require('firebase-admin');
+const { Timestamp } = require('firebase-admin/firestore')
 const functions = require('firebase-functions');
 const express = require("express");
 const axios = require('axios');
-const cors = require('cors');
+//const cors = require('cors');
 const html2json = require('html2json').html2json;
 const path = require('path');
-const history = require('connect-history-api-fallback');
-const CronJob = require('cron').CronJob;
+//const history = require('connect-history-api-fallback');
+//const CronJob = require('cron').CronJob;
 const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+//const { JSDOM } = jsdom;
 const querystring = require('querystring');
 const HtmlTableToJson = require('html-table-to-json');
 const _ = require('lodash');
-const moment = require('moment');
-const Jimp = require('jimp');
-const imagemin = require("imagemin");
-const imageminPngquant = require("imagemin-pngquant");
-const imageminJpegtran = require('imagemin-jpegtran');
+const moment = require('moment-timezone');
+//import moment from "moment-timezone";
+//const Jimp = require('jimp');
+//const imagemin = require("imagemin");
+//const imageminPngquant = require("imagemin-pngquant");
+//const imageminJpegtran = require('imagemin-jpegtran');
 const tinify = require("tinify");
 tinify.key = "lxWWsDsbSXtXlR1wL9861HjMGWjxDqPr";
 const Fs = require('fs')
@@ -25,16 +27,18 @@ const Path = require('path')
 
 moment.locale('es-do');
 moment.tz.setDefault("America/Lima");
+//moment().tz("America/Lima").format();
+
 
 //Prod
-//admin.initializeApp(functions.config().firebase);
+admin.initializeApp(functions.config().firebase);
 
 //Local
-const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://agroanalytics-b2462.firebaseio.com"
-});
+// const serviceAccount = require(path.join(__dirname, '../agroanalytics-b2462-firebase-adminsdk-j4why-19923b79f1.json'));
+// admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+//     databaseURL: "https://agroanalytics-b2462.firebaseio.com"
+// });
 
 const db = admin.firestore();
 db.settings({ timestampsInSnapshots: true });
@@ -47,7 +51,7 @@ deleteCollection = (db, collectionPath, batchSize) => {
         deleteQueryBatch(db, query, batchSize, resolve, reject);
     });
 };
-
+/* eslint-disable */
 deleteQueryBatch = (db, query, batchSize, resolve, reject) => {
 
     query.get().then((snapshot) => {
@@ -618,13 +622,13 @@ async function updateAllPrices(param) {
     res.send(fromDate);
 });*/
 
-/*app.get('/update-all',async (req, res) => {
+app.get('/update-all',async (req, res) => {
 
     let pStr = await updateAllProductsDB();
 
     res.send(pStr);
 
-});*/
+});
 
 
 async function updatePricesProduct(crops,price){
@@ -721,7 +725,7 @@ async function inserDataDays(valList,params){
             let date = "";
             if (vl.date && vl.date !==""){
                 let mdate = moment(vl.date, "DD/MM/YYYY").toDate();
-                date = admin.firestore.Timestamp.fromDate(mdate);
+                date = Timestamp.fromDate(mdate)//admin.firestore.Timestamp.fromDate(mdate);
             }else { console.log("Sin fecha id: "+doc.id) }
 
             let price = 0.00;
@@ -730,7 +734,7 @@ async function inserDataDays(valList,params){
             }
 
             let auditoryDay = moment().toDate();
-            let date_auditory = admin.firestore.Timestamp.fromDate(auditoryDay);
+            let date_auditory = Timestamp.fromDate(auditoryDay) //admin.firestore.Timestamp.fromDate(auditoryDay);
 
             let object = {
                 crops_id: crops_id,
@@ -766,7 +770,7 @@ async function inserDataProduct(listProduct){
         let doc = db.collection('agricultural_crops').doc(); //BzgL14JQFRorQxPooJRb sandia actual
 
         let auditoryDay = moment().toDate();
-        let date_auditory = admin.firestore.Timestamp.fromDate(auditoryDay);
+        let date_auditory = Timestamp.fromDate(auditoryDay) //admin.firestore.Timestamp.fromDate(auditoryDay);
 
         let object = {
             id: doc.id,
@@ -885,8 +889,7 @@ async function updateAllProductsDB(){
         for (let [k2,vlTprice] of pricesTypeDB.entries()){
             /*if (k1 >= 200){
                 return 0
-            }*/
-
+            }*/   
             let updatePrices = await updatePricesProduct(crops,vlTprice);
 
             let rgister = k1+1;
@@ -898,7 +901,7 @@ async function updateAllProductsDB(){
     //res.send({data_ingestada:limitUpd});
 }
 
-/*exports.executeUpdateSisaptoDBTask = functions
+exports.executeUpdateSisaptoDBTask = functions
     .runWith({ memory: functions.VALID_MEMORY_OPTIONS[3], timeoutSeconds: functions.MAX_TIMEOUT_SECONDS })
     .pubsub.schedule('0-17/9 9-17 * * *') //'0-17/9 10 * * *'
     .timeZone('America/Lima') // Users can choose timezone - default is America/Los_Angeles
@@ -915,7 +918,7 @@ async function updateAllProductsDB(){
             }
 
         });
-    });*/
+    });
 
-exports[API_PREFIX] = functions.https.onRequest(app);
+exports[API_PREFIX] = functions.runWith({ memory: functions.VALID_MEMORY_OPTIONS[3], timeoutSeconds: functions.MAX_TIMEOUT_SECONDS }).https.onRequest(app);
 
