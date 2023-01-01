@@ -20,7 +20,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
+    "stylus-loader": "^7.1.0",
     "trading-vue-js": "^0.4.4",
     "v-calendar": "^1.0.1",
     "vue": "^2.6.11",
@@ -29,9 +29,9 @@
     "vue-select": "^3.4.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.4.0",
-    "@vue/cli-plugin-eslint": "^4.4.0",
-    "@vue/cli-service": "^4.4.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.12.0",
     "eslint-plugin-vue": "^5.1.0",
